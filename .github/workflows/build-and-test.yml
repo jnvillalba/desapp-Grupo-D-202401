@@ -31,3 +31,6 @@ jobs:
 
       - name: Build with Gradle Wrapper
         run: backend-desapp-api/gradlew build
+
+      - name: Build with Gradle Wrapper
+        run: backend-desapp-api/gradlew test
