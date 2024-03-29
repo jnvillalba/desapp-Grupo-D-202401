@@ -23,7 +23,6 @@ public class BinanceAPIServiceTest {
 
     @Test
     public void testGetPriceOfCoinSymbol_PositiveCase() {
-        // Arrange
         BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
         String symbol = "BTCUSDT";
         String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
@@ -32,24 +31,21 @@ public class BinanceAPIServiceTest {
         ResponseEntity<BinancePriceDTO> responseEntity = ResponseEntity.ok(expectedResponse);
         when(restTemplate.getForEntity(expectedUrl, BinancePriceDTO.class)).thenReturn(responseEntity);
 
-        // Act
         BinancePriceDTO actualResponse = binanceAPIService.getPriceOfCoinSymbol(symbol);
 
-        // Assert
         assertEquals(expectedResponse.getSymbol(), actualResponse.getSymbol());
         verify(restTemplate, times(1)).getForEntity(expectedUrl, BinancePriceDTO.class);
     }
 
     @Test
     public void testGetPriceOfCoinSymbol_NegativeCase() {
-        // Arrange
+
         BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
         String symbol = "DAPPSUNQ";
         String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
         ResponseEntity<BinancePriceDTO> responseEntity = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         when(restTemplate.getForEntity(expectedUrl, BinancePriceDTO.class)).thenReturn(responseEntity);
 
-        // Act and Assert
         assertThrows(BinancePriceFetchException.class, () -> binanceAPIService.getPriceOfCoinSymbol(symbol));
         verify(restTemplate, times(1)).getForEntity(expectedUrl, BinancePriceDTO.class);
     }
