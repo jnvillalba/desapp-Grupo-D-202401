@@ -5,9 +5,11 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.persistence.binance.DTO.Binance
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +17,10 @@ import java.util.List;
 public class BinanceAPIService {
     /**
      * TODO: pasar a env
-     * @Value("${integration.binance.api.url}")
-     * private String binanceApiURL;
+     *
+     * @Value("${integration.binance.api.url}") private String binanceApiURL;
      */
-    private static final String BINANCE_API_URL = "https://api1.binance.com/api/v3/ticker/price?symbol=";
+    private static final String BINANCE_API_URL = "https://api1.binance.com/api/v3/";
     private final RestTemplate restTemplate;
 
     @Autowired
@@ -27,17 +29,15 @@ public class BinanceAPIService {
     }
 
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
-        String url = BINANCE_API_URL + symbol;
+        String url = BINANCE_API_URL + "ticker/price?symbol=" + symbol;
         ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
         } else {
-            throw new BinancePriceFetchException( symbol , responseEntity.getStatusCode().value());
+            throw new BinancePriceFetchException(symbol, responseEntity.getStatusCode().value());
         }
     }
-
-
 
     public List<BinancePriceDTO> getPricesOfCoins() {
         String[] symbols = {
@@ -62,4 +62,37 @@ public class BinanceAPIService {
         }
         return pricesList;
     }
+
+    public List<BinancePriceDTO> last24HrsPrices(String symbol) {
+        long endTime = Instant.now().toEpochMilli();
+        long startTime = endTime - (24 * 60 * 60 * 1000);
+
+        String apiUrl = BINANCE_API_URL + "klines?symbol=" + symbol + "&interval=1h&startTime=" + startTime + "&endTime=" + endTime;
+
+        String[][] response = restTemplate.getForObject(apiUrl, String[][].class);
+
+        return mapResponseToBinancePriceDTOList(response, symbol);
+    }
+
+    private List<BinancePriceDTO> mapResponseToBinancePriceDTOList(String[][] response, String symbol) {
+        List<BinancePriceDTO> resultList = new ArrayList<>();
+
+        for (String[] data : response) {
+            long timestampInMillis = Long.parseLong(data[6]);
+            // TODO revisar el calculo de hora
+            LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampInMillis), ZoneId.systemDefault());
+            dateTime = dateTime.withMinute(0);
+
+            BinancePriceDTO binancePriceDTO = new BinancePriceDTO(
+                    symbol,
+                    Float.parseFloat(data[4]),
+                    dateTime
+            );
+
+            resultList.add(binancePriceDTO);
+        }
+
+        return resultList;
+    }
+
 }

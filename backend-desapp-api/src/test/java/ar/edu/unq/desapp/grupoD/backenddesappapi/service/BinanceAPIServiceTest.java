@@ -26,7 +26,7 @@ public class BinanceAPIServiceTest {
         BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
         String symbol = "BTCUSDT";
         String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
-        BinancePriceDTO expectedResponse = new BinancePriceDTO(symbol, "50000");
+        BinancePriceDTO expectedResponse = new BinancePriceDTO(symbol, 50000.00f, null);
 
         ResponseEntity<BinancePriceDTO> responseEntity = ResponseEntity.ok(expectedResponse);
         when(restTemplate.getForEntity(expectedUrl, BinancePriceDTO.class)).thenReturn(responseEntity);
