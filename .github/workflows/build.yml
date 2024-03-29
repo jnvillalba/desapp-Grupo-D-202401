@@ -21,13 +21,10 @@ jobs:
           distribution: "temurin"
 
       - name: Grant execute permission to Gradle Wrapper
-        run: chmod +x /backend-desapp-api/gradlew
-
-      - name: Change to project directory
-        run: cd backend-desapp-api
+        run: chmod +x backend-desapp-api/gradlew
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
       - name: Build with Gradle Wrapper
-        run: ./gradlew build
+        run: backend-desapp-api/gradlew build
