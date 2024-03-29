@@ -29,8 +29,5 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3.1.0
 
-      - name: Initialize Gradle project (if not exists)
-        run: ./gradlew init
-
       - name: Build with Gradle Wrapper
         run: ./gradlew build
