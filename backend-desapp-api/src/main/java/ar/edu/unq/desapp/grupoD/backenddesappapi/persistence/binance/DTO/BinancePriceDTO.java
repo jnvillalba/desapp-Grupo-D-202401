@@ -13,6 +13,6 @@ public class BinancePriceDTO {
     private String symbol;
     private Float price;
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime lastUpdateDateAndTime;
 }
