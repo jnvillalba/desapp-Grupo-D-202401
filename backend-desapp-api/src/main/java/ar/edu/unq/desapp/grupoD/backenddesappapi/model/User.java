@@ -44,5 +44,5 @@ public class User {
     @NotBlank
     @Size(min = 8, max = 8)
     private String walletCripto;
-
+    
 }
