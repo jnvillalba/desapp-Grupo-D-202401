@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.service.binance;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.persistence.binance.DTO.BinancePriceDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CriptoActive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,9 @@ public class BinanceAPIService {
         this.restTemplate = restTemplate;
     }
 
-    public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
+    public CriptoActive getPriceOfCoinSymbol(String symbol) {
         String url = BINANCE_API_URL + "ticker/price?symbol=" + symbol;
-        ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
+        ResponseEntity<CriptoActive> responseEntity = restTemplate.getForEntity(url, CriptoActive.class);
 
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
@@ -39,7 +39,7 @@ public class BinanceAPIService {
         }
     }
 
-    public List<BinancePriceDTO> getPricesOfCoins() {
+    public List<CriptoActive> getPricesOfCoins() {
         String[] symbols = {
                 "ALICEUSDT",
                 "MATICUSDT",
@@ -56,14 +56,14 @@ public class BinanceAPIService {
                 "TRXUSDT",
                 "AUDIOUSDT"
         };
-        List<BinancePriceDTO> pricesList = new ArrayList<>();
+        List<CriptoActive> pricesList = new ArrayList<>();
         for (String symbol : symbols) {
             pricesList.add(getPriceOfCoinSymbol(symbol));
         }
         return pricesList;
     }
 
-    public List<BinancePriceDTO> last24HrsPrices(String symbol) {
+    public List<CriptoActive> last24HrsPrices(String symbol) {
         long endTime = Instant.now().toEpochMilli();
         long startTime = endTime - (24 * 60 * 60 * 1000);
 
@@ -74,8 +74,8 @@ public class BinanceAPIService {
         return mapResponseToBinancePriceDTOList(response, symbol);
     }
 
-    private List<BinancePriceDTO> mapResponseToBinancePriceDTOList(String[][] response, String symbol) {
-        List<BinancePriceDTO> resultList = new ArrayList<>();
+    private List<CriptoActive> mapResponseToBinancePriceDTOList(String[][] response, String symbol) {
+        List<CriptoActive> resultList = new ArrayList<>();
 
         for (String[] data : response) {
             long timestampInMillis = Long.parseLong(data[6]);
@@ -83,7 +83,7 @@ public class BinanceAPIService {
             LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampInMillis), ZoneId.systemDefault());
             dateTime = dateTime.withMinute(0);
 
-            BinancePriceDTO binancePriceDTO = new BinancePriceDTO(
+            CriptoActive binancePriceDTO = new CriptoActive(
                     symbol,
                     Float.parseFloat(data[4]),
                     dateTime

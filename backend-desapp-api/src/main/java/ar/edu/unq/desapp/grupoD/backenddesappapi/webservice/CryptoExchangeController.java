@@ -1,6 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.persistence.binance.DTO.BinancePriceDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CriptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.service.binance.BinanceAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +21,18 @@ public class CryptoExchangeController {
     BinanceAPIService binanceAPIService;
 
     @GetMapping("/crypto/{symbol}")
-    public ResponseEntity<BinancePriceDTO> getCryptoCurrencyValue(@PathVariable String symbol) {
-        BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);
+    public ResponseEntity<CriptoActive> getCryptoCurrencyValue(@PathVariable String symbol) {
+        CriptoActive entity = binanceAPIService.getPriceOfCoinSymbol(symbol);
         return ResponseEntity.ok().body(entity);
     }
 
     @GetMapping("/crypto/prices")
-    public ResponseEntity<List<BinancePriceDTO>> getPricesOfCoins() {
+    public ResponseEntity<List<CriptoActive>> getPricesOfCoins() {
         return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());
     }
 
     @GetMapping("/crypto/last24HrsPrices/{symbol}")
-    public ResponseEntity<List<BinancePriceDTO>> last24HrsPrices(@PathVariable String symbol) {
+    public ResponseEntity<List<CriptoActive>> last24HrsPrices(@PathVariable String symbol) {
         return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));
     }
 
