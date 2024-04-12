@@ -31,8 +31,11 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
+      - name: Ensure Gradle wrapper is executable
+        run: chmod +x backend-desapp-api/gradlew
+        working-directory: backend-desapp-api
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: backend-desapp-api/gradlew build sonar --info
+        run: ./gradlew build sonar --info
