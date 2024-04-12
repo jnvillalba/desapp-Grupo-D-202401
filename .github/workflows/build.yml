@@ -33,8 +33,10 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
       - name: Grant execute permission to Gradle Wrapper
         run: chmod +x backend-desapp-api/gradlew
+      - name: Initialize Gradle project if necessary
+        run: backend-desapp-api/gradlew init
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: backend-desapp-api/gradlew build
+        run: backend-desapp-api/gradlew build sonar --info
