@@ -9,10 +9,10 @@ plugins {
 sonar {
 	properties {
 		property "sonar.projectKey", "jnvillalba_desapp-Grupo-D-202401"
-			property "sonar.organization", "jnvillalba"
-			property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.organization", "jnvillalba"
+		property "sonar.host.url", "https://sonarcloud.io"
 		}
-}
+	}
 group = 'ar.edu.unq.desapp.grupoD'
 version = '0.0.1-SNAPSHOT'
 
