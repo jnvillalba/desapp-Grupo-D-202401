@@ -16,6 +16,9 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @NotBlank
+    private Long id;
+
+    @NotBlank
     @Size(min = 3, max = 30)
     private String name;
 
