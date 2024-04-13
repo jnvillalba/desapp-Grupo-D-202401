@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CriptoActive {
+public class CryptoActive {
 
     private String symbol;
     private Float price;
