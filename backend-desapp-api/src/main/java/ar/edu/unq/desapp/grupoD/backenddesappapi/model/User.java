@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -9,10 +10,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+//@Entity
 public class User {
 
     private Long id;
@@ -46,5 +51,9 @@ public class User {
     @NotBlank
     @Size(min = 8, max = 8)
     private String walletCripto;
-    
+
+    //@ManyToMany
+    //@JoinColumn(name = "id_role")
+    private List<Role> roles = new ArrayList<>();
+
 }
