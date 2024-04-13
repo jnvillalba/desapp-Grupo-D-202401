@@ -2,7 +2,7 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CriptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.service.binance.BinanceAPIService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;

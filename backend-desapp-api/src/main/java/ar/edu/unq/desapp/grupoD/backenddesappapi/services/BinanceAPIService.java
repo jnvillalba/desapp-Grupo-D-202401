@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.service.binance;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CriptoActive;

@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CriptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.service.binance.BinanceAPIService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
