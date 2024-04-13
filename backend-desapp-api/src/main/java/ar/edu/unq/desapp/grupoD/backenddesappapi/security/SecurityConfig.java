@@ -11,11 +11,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Allow access to all URLs without authentication (temporal hasta entrega 2)
         http.authorizeRequests(auth -> auth
-                // Allow access to all URLs without authentication (temporal)
                 .anyRequest().permitAll());
 
-        return http.build();
+        return http.csrf().disable().build();
     }
 
 }
