@@ -1,6 +1,9 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -20,6 +23,8 @@ import java.util.List;
 //@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -37,9 +42,7 @@ public class User {
     @NotBlank
     @Size(min = 10, max = 30)
     private String direction;
-
-    //seguramente no utilizemos el pattern xq se cifraran las contraseñas y ahi se hara la validacion
-    // al menos 1 minúscula, 1 mayuscula, 1 carac especial y min 6
+    
     @NotBlank
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$")
     private String password;
