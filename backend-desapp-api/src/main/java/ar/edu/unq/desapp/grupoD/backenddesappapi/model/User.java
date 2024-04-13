@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class User {
 
-    @NotBlank
     private Long id;
 
     @NotBlank
