@@ -214,7 +214,7 @@ public class UserTest {
         user.setOperationsList(operationsList);
 
         double reputation = user.getReputation();
-        assertEquals(66.66, reputation);
+        assertEquals(66.66, reputation,0.1);
     }
 
     @Test

@@ -14,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-//@Entity
 public class User {
 
     @NotBlank
@@ -45,8 +44,6 @@ public class User {
     @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
-    //@ManyToMany
-    //@JoinColumn(name = "id_role")
     private List<Role> roles = new ArrayList<>();
 
     private List<Intention> intentionsList = new ArrayList<>();
@@ -54,7 +51,7 @@ public class User {
 
     @DecimalMin(value = "0.00", inclusive = true, message = "Reputation must be at least 0")
     @DecimalMax(value = "100.00", inclusive = true, message = "Reputation must not exceed 100")
-    private double reputation = 0;
+    private double reputation = 0.0;
 
     public double getReputation() {
         calculateReputation();
