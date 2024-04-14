@@ -232,4 +232,47 @@ public class UserTest {
         double reputation = user.getReputation();
         assertEquals(0.0, reputation);
     }
+
+    @Test
+    public void testUserCreation() {
+
+        User user = new User(
+                1L,
+                "John",
+                "Doe",
+                "user@example.com",
+                "123 Main St",
+                "Password123",
+                "0123456789012345678901",
+                "12345678",
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                95.5
+        );
+
+
+        assertEquals(1L, user.getId());
+        assertEquals("John", user.getName());
+        assertEquals("user@example.com", user.getEmail());
+
+        User user2 =User.builder()
+                .id(1L)
+                .name("John")
+                .lastName("Doe")
+                .email("user@example.com")
+                .direction("123 Main St")
+                .password("Password123")
+                .cvuMercadoPago("0123456789012345678901")
+                .walletCrypto("12345678")
+                .roles(new ArrayList<>())
+                .intentionsList(new ArrayList<>())
+                .operationsList(new ArrayList<>())
+                .reputation(95.5)
+                .build();
+
+        assertEquals(user, user2);
+        assertEquals(user.hashCode(), user2.hashCode());
+    }
+
 }

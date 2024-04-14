@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
-import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 public class Operation {
