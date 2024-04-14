@@ -3,8 +3,10 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
-public class Transaccion {
+@Data
+public class Transaction {
 
     private Long id;
 
@@ -18,7 +20,7 @@ public class Transaccion {
     private User user;
 
     @NotBlank
-    private String adress;
+    private String address;
     private String cvu;
     private TransactionStatus status;
 
