@@ -14,14 +14,6 @@ public class Operation {
     @NotNull(message = "The crypto active cannot be null.")
     private CryptoActive cryptoActive;
 
-    @NotNull(message = "Cripto amount cannot be null.")
-    @DecimalMin(value = "0.0", message = "Cripto amount cannot be negative.")
-    private double criptoAmount;
-
-    @NotNull(message = "Cripto price cannot be null.")
-    @DecimalMin(value = "0.0", message = "Cripto price cannot be negative.")
-    private double criptoPrice;
-
     private Status status;
 
     public enum Status {

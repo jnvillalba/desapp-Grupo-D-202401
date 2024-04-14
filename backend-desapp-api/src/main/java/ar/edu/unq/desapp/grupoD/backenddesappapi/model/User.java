@@ -45,11 +45,11 @@ public class User {
     private String password;
 
     @NotBlank
-    @Size(min = 22, max = 22)
+    @Size(min = 22, max = 22, message = "CVU must have 22 digits.")
     private String cvuMercadoPago;
 
     @NotBlank
-    @Size(min = 8, max = 8)
+    @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
     //@ManyToMany

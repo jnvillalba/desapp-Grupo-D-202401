@@ -39,6 +39,11 @@ public class CryptoExchange {
 
     public void processTransaction(User user1, User user2, String crypto, float amount, float cryptoPrice, float totalAmountToPay, String transactionType, String shippingAddress) {
         // procesar transacción informada por un usuario
+        /*
+        Si el usuario 1 o el 2 cancela la operación, no se le suma una operación realizada y se le descuenta 20 puntos de la reputación.
+        Si la operación es cancelada por el sistema debido a la diferencia de precios, no se le suma la operación a los usuarios pero tampoco reciben descuento de puntos por cancelación.
+        Si la operación se realiza dentro de los 30 minutos, suman 10 puntos y si supera los 30 minutos suman 5.
+        */
     }
 
     public void reportTradingVolume(User user, LocalDateTime startDate, LocalDateTime endDate) {
