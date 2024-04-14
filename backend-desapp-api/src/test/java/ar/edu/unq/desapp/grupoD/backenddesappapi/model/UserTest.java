@@ -5,10 +5,7 @@ import jakarta.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
 import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -38,6 +35,40 @@ public class UserTest {
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
         assertTrue(violations.isEmpty());
+    }
+
+    @Test
+    public void nameMinAndMaxLength() {
+        User user = new User();
+
+        user.setName("Noe");
+        Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "name");
+        assertTrue(violations.isEmpty());
+
+        user.setName("No");
+        violations = validator.validateProperty(user, "name");
+        assertFalse(violations.isEmpty());
+
+        user.setName("Nominchuluunukhaanzayamunkherdeneenkhtuguldur");
+        violations = validator.validateProperty(user, "name");
+        assertFalse(violations.isEmpty());
+    }
+
+    @Test
+    public void lastnameMinAndMaxLength() {
+        User user = new User();
+
+        user.setLastName("Pie");
+        Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "lastName");
+        assertTrue(violations.isEmpty());
+
+        user.setLastName("Pi");
+        violations = validator.validateProperty(user, "lastName");
+        assertFalse(violations.isEmpty());
+
+        user.setLastName("Keihanaikukauakahihuliheekahaunaele");
+        violations = validator.validateProperty(user, "lastName");
+        assertFalse(violations.isEmpty());
     }
 
     @Test
@@ -85,6 +116,5 @@ public class UserTest {
         user.setWalletCrypto("1234567");
         violations = validator.validateProperty(user, "walletCrypto");
         assertFalse(violations.isEmpty());
-
     }
 }
