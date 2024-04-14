@@ -2,27 +2,23 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RoleTest {
 
     @Test
-    public void testRoleCreation() {
-        Role mockRole = mock(Role.class);
-
-        when(mockRole.getName()).thenReturn("Admin");
-
-        assertEquals("Admin", mockRole.getName());
+    public void testRoleNoArgsConstructor() {
+        Role role = new Role();
+        assertNotNull(role);
     }
 
     @Test
-    public void testRoleIdGeneration() {
-        Role mockRole = mock(Role.class);
-
-        Long mockId = 123L;
-        when(mockRole.getId()).thenReturn(mockId);
-
-        assertEquals(mockId, mockRole.getId());
+    public void testRoleDataAnnotation() {
+        Role role = new Role();
+        role.setId(1L);
+        role.setName("Admin");
+        assertEquals(1L, role.getId().longValue());
+        assertEquals("Admin", role.getName());
     }
 }
 

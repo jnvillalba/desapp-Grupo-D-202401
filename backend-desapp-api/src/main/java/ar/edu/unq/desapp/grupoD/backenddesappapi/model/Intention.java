@@ -2,9 +2,11 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@Data
 public class Intention {
     private Long intentionId;
 

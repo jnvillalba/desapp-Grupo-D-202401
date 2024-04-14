@@ -1,32 +1,88 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 
 import java.time.LocalDateTime;
 import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-
 public class CryptoActiveTest {
-    @Autowired
+
+    @Mock
     private Validator validator;
 
-    @Test
-    public void testCreateCryptoActive() {
-        CryptoActive cryptoActive = new CryptoActive();
-        cryptoActive.setSymbol("BTC");
-        cryptoActive.setPrice(1000.0f);
-        cryptoActive.setLastUpdateDateAndTime(LocalDateTime.parse("2024-01-01T00:00:00"));
+    public CryptoActiveTest() {
+        MockitoAnnotations.initMocks(this);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
 
-        assertEquals("BTC", cryptoActive.getSymbol());
-        assertEquals(1000.0f, cryptoActive.getPrice());
-        assertEquals(LocalDateTime.parse("2024-01-01T00:00:00"), cryptoActive.getLastUpdateDateAndTime());
+    @Test
+    void testValidCryptoActive() {
+        CryptoActive cryptoActive = CryptoActive.builder()
+                .symbol("BTC")
+                .price(50000f)
+                .amount(0.5)
+                .quantity(1.0)
+                .lastUpdateDateAndTime(LocalDateTime.now())
+                .build();
 
         Set<ConstraintViolation<CryptoActive>> violations = validator.validate(cryptoActive);
         assertTrue(violations.isEmpty());
     }
+
+    @Test
+    void testInvalidSymbol() {
+        CryptoActive cryptoActive = CryptoActive.builder()
+                .symbol(null)
+                .price(50000f)
+                .amount(0.5)
+                .quantity(1.0)
+                .lastUpdateDateAndTime(LocalDateTime.now())
+                .build();
+
+        Set<ConstraintViolation<CryptoActive>> violations = validator.validate(cryptoActive);
+        assertFalse(violations.isEmpty());
+        assertEquals("Crypto symbol cannot be null.", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    void testNegativePrice() {
+        CryptoActive cryptoActive = CryptoActive.builder()
+                .symbol("BTC")
+                .price(-50000f)
+                .amount(0.5)
+                .quantity(1.0)
+                .lastUpdateDateAndTime(LocalDateTime.now())
+                .build();
+
+        Set<ConstraintViolation<CryptoActive>> violations = validator.validate(cryptoActive);
+        assertFalse(violations.isEmpty());
+        assertEquals("Cripto price cannot be negative.", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    void testGettersAndSetters() {
+        CryptoActive cryptoActive = new CryptoActive();
+        cryptoActive.setSymbol("BTC");
+        cryptoActive.setPrice(50000f);
+        cryptoActive.setAmount(0.5);
+        cryptoActive.setQuantity(1.0);
+        cryptoActive.setLastUpdateDateAndTime(LocalDateTime.now());
+
+        assertEquals("BTC", cryptoActive.getSymbol());
+        assertEquals(50000f, cryptoActive.getPrice());
+        assertEquals(0.5, cryptoActive.getAmount());
+        assertEquals(1.0, cryptoActive.getQuantity());
+        assertNotNull(cryptoActive.getLastUpdateDateAndTime());
+    }
+
+
 }
