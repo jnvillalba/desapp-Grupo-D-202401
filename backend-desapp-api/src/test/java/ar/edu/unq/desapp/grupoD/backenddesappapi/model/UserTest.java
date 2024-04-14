@@ -2,9 +2,14 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,11 +17,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserTest {
     @Autowired
     private Validator validator;
+    private User user;
+    private List<Operation> operationsList;
+    @BeforeEach
+    void setUp() {
+        user = new User();
+        operationsList = new ArrayList<>();
+    }
 
     @Test
     public void testCreateUser() {
-
-        User user = new User();
         user.setName("Camila");
         user.setLastName("Ruiz");
         user.setEmail("camiruiz@hotmail.com");
@@ -39,7 +49,6 @@ public class UserTest {
 
     @Test
     public void nameMinAndMaxLength() {
-        User user = new User();
 
         user.setName("Noe");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "name");
@@ -59,7 +68,6 @@ public class UserTest {
 
     @Test
     public void lastnameMinAndMaxLength() {
-        User user = new User();
 
         user.setLastName("Pie");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "lastName");
@@ -80,8 +88,6 @@ public class UserTest {
 
     @Test
     public void testInvalidEmail() {
-        User user = new User();
-
         user.setEmail("camiruiz@hotmail.com");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "email");
         assertTrue(violations.isEmpty());
@@ -93,7 +99,6 @@ public class UserTest {
 
     @Test
     public void directionMinAndMaxLength() {
-        User user = new User();
 
         user.setDirection("Calle Falsa 123");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "direction");
@@ -113,8 +118,6 @@ public class UserTest {
 
     @Test
     public void testPasswordValidation() {
-        User user = new User();
-
         user.setPassword("Password123!");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
         assertTrue(violations.isEmpty());
@@ -133,7 +136,6 @@ public class UserTest {
 
     @Test
     public void testCVUMinAndMaxLength() {
-        User user = new User();
 
         user.setCvuMercadoPago("0123456789012345678901");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "cvuMercadoPago");
@@ -153,7 +155,7 @@ public class UserTest {
 
     @Test
     public void testWalletCryptoMinAndMaxLength() {
-        User user = new User();
+
 
         user.setWalletCrypto("12345678");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "walletCrypto");
@@ -169,5 +171,65 @@ public class UserTest {
         violations = validator.validateProperty(user, "walletCrypto");
         assertFalse(violations.isEmpty());
         //no llega al min de 8
+    }
+
+    @Test
+    void testEmptyOperationsList() {
+        double reputation = user.getReputation();
+        assertEquals(0.0, reputation);
+    }
+
+
+    @Test
+    void testSingleSuccessfulOperation() {
+        Operation mockOperation = Mockito.mock(Operation.class);
+        Mockito.when(mockOperation.isSuccess()).thenReturn(true);
+        operationsList.add(mockOperation);
+        user.setOperationsList(operationsList);
+        double reputation = user.getReputation();
+        assertEquals(100.0, reputation);
+    }
+
+    @Test
+    void testSingleFailedOperation() {
+        Operation mockOperation = Mockito.mock(Operation.class);
+        Mockito.when(mockOperation.isSuccess()).thenReturn(false);
+        operationsList.add(mockOperation);
+        user.setOperationsList(operationsList);
+        double reputation = user.getReputation();
+        assertEquals(0.0, reputation);
+    }
+
+    @Test
+    void testMixedOperations() {
+        Operation mockSuccessfulOperation = Mockito.mock(Operation.class);
+        Mockito.when(mockSuccessfulOperation.isSuccess()).thenReturn(true);
+
+        Operation mockFailedOperation = Mockito.mock(Operation.class);
+        Mockito.when(mockFailedOperation.isSuccess()).thenReturn(false);
+
+        operationsList.add(mockSuccessfulOperation);
+        operationsList.add(mockFailedOperation);
+        operationsList.add(mockSuccessfulOperation);
+        user.setOperationsList(operationsList);
+
+        double reputation = user.getReputation();
+        assertEquals(66.66, reputation);
+    }
+
+    @Test
+    void testNoSuccessfulOperations() {
+        Operation mockFailedOperation1 = Mockito.mock(Operation.class);
+        Mockito.when(mockFailedOperation1.isSuccess()).thenReturn(false);
+
+        Operation mockFailedOperation2 = Mockito.mock(Operation.class);
+        Mockito.when(mockFailedOperation2.isSuccess()).thenReturn(false);
+
+        operationsList.add(mockFailedOperation1);
+        operationsList.add(mockFailedOperation2);
+        user.setOperationsList(operationsList);
+
+        double reputation = user.getReputation();
+        assertEquals(0.0, reputation);
     }
 }
