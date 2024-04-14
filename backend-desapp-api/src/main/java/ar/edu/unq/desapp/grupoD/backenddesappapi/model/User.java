@@ -53,7 +53,7 @@ public class User {
 
     @NotBlank
     @Size(min = 8, max = 8)
-    private String walletCripto;
+    private String walletCrypto;
 
     //@ManyToMany
     //@JoinColumn(name = "id_role")
