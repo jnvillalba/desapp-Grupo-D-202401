@@ -7,12 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class UserService {
     @Autowired
     PasswordEncoder passwordEnconder;
-//    @Autowired
-//    UserRepository userRepository;
 
-    public void registerUser(User user){
+    public User registerUser(User user){
         user.setPassword(
                 passwordEnconder.encode(user.getPassword()));
-        //userRepository.save(user);
+        return user;
     }
 }
