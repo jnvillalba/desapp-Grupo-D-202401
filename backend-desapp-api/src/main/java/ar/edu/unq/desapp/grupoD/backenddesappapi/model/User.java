@@ -56,8 +56,6 @@ public class User {
     @DecimalMax(value = "100.00", inclusive = true, message = "Reputation must not exceed 100")
     private double reputation = 0.0;
 
-    // El problema que tengo con este metodo es que cuando quiero actualizar la reputation
-    // cuando se cancela o se completa, este metodo lo pisa y no lo tiene en cuenta
     public double getReputation() {
         calculateReputation();
         return reputation;
@@ -67,7 +65,6 @@ public class User {
         return reputation;
     }
 
-    // No tiene en cuentatu reputation inicial... si tu reputation es 30 lo pisas y lo calculas de 0
     private void calculateReputation() {
         if (operationsList.isEmpty()) {
             reputation = 0.0;
@@ -95,8 +92,6 @@ public class User {
         return successfulTransactions;
     }
 
-    // TODO: este metodo se va a llamar a cada user
-    //  de la transacción una vez realizada la capa de servicio
     public void processTransaction(Operation operation) {
         if (operation.isCancelled()) {
             handleCancelledTransaction(operation);
@@ -126,13 +121,14 @@ public class User {
         reputation = Math.max(0, (reputation - amount));
     }
 
-    // TODO CAMI: falta un metodo para aumentar
+    private void addReputation(double amount) {
+        calculateReputation();
+        reputation = Math.max(0, (reputation + amount));
+    }
 
     public void handleSuccesfulTransaction(Operation transaction) {
         double reputationPoints = transaction.wasWithin30Minutes() ? 10.0 : 5.0;
-        double newReputation = reputation + reputationPoints;
-        reputation = Math.max(0, Math.min(100, newReputation));
+        addReputation(reputationPoints);
         operationsList.add(transaction);
     }
-
 }
