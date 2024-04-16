@@ -19,17 +19,14 @@ public class UserTest {
     @Autowired
     private Validator validator;
     private User user;
+
+    private Operation operation;
     private List<Operation> operationsList;
-    private List<Transaction> transactionsList;
-    private Transaction transaction;
-    private Transaction transactionSuccesful;
     @BeforeEach
     void setUp() {
         user = new User();
         operationsList = new ArrayList<>();
-        transactionsList = new ArrayList<>();
-        transaction = new Transaction();
-        transactionSuccesful = new Transaction();
+        operation = new Operation();
     }
 
     @Test
@@ -199,10 +196,10 @@ public class UserTest {
 
     @Test
     void testSingleSuccessfulTransaction() {
-        Transaction mockTransaction = Mockito.mock(Transaction.class);
-        Mockito.when(mockTransaction.isSuccessful()).thenReturn(true);
-        transactionsList.add(mockTransaction);
-        user.setTransactionsList(transactionsList);
+        Operation mockTransaction = Mockito.mock(Operation.class);
+        Mockito.when(mockTransaction.isSuccess()).thenReturn(true);
+        operationsList.add(mockTransaction);
+        user.setOperationsList(operationsList);
         double reputation = user.getReputation();
         assertEquals(100.0, reputation);
     }
@@ -220,10 +217,10 @@ public class UserTest {
 
     @Test
     void testSingleFailedTransaction() {
-        Transaction mockTransaction = Mockito.mock(Transaction.class);
-        Mockito.when(mockTransaction.isSuccessful()).thenReturn(false);
-        transactionsList.add(mockTransaction);
-        user.setTransactionsList(transactionsList);
+        Operation mockTransaction = Mockito.mock(Operation.class);
+        Mockito.when(mockTransaction.isSuccess()).thenReturn(false);
+        operationsList.add(mockTransaction);
+        user.setOperationsList(operationsList);
         double reputation = user.getReputation();
         assertEquals(0.0, reputation);
     }
@@ -247,16 +244,16 @@ public class UserTest {
 
     @Test
     void testMixedTransactions() {
-        Transaction mockSuccessfulTransaction = Mockito.mock(Transaction.class);
-        Mockito.when(mockSuccessfulTransaction.isSuccessful()).thenReturn(true);
+        Operation mockSuccessfulTransaction = Mockito.mock(Operation.class);
+        Mockito.when(mockSuccessfulTransaction.isSuccess()).thenReturn(true);
 
-        Transaction mockFailedTransaction = Mockito.mock(Transaction.class);
+        Operation mockFailedTransaction = Mockito.mock(Operation.class);
         Mockito.when(mockFailedTransaction.isCancelled()).thenReturn(true);
 
-        transactionsList.add(mockSuccessfulTransaction);
-        transactionsList.add(mockFailedTransaction);
-        transactionsList.add(mockSuccessfulTransaction);
-        user.setTransactionsList(transactionsList);
+        operationsList.add(mockSuccessfulTransaction);
+        operationsList.add(mockFailedTransaction);
+        operationsList.add(mockSuccessfulTransaction);
+        user.setOperationsList(operationsList);
 
         double reputation = user.getReputation();
         assertEquals(66.66, reputation,0.1);
@@ -281,15 +278,15 @@ public class UserTest {
 
     @Test
     void testNoSuccessfulTransactions() {
-        Transaction mockFailedTransaction1 = Mockito.mock(Transaction.class);
-        Mockito.when(mockFailedTransaction1.isSuccessful()).thenReturn(false);
+        Operation mockFailedTransaction1 = Mockito.mock(Operation.class);
+        Mockito.when(mockFailedTransaction1.isSuccess()).thenReturn(false);
 
-        Transaction mockFailedTransaction2 = Mockito.mock(Transaction.class);
-        Mockito.when(mockFailedTransaction2.isSuccessful()).thenReturn(false);
+        Operation mockFailedTransaction2 = Mockito.mock(Operation.class);
+        Mockito.when(mockFailedTransaction2.isSuccess()).thenReturn(false);
 
-        transactionsList.add(mockFailedTransaction1);
-        transactionsList.add(mockFailedTransaction2);
-        user.setTransactionsList(transactionsList);
+        operationsList.add(mockFailedTransaction1);
+        operationsList.add(mockFailedTransaction2);
+        user.setOperationsList(operationsList);
 
         double reputation = user.getReputation();
         assertEquals(0.0, reputation);
@@ -307,7 +304,6 @@ public class UserTest {
                 "Password123",
                 "0123456789012345678901",
                 "12345678",
-                new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
@@ -331,7 +327,6 @@ public class UserTest {
                 .roles(new ArrayList<>())
                 .intentionsList(new ArrayList<>())
                 .operationsList(new ArrayList<>())
-                .transactionsList(new ArrayList<>())
                 .reputation(95.5)
                 .build();
 
@@ -341,49 +336,50 @@ public class UserTest {
 
     @Test
     public void testWhenATransactionIsCancelledAndTheUserHasAnEmptyListOfTransactionsHisReputationIs0Points() {
-        transaction.setStatus(Transaction.TransactionStatus.CANCELED);
-        transaction.setCancelledBy(user);
+        operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
+        operation.setUser(user);
 
-        user.handleCancelledTransaction(transaction);
+        user.handleCancelledTransaction(operation);
 
         assertEquals(0.0, user.findReputation(), 0.01);
     }
 
     @Test
     public void testWhenATransactionIsCancelledTheUserWhoCancelledItHisReputationIsLoweredBy20Points() {
-        transaction.setStatus(Transaction.TransactionStatus.CANCELED);
-        transactionSuccesful.setStatus(Transaction.TransactionStatus.CONFIRMED);
-        transaction.setCancelledBy(user);
+        operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
+        operation.setStatus(Operation.TransactionStatus.CONFIRMED);
+        operation.setUser(user);
         // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
-        user.getTransactionsList().add(transactionSuccesful);
+        Operation transactionSuccesful = new Operation();
+        user.getOperationsList().add(transactionSuccesful);
 
-        user.handleCancelledTransaction(transaction);
+        user.handleCancelledTransaction(operation);
 
-        assertFalse(user.getTransactionsList().isEmpty());
+        assertFalse(user.getOperationsList().isEmpty());
         assertEquals(80.0, user.findReputation(), 0.01);
     }
 
     @Test
     public void testWhenATransactionIsCancelledTheUsersReputationCantGoBelow0Points() {
-        transaction.setStatus(Transaction.TransactionStatus.CANCELED);
-        transaction.setCancelledBy(user);
+        operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
+        operation.setUser(user);
         // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
-        user.getTransactionsList().add(transaction);
+        user.getOperationsList().add(operation);
         user.setReputation(5.0);
 
-        user.handleCancelledTransaction(transaction);
+        user.handleCancelledTransaction(operation);
 
         assertEquals(0.0, user.findReputation(), 0.01);
     }
 
     @Test
     public void testWhenATransactionIsNotCancelledByAnUserItsReputationIsNotAffected() {
-        transaction.setStatus(Transaction.TransactionStatus.CANCELED);
+        operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
-        user.getTransactionsList().add(transaction);
+        user.getOperationsList().add(operation);
         user.setReputation(100.0);
 
-        user.handleCancelledTransaction(transaction);
+        user.handleCancelledTransaction(operation);
 
         assertEquals(100.0, user.findReputation(), 0.01);
     }

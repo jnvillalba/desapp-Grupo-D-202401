@@ -38,7 +38,7 @@ public class OperationTest {
     @Test
     public void testIsSuccess() {
         Operation operation = new Operation();
-        operation.setStatus(Operation.Status.SUCCESSFUL);
+        operation.setStatus(Operation.TransactionStatus.CONFIRMED);
 
         boolean success = operation.isSuccess();
 
@@ -57,9 +57,9 @@ public class OperationTest {
     public void testOperationTypeNotNull() {
         Operation operation = new Operation();
         operation.setOperationType(OperationType.BUY);
-        operation.setStatus(Operation.Status.SUCCESSFUL);
+        operation.setStatus(Operation.TransactionStatus.CONFIRMED);
         assertEquals(OperationType.BUY, operation.getOperationType());
-        assertEquals(Operation.Status.SUCCESSFUL, operation.getStatus());
+        assertEquals(Operation.TransactionStatus.CONFIRMED, operation.getStatus());
     }
 
     @Test

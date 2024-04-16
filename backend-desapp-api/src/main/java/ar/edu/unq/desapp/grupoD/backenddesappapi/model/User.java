@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -50,9 +51,6 @@ public class User {
 
     private List<Intention> intentionsList = new ArrayList<>();
     private List<Operation> operationsList = new ArrayList<>();
-    // Estamos utilizando tanto Operation y Transaction de la misma manera, quizas
-    // tiene sentido unificarlos. En el enunciado noto que lo usan por igual ambos terminos
-    private List<Transaction> transactionsList = new ArrayList<>();
 
     @DecimalMin(value = "0.00", inclusive = true, message = "Reputation must be at least 0")
     @DecimalMax(value = "100.00", inclusive = true, message = "Reputation must not exceed 100")
@@ -71,13 +69,13 @@ public class User {
 
     // No tiene en cuentatu reputation inicial... si tu reputation es 30 lo pisas y lo calculas de 0
     private void calculateReputation() {
-        if (transactionsList.isEmpty()) {
+        if (operationsList.isEmpty()) {
             reputation = 0.0;
             return;
         }
 
         double successfulTransactions = countSuccessfulTransactions();
-        double totalTransactions = transactionsList.size();
+        double totalTransactions = operationsList.size();
 
         if (successfulTransactions == 0) {
             reputation = 0.0;
@@ -89,41 +87,52 @@ public class User {
 
     private double countSuccessfulTransactions() {
         double successfulTransactions = 0;
-        for (Transaction transaction : transactionsList) {
-            if (transaction.isSuccessful()) {
+        for (Operation operation : operationsList) {
+            if (operation.isSuccess()) {
                 successfulTransactions++;
             }
         }
         return successfulTransactions;
     }
 
-    // TODO: este metodo se va a llamar a cada user de la transacción una vez realizada la capa de servicio
-    public void processTransaction(Transaction transaction) {
-
-        if (transaction.isCancelled()) {
-            handleCancelledTransaction(transaction);
-        } else if (transaction.isSuccessful()) {
-            handleSuccesfulTransaction(transaction);
+    // TODO: este metodo se va a llamar a cada user
+    //  de la transacción una vez realizada la capa de servicio
+    public void processTransaction(Operation operation) {
+        if (operation.isCancelled()) {
+            handleCancelledTransaction(operation);
+        } else if (operation.isSuccess()) {
+            handleSuccesfulTransaction(operation);
         }
     }
 
-    public void handleCancelledTransaction(Transaction transaction) {
-        if (transaction.isCancelledBy(this)) {
-            this.calculateReputation();
-            reputation = Math.max(0, (reputation - 20.0));
+    //TODO CAMI: revisar este refactor public void handleCancelledTransaction(Operation operation) {
+
+    public void handleCancelledTransaction(Operation operation) {
+        if (isCancelledByCurrentUser(operation)) {
+            reduceReputation(20.0);
         }
     }
 
-    public void handleSuccesfulTransaction(Transaction transaction) {
+    private boolean isCancelledByCurrentUser(Operation operation) {
+        return operation.isCancelledByUser() && isOperationBelongsToCurrentUser(operation);
+    }
+
+    private boolean isOperationBelongsToCurrentUser(Operation operation) {
+        return Objects.equals(operation.getUser().getId(), this.getId());
+    }
+
+    private void reduceReputation(double amount) {
+        calculateReputation();
+        reputation = Math.max(0, (reputation - amount));
+    }
+
+    // TODO CAMI: falta un metodo para aumentar
+
+    public void handleSuccesfulTransaction(Operation transaction) {
         double reputationPoints = transaction.wasWithin30Minutes() ? 10.0 : 5.0;
         double newReputation = reputation + reputationPoints;
-
         reputation = Math.max(0, Math.min(100, newReputation));
-
-        transactionsList.add(transaction);
+        operationsList.add(transaction);
     }
 
-    public List<Transaction> getTransactionsList() {
-        return transactionsList;
-    }
 }
