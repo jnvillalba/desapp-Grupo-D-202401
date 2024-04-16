@@ -127,17 +127,14 @@ class UserTest {
         user.setPassword("Password123!");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
         assertTrue(violations.isEmpty());
-        // contraseña que cumple con los requisitos
 
         user.setPassword("A5!");
         violations = validator.validateProperty(user, "password");
         assertFalse(violations.isEmpty());
-        // contraseña que no llega al min necesario
 
         user.setPassword("password123");
         violations = validator.validateProperty(user, "password");
         assertFalse(violations.isEmpty());
-        // constraseña que no tiene caracteres especiales
     }
 
     @Test
@@ -146,17 +143,14 @@ class UserTest {
         user.setCvuMercadoPago("0123456789012345678901");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "cvuMercadoPago");
         assertTrue(violations.isEmpty());
-        //cumple con 22 min/max
 
         user.setCvuMercadoPago("01234567890123456789012");
         violations = validator.validateProperty(user, "cvuMercadoPago");
         assertFalse(violations.isEmpty());
-        //se pasa del max de 22
 
         user.setCvuMercadoPago("012345678901234567890");
         violations = validator.validateProperty(user, "cvuMercadoPago");
         assertFalse(violations.isEmpty());
-        //no llega al min de 22
     }
 
     @Test
@@ -166,17 +160,14 @@ class UserTest {
         user.setWalletCrypto("12345678");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "walletCrypto");
         assertTrue(violations.isEmpty());
-        //cumple con 8 min/max
 
         user.setWalletCrypto("123456789");
         violations = validator.validateProperty(user, "walletCrypto");
         assertFalse(violations.isEmpty());
-        //se pasa del max de 8
 
         user.setWalletCrypto("1234567");
         violations = validator.validateProperty(user, "walletCrypto");
         assertFalse(violations.isEmpty());
-        //no llega al min de 8
     }
 
     @Test
@@ -316,19 +307,6 @@ class UserTest {
         user.handleCancelledTransaction(operation);
 
         assertEquals(0.0, user.findReputation(), 0.01);
-    }
-
-    @Test
-    void testWhenATransactionIsCancelledBySystemTheUserReputationIsNotAffected() {
-        operation.setStatus(Operation.TransactionStatus.CANCELED_BY_SYSTEM);
-        operation.setUser(user);
-
-        user.getOperationsList().add(operation);
-        user.setReputation(100.0);
-
-        user.handleCancelledTransaction(operation);
-
-        assertEquals(100.0, user.findReputation(), 0.01);
     }
 
     @Test

@@ -100,17 +100,11 @@ public class User {
         }
     }
 
-    //TODO CAMI: revisar este refactor public void handleCancelledTransaction(Operation operation) {
-
     public void handleCancelledTransaction(Operation operation) {
-        if (isCancelledByCurrentUser(operation)) {
+        if (isOperationBelongsToCurrentUser(operation)) {
             reduceReputation(20.0);
             operationsList.add(operation);
         }
-    }
-
-    private boolean isCancelledByCurrentUser(Operation operation) {
-        return operation.isCancelledByUser() && isOperationBelongsToCurrentUser(operation);
     }
 
     private boolean isOperationBelongsToCurrentUser(Operation operation) {
