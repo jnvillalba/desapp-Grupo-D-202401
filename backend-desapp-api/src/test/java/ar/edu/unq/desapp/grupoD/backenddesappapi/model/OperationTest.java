@@ -11,6 +11,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class OperationTest {
 
@@ -117,10 +118,49 @@ public class OperationTest {
     }
 
     @Test
-    public void testCriptoActive() {
+     void testCriptoActive() {
         Operation operation = new Operation();
         CryptoActive cryptoActive = mock(CryptoActive.class);
         operation.setCryptoActive(cryptoActive);
         assertEquals(cryptoActive, operation.getCryptoActive());
+    }
+
+    @Test
+     void testOperation() {
+        LocalDateTime localDateTimeMock = LocalDateTime.now();
+        Operation operation = new Operation();
+        operation.setAddress("Dirección de prueba");
+        operation.setCvu("CVU de prueba");
+        operation.setOperationAmount(100.0);
+        operation.setCreatedAt(localDateTimeMock);
+
+        assertEquals("Dirección de prueba", operation.getAddress());
+        assertEquals("CVU de prueba", operation.getCvu());
+        assertEquals(100.0, operation.getOperationAmount(), 0.001);
+        assertEquals(localDateTimeMock, operation.getCreatedAt());
+
+        String address = operation.getAddress();
+        boolean isValidAddress = address != null && !address.isEmpty();
+
+        assertTrue(isValidAddress);
+    }
+
+    @Test
+     void testIsPending() {
+        Operation operation = new Operation();
+        operation.setStatus(Operation.TransactionStatus.PENDING);
+
+        boolean success = operation.isPending();
+
+        assertTrue(success);
+    }
+
+    @Test
+    public void testIsCancelled() {
+        Operation operation = new Operation();
+
+        operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
+
+        assertTrue(operation.isCancelled());
     }
 }
