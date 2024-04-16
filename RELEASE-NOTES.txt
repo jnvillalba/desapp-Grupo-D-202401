@@ -1,13 +1,15 @@
 TAG 1.0.0
 ---------------------------------------------------------------------
-NEW FEATURES (lo que están entregando y está funcionando):
+NEW FEATURES:
 * SonarCloud
 * Swagger
 * Models
 * Register
+* Tests
 
-NOTES (ej: funcionalidad que falta, alguna consideración especial):
+NOTES:
 * Automatic deployment
 
 
-KNOWN ISSUES (ej: funcionalidad que saben que están funcionando diferente, algún error conocido en la funcionalidad terminada, etc) :
+KNOWN ISSUES  :
+None
