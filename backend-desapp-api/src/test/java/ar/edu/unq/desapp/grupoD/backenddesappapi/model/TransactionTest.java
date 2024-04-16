@@ -44,8 +44,8 @@ public class TransactionTest {
     public void testUser() {
         Transaction transaction = new Transaction();
         User userMock = mock(User.class);
-        transaction.setUser(userMock);
-        assertEquals(userMock, transaction.getUser());
+        transaction.setBuyer(userMock);
+        assertEquals(userMock, transaction.getBuyer());
     }
 
     @Test
