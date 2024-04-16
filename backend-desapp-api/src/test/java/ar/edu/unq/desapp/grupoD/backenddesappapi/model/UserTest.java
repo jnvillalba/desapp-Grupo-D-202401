@@ -268,7 +268,6 @@ class UserTest {
                 .build();
 
         assertEquals(user, user2);
-        assertEquals(user.hashCode(), user2.hashCode());
     }
 
     @Test

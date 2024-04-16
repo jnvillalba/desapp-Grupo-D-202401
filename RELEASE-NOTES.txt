@@ -1,0 +1,15 @@
+TAG 1.0.0
+---------------------------------------------------------------------
+NEW FEATURES:
+* SonarCloud
+* Swagger
+* Models
+* Register
+* Tests
+
+NOTES:
+* Automatic deployment
+
+
+KNOWN ISSUES  :
+None
