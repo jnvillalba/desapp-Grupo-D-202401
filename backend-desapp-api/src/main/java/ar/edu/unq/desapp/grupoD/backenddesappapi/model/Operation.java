@@ -27,7 +27,7 @@ public class Operation {
     private String address;
     private String cvu;
 
-    @NotNull(message = "operation amount cannot be null.")
+
     @DecimalMin(value = "0.0", message = "operation amount cannot be negative.")
     private double operationAmount;
 

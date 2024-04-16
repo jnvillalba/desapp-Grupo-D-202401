@@ -8,20 +8,21 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class UserTest {
+class UserTest {
     @Autowired
     private Validator validator;
     private User user;
 
     private Operation operation;
     private List<Operation> operationsList;
+
     @BeforeEach
     void setUp() {
         user = new User();
@@ -30,7 +31,7 @@ public class UserTest {
     }
 
     @Test
-    public void testCreateUser() {
+    void testCreateUser() {
         user.setName("Camila");
         user.setLastName("Ruiz");
         user.setEmail("camiruiz@hotmail.com");
@@ -52,7 +53,7 @@ public class UserTest {
     }
 
     @Test
-    public void nameMinAndMaxLength() {
+    void nameMinAndMaxLength() {
 
         user.setName("Noe");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "name");
@@ -71,7 +72,7 @@ public class UserTest {
     }
 
     @Test
-    public void lastnameMinAndMaxLength() {
+    void lastnameMinAndMaxLength() {
 
         user.setLastName("Pie");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "lastName");
@@ -91,7 +92,7 @@ public class UserTest {
     }
 
     @Test
-    public void testInvalidEmail() {
+    void testInvalidEmail() {
         user.setEmail("camiruiz@hotmail.com");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "email");
         assertTrue(violations.isEmpty());
@@ -102,7 +103,7 @@ public class UserTest {
     }
 
     @Test
-    public void directionMinAndMaxLength() {
+    void directionMinAndMaxLength() {
 
         user.setDirection("Calle Falsa 123");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "direction");
@@ -121,7 +122,7 @@ public class UserTest {
     }
 
     @Test
-    public void testPasswordValidation() {
+    void testPasswordValidation() {
         user.setPassword("Password123!");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
         assertTrue(violations.isEmpty());
@@ -139,7 +140,7 @@ public class UserTest {
     }
 
     @Test
-    public void testCVUMinAndMaxLength() {
+    void testCVUMinAndMaxLength() {
 
         user.setCvuMercadoPago("0123456789012345678901");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "cvuMercadoPago");
@@ -158,7 +159,7 @@ public class UserTest {
     }
 
     @Test
-    public void testWalletCryptoMinAndMaxLength() {
+    void testWalletCryptoMinAndMaxLength() {
 
 
         user.setWalletCrypto("12345678");
@@ -256,7 +257,7 @@ public class UserTest {
         user.setOperationsList(operationsList);
 
         double reputation = user.getReputation();
-        assertEquals(66.66, reputation,0.1);
+        assertEquals(66.66, reputation, 0.1);
     }
 //
 //    @Test
@@ -293,7 +294,7 @@ public class UserTest {
     }
 
     @Test
-    public void testUserCreation() {
+    void testUserCreation() {
 
         User user = new User(
                 1L,
@@ -315,7 +316,7 @@ public class UserTest {
         assertEquals("John", user.getName());
         assertEquals("user@example.com", user.getEmail());
 
-        User user2 =User.builder()
+        User user2 = User.builder()
                 .id(1L)
                 .name("John")
                 .lastName("Doe")
@@ -335,7 +336,7 @@ public class UserTest {
     }
 
     @Test
-    public void testWhenATransactionIsCancelledAndTheUserHasAnEmptyListOfTransactionsHisReputationIs0Points() {
+    void testWhenATransactionIsCancelledAndTheUserHasAnEmptyListOfTransactionsHisReputationIs0Points() {
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         operation.setUser(user);
 
@@ -345,7 +346,7 @@ public class UserTest {
     }
 
     @Test
-    public void testWhenATransactionIsCancelledTheUserWhoCancelledItHisReputationIsLoweredBy20Points() {
+    void testWhenATransactionIsCancelledTheUserWhoCancelledItHisReputationIsLoweredBy20Points() {
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         operation.setStatus(Operation.TransactionStatus.CONFIRMED);
         operation.setUser(user);
@@ -360,7 +361,7 @@ public class UserTest {
     }
 
     @Test
-    public void testWhenATransactionIsCancelledTheUsersReputationCantGoBelow0Points() {
+    void testWhenATransactionIsCancelledTheUsersReputationCantGoBelow0Points() {
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         operation.setUser(user);
         // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
@@ -373,7 +374,7 @@ public class UserTest {
     }
 
     @Test
-    public void testWhenATransactionIsNotCancelledByAnUserItsReputationIsNotAffected() {
+    void testWhenATransactionIsNotCancelledByAnUserItsReputationIsNotAffected() {
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
         user.getOperationsList().add(operation);
