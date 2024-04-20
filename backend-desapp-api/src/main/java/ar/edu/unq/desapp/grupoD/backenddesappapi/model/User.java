@@ -49,11 +49,14 @@ public class User {
     @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
+    @Builder.Default
     private List<Role> roles = new ArrayList<>();
-
+    @Builder.Default
     private List<Intention> intentionsList = new ArrayList<>();
+    @Builder.Default
     private List<Operation> operationsList = new ArrayList<>();
 
+    @Builder.Default
     @DecimalMin(value = "0.00", inclusive = true, message = "Reputation must be at least 0")
     @DecimalMax(value = "100.00", inclusive = true, message = "Reputation must not exceed 100")
     private double reputation = 0.0;

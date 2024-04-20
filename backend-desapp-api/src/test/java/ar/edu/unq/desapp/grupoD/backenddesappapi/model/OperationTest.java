@@ -1,4 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -11,9 +12,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-public class OperationTest {
+class OperationTest {
 
     private final ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = factory.getValidator();
@@ -21,7 +21,7 @@ public class OperationTest {
     @Test
     void testNotNullAnnotations() {
         Operation operation = new Operation();
-        operation.setOperationId(1);
+        operation.setOperationId(1L);
         operation.setAddress("123 Main St");
         operation.setOperationAmount(100.0);
         operation.setStatus(Operation.TransactionStatus.PENDING);
@@ -39,7 +39,7 @@ public class OperationTest {
     @Test
     void testInvalidAddress() {
         Operation operation = new Operation();
-        operation.setOperationId(2);
+        operation.setOperationId(2L);
         operation.setAddress("");
 
         Set<ConstraintViolation<Operation>> violations = validator.validate(operation);
@@ -49,14 +49,13 @@ public class OperationTest {
     @Test
     void testNegativeOperationAmount() {
         Operation operation = new Operation();
-        operation.setOperationId(3);
+        operation.setOperationId(3L);
         operation.setAddress("456 Elm St");
         operation.setOperationAmount(-50.0);
 
         Set<ConstraintViolation<Operation>> violations = validator.validate(operation);
         assertFalse(violations.isEmpty(), "Negative operation amount should result in a validation error");
     }
-
 
 
     @Test
@@ -82,8 +81,9 @@ public class OperationTest {
 
         assertTrue(operation.wasWithin30Minutes(), "Operation should have been created within the last 30 minutes");
     }
+
     @Test
-    public void testIsSuccess() {
+    void testIsSuccess() {
         Operation operation = new Operation();
         operation.setStatus(Operation.TransactionStatus.CONFIRMED);
 
@@ -93,15 +93,15 @@ public class OperationTest {
     }
 
     @Test
-    public void testOperationIdNotNull() {
+    void testOperationIdNotNull() {
         Operation operation = new Operation();
-        operation.setOperationId(1);
+        operation.setOperationId(1L);
 
         assertEquals(1, operation.getOperationId());
     }
 
     @Test
-    public void testOperationTypeNotNull() {
+    void testOperationTypeNotNull() {
         Operation operation = new Operation();
         operation.setOperationType(OperationType.BUY);
         operation.setStatus(Operation.TransactionStatus.CONFIRMED);
@@ -110,7 +110,7 @@ public class OperationTest {
     }
 
     @Test
-    public void testUser() {
+    void testUser() {
         Operation operation = new Operation();
         User userMock = mock(User.class);
         operation.setUser(userMock);
@@ -118,7 +118,7 @@ public class OperationTest {
     }
 
     @Test
-     void testCriptoActive() {
+    void testCriptoActive() {
         Operation operation = new Operation();
         CryptoActive cryptoActive = mock(CryptoActive.class);
         operation.setCryptoActive(cryptoActive);
@@ -126,7 +126,7 @@ public class OperationTest {
     }
 
     @Test
-     void testOperation() {
+    void testOperation() {
         LocalDateTime localDateTimeMock = LocalDateTime.now();
         Operation operation = new Operation();
         operation.setAddress("Dirección de prueba");
@@ -146,7 +146,7 @@ public class OperationTest {
     }
 
     @Test
-     void testIsPending() {
+    void testIsPending() {
         Operation operation = new Operation();
         operation.setStatus(Operation.TransactionStatus.PENDING);
 
@@ -156,7 +156,7 @@ public class OperationTest {
     }
 
     @Test
-    public void testIsCancelled() {
+    void testIsCancelled() {
         Operation operation = new Operation();
 
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
