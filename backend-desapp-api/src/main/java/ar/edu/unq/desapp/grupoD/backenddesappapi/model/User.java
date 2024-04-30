@@ -1,9 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
@@ -16,6 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -50,10 +48,13 @@ public class User {
     private String walletCrypto;
 
     @Builder.Default
+    @ManyToMany
     private List<Role> roles = new ArrayList<>();
     @Builder.Default
+    @ManyToMany
     private List<Intention> intentionsList = new ArrayList<>();
     @Builder.Default
+    @ManyToMany
     private List<Operation> operationsList = new ArrayList<>();
 
     @Builder.Default

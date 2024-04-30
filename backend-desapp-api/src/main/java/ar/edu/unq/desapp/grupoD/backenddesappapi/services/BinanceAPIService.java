@@ -1,7 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
-
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,12 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class BinanceAPIService {
 
-    @Value("${integration.binance.api.url}")
+    @Value("${integration.binance.api.url:NONE}")
     private String binanceApiUrl;
-    private final RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
         String url = binanceApiUrl + "ticker/price?symbol=" + symbol;

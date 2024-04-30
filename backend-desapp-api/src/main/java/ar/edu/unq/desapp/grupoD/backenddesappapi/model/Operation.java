@@ -1,9 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,11 +17,13 @@ public class Operation {
     private Long operationId;
 
     @NotNull(message = "The user cannot be null.")
+    @ManyToOne
     private User user;
 
     private OperationType operationType;
 
     @NotNull(message = "The crypto active cannot be null.")
+    @ManyToOne
     private CryptoActive cryptoActive;
 
     private TransactionStatus status;
