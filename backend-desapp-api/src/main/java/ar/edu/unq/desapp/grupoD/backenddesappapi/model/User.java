@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -131,5 +132,17 @@ public class User {
         double reputationPoints = transaction.wasWithin30Minutes() ? 10.0 : 5.0;
         addReputation(reputationPoints);
         operationsList.add(transaction);
+    }
+
+    public Intention expressIntention(CryptoActive cryptoActive, OperationType operationType, double pesosAmount) {
+        Intention intention = new Intention();
+        intention.setUser(this);
+        intention.setCreationDateTime(LocalDateTime.now());
+        intention.setOperationType(operationType);
+        intention.setCryptoActive(cryptoActive);
+        intention.setPesosAmount(pesosAmount);
+
+        this.getIntentionsList().add(intention);
+        return intention;
     }
 }
