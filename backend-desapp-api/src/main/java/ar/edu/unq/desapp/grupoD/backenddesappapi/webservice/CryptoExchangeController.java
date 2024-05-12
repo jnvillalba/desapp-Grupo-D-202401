@@ -6,6 +6,7 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ public class CryptoExchangeController {
 
     private final BinanceAPIService binanceAPIService;
     private final IntentionService intentionService;
+    private final UserService userService;
 
     @GetMapping("/crypto/{symbol}")
     public ResponseEntity<BinancePriceDTO> getCryptoCurrencyValue(@PathVariable String symbol) {
@@ -42,8 +44,9 @@ public class CryptoExchangeController {
 
     @PostMapping("/intentions")
     public ResponseEntity<String> expressIntention(@Valid @RequestBody ExpressIntentionDTO expressIntentionDTO) {
-        //TODO
+        //TODO get user from auth
         //User user = getCurrentUser();
+        User user = userService.getUser();
 
          Intention intention = intentionService.expressIntention(
                 user,
