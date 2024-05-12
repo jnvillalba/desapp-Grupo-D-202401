@@ -45,5 +45,4 @@ import static org.mockito.Mockito.*;
 
  //       verify(passwordEncoder, times(1)).encode("Password123");
     }
-
 }

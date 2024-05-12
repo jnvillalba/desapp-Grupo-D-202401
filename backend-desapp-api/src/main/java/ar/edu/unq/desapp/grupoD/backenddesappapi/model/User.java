@@ -142,7 +142,7 @@ public class User {
         intention.setCryptoActive(cryptoActive);
         intention.setPesosAmount(pesosAmount);
 
-        this.getIntentionsList().add(intention);
+        intentionsList.add(intention);
         return intention;
     }
 }

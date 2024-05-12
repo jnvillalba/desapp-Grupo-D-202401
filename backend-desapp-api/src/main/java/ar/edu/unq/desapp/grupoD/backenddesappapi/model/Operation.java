@@ -70,5 +70,4 @@ public class Operation {
         LocalDateTime now = LocalDateTime.now();
         return Duration.between(createdAt, now).toMinutes() <= 30;
     }
-
 }

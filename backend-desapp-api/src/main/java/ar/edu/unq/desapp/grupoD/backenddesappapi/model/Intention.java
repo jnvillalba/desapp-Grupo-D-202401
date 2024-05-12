@@ -29,6 +29,5 @@ public class Intention {
     @NotNull(message = "Pesos Amount cannot be null.")
     @DecimalMin(value = "0.0", message = "Pesos Amount cannot be negative.")
     private double pesosAmount;
-
 }
 
