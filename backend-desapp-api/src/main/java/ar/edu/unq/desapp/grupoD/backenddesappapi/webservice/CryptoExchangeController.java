@@ -1,14 +1,12 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +33,10 @@ public class CryptoExchangeController {
     public ResponseEntity<List<BinancePriceDTO>> last24HrsPrices(@PathVariable String symbol) {
         return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));
     }
+    @PostMapping("/operation/processTransaction/{trx}")
+    public ResponseEntity<String> processTransaction(@PathVariable ProcessTransactionDTO trx) {
+        return ResponseEntity.ok().body(binanceAPIService.processTransaction(trx));
+    }
+
 
 }
