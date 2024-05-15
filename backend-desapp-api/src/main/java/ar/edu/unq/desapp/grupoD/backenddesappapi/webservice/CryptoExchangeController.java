@@ -42,17 +42,22 @@ public class CryptoExchangeController {
         return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));
     }
 
-    @PostMapping("/intentions")
+    @PostMapping("/intention")
     public ResponseEntity<String> expressIntention(@Valid @RequestBody ExpressIntentionDTO expressIntentionDTO) {
         //TODO get user from auth
         //User user = getCurrentUser();
         User user = userService.getUser();
 
-         Intention intention = intentionService.expressIntention(
+        Intention intention = intentionService.expressIntention(
                 user,
                 expressIntentionDTO
         );
 
-         return ResponseEntity.status(HttpStatus.CREATED).body("Intention expressed successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Intention expressed successfully");
+    }
+
+    @GetMapping("/intentions")
+    public ResponseEntity<List<Intention>> getAllIntentions() {
+        return ResponseEntity.ok().body(intentionService.getAllIntentions());
     }
 }

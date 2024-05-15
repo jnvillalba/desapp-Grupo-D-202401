@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -25,5 +26,9 @@ public class IntentionService {
         intention.setPesosAmount(expressIntentionDTO.getPesosAmount());
         intention.setCryptoActive(active);
         return intentionRepository.save(intention);
+    }
+
+    public List<Intention> getAllIntentions(){
+        return intentionRepository.findAll();
     }
 }
