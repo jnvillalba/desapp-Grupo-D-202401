@@ -6,7 +6,6 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -60,7 +58,7 @@ public class IntentionServiceTest {
     }
 
     @Test
-    void getAllIntentions() {
+    void getAllIntentionsWithTheSameCryptoActive() {
         //TODO hacer setups para tests
         User user = userRepository.save(User.builder()
                 .name("John")
@@ -78,7 +76,6 @@ public class IntentionServiceTest {
                 .quantity(1)
                 .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
 
-
         ExpressIntentionDTO input = new ExpressIntentionDTO();
         input.setActiveId(cryptoActive.getActiveId());
         input.setOperationType(OperationType.BUY);
@@ -86,11 +83,11 @@ public class IntentionServiceTest {
         Intention intention = intentionService.expressIntention(user, input);
 
         ExpressIntentionDTO input2 = new ExpressIntentionDTO();
-        input.setActiveId(cryptoActive.getActiveId());
-        input.setOperationType(OperationType.SELL);
-        input.setPesosAmount(1);
+        input2.setActiveId(cryptoActive.getActiveId());
+        input2.setOperationType(OperationType.SELL);
+        input2.setPesosAmount(1);
         Intention intention2 = intentionService.expressIntention(user, input2);
-//todo ver mismo cryptoactive para test
+
         List<Intention> intentions = intentionService.getAllIntentions();
 
         assertEquals(2, intentions.size());
