@@ -108,7 +108,7 @@ public class User {
     }
 
     public void handleCancelledTransaction(Operation operation) {
-        if (isOperationBelongsToCurrentUser(operation)) {
+        if (isOperationBelongsToCurrentUser(operation) && operation.isCancelledByUser()) {
             reduceReputation(20.0);
             operationsList.add(operation);
         }
