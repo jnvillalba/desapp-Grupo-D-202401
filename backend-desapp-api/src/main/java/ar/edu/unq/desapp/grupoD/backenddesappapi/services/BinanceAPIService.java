@@ -20,8 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 public class BinanceAPIService {
 
-    @Value("${integration.binance.api.url:NONE}")
-    private String binanceApiUrl;
+    //@Value("${integration.binance.api.url:NONE}")
+    private final String binanceApiUrl = "https://api1.binance.com/api/v3/";
     private RestTemplate restTemplate = new RestTemplate();
 
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
