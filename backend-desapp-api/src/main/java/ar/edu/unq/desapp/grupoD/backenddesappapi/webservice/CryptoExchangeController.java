@@ -1,10 +1,14 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -24,7 +28,7 @@ public class CryptoExchangeController {
     private final BinanceAPIService binanceAPIService;
     private final IntentionService intentionService;
     private final UserService userService;
-
+    private final TransactionService transactionService;
     @GetMapping("/crypto/{symbol}")
     public ResponseEntity<BinancePriceDTO> getCryptoCurrencyValue(@PathVariable String symbol) {
         BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);
@@ -41,8 +45,8 @@ public class CryptoExchangeController {
         return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));
     }
     @PostMapping("/operation/processTransaction/{trx}")
-    public ResponseEntity<String> processTransaction(@PathVariable ProcessTransactionDTO trx) {
-        return ResponseEntity.ok().body(binanceAPIService.processTransaction(trx));
+    public ResponseEntity<Operation> processTransaction(@PathVariable ProcessTransactionDTO trx) {
+        return ResponseEntity.ok().body(transactionService.processTransaction(trx));
     }
 
 

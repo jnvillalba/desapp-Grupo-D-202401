@@ -2,10 +2,7 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -91,34 +88,6 @@ public class BinanceAPIService {
         }
 
         return resultList;
-    }
-
-    public final OperationRepository operationRepository;
-
-    public String processTransaction(ProcessTransactionDTO trx) {
-        //Si el usuario 1 o el 2 cancela la operación,
-        // no se le suma una operación realizada y
-        // se le descuenta 20 puntos de la reputación.
-        var operation = operationRepository.findById(trx.getOperationId()).get();
-        var user = operation.getUser();
-        if (trx.getProcessType().equals(ProcessTransactionDTO.ProcessAccion.CANCELAR)){
-            if (operation.isCancelledByUser()){
-                user.handleCancelledTransaction(operation);
-            }
-        /*
-        * Si la operación es cancelada por el sistema debido a la diferencia de precios,
-        *  no se le suma la operación a los usuarios
-        * pero tampoco reciben descuento de puntos por cancelación.
-        */
-            //No hacer nada
-        } else {
-            //Si la operación se realiza dentro de los 30 minutos,
-            // suman 10 puntos
-            // si supera los 30 minutos suman 5.
-            user.handleSuccesfulTransaction(operation);
-        }
-        //resuelvetodo user.processTransaction(operation); ??
-        return "";
     }
 
 
