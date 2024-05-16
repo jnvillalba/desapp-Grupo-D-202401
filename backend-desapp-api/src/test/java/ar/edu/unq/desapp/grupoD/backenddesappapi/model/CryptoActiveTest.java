@@ -83,6 +83,4 @@ class CryptoActiveTest {
         assertEquals(1.0, cryptoActive.getQuantity());
         assertNotNull(cryptoActive.getLastUpdateDateAndTime());
     }
-
-
 }
