@@ -45,3 +45,16 @@ jobs:
       - name: Generate JaCoCo Report
         working-directory: ./backend-desapp-api
         run: ./gradlew jacocoTestReport
+
+      # Concatenar index.html con README.md
+      - name: Append JaCoCo Report to README
+        run: |
+          cat build/reports/jacoco/jacocoHtml/index.html >> README.md
+
+      # Actualizar README.md en la rama dev
+      - name: Update README in dev branch
+        run: |
+          git checkout dev
+          git add README.md
+          git commit -m "Append JaCoCo Report to README"
+          git push origin dev
