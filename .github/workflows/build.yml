@@ -46,3 +46,8 @@ jobs:
         working-directory: ./backend-desapp-api
         run: ./gradlew jacocoTestReport
         
+      - name: Publish JaCoCo Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: jacoco-report
+          path: backend-desapp-api/build/reports/jacoco/jacocoHtml
