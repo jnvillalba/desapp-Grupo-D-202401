@@ -44,7 +44,6 @@ public class IntentionServiceTest {
                 .symbol("BTC")
                 .price(0.1f)
                 .amount(1)
-                .quantity(1)
                 .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
 
         ExpressIntentionDTO input = new ExpressIntentionDTO();
@@ -75,7 +74,6 @@ public class IntentionServiceTest {
                 .symbol("BTC")
                 .price(0.1f)
                 .amount(1)
-                .quantity(1)
                 .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
 
         ExpressIntentionDTO input = new ExpressIntentionDTO();
@@ -111,14 +109,12 @@ public class IntentionServiceTest {
                 .symbol("BTC")
                 .price(0.1f)
                 .amount(1)
-                .quantity(1)
                 .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
 
         CryptoActive cryptoActive2 = cryptoActiveRepository.save(CryptoActive.builder()
                 .symbol("USD")
                 .price(0.1f)
                 .amount(1)
-                .quantity(1)
                 .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
 
         ExpressIntentionDTO input = new ExpressIntentionDTO();

@@ -36,10 +36,5 @@ public class CryptoActive {
     @Column(columnDefinition = "DOUBLE")
     private double amount;
 
-    @NotNull(message = "Cripto price cannot be null.")
-    @DecimalMin(value = "0.0", message = "Cripto quantity cannot be negative.")
-    @Column(columnDefinition = "DOUBLE")
-    private double quantity;
-
     private LocalDateTime lastUpdateDateAndTime;
 }

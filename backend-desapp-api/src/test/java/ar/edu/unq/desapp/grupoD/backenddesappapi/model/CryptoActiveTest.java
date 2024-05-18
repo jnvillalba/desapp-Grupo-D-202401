@@ -30,7 +30,6 @@ class CryptoActiveTest {
                 .symbol("BTC")
                 .price(50000f)
                 .amount(0.5)
-                .quantity(1.0)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -44,7 +43,6 @@ class CryptoActiveTest {
                 .symbol(null)
                 .price(50000f)
                 .amount(0.5)
-                .quantity(1.0)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -59,7 +57,6 @@ class CryptoActiveTest {
                 .symbol("BTC")
                 .price(-50000f)
                 .amount(0.5)
-                .quantity(1.0)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -74,13 +71,11 @@ class CryptoActiveTest {
         cryptoActive.setSymbol("BTC");
         cryptoActive.setPrice(50000f);
         cryptoActive.setAmount(0.5);
-        cryptoActive.setQuantity(1.0);
         cryptoActive.setLastUpdateDateAndTime(LocalDateTime.now());
 
         assertEquals("BTC", cryptoActive.getSymbol());
         assertEquals(50000f, cryptoActive.getPrice());
         assertEquals(0.5, cryptoActive.getAmount());
-        assertEquals(1.0, cryptoActive.getQuantity());
         assertNotNull(cryptoActive.getLastUpdateDateAndTime());
     }
 }
