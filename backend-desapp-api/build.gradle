@@ -60,12 +60,16 @@ test {
 	finalizedBy jacocoTestReport
 }
 jacocoTestReport {
+	dependsOn test
 	reports {
+		xml.required.set(true)
+		html.required.set(true)
 		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 	}
-	dependsOn test
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
 }
