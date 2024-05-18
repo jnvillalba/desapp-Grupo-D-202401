@@ -127,7 +127,7 @@ public class DataInitializer {
         operation2.setAddress(user.getWalletCrypto());
         operation2.setCvu(user.getCvuMercadoPago());
         operation2.setOperationType(OperationType.SELL);
-        operation1.setOperationAmount(1000.0);
+        operation2.setOperationAmount(1000.0);
 
         CryptoActive doge = cryptoActiveRepository.findBySymbol("DOGE");
         operation2.setCryptoActive(doge);

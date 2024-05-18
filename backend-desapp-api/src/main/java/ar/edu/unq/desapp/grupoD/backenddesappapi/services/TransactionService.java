@@ -27,7 +27,6 @@ public class TransactionService {
         }
         user.processTransaction(operation);
         operationRepository.save(operation);
-        //ver si se guarda el usuario tmb x la relacion @ManyToMany
         return operation;
     }
 }

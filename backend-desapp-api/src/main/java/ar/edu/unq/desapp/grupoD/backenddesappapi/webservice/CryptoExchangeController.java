@@ -45,8 +45,9 @@ public class CryptoExchangeController {
         return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));
     }
     @PostMapping("/operation/processTransaction")
-    public ResponseEntity<Operation> processTransaction(@RequestBody ProcessTransactionDTO trx) {
-        return ResponseEntity.ok().body(transactionService.processTransaction(trx));
+    public ResponseEntity<String> processTransaction(@RequestBody ProcessTransactionDTO trx) {
+        Operation operation = transactionService.processTransaction(trx);
+        return ResponseEntity.ok().body(operation.getStatus().toString());
     }
 
 

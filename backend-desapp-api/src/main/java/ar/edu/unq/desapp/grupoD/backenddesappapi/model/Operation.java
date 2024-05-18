@@ -20,12 +20,14 @@ public class Operation {
     @ManyToOne
     private User user;
 
+    @Enumerated(EnumType.STRING)
     private OperationType operationType;
 
     @NotNull(message = "The crypto active cannot be null.")
     @ManyToOne
     private CryptoActive cryptoActive;
 
+    @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
     @NotBlank
