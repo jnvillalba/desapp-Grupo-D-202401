@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend-desapp-api</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto</a> &gt; <span class="el_source">UserDTO.java</span></div><h1>UserDTO.java</h1><pre class="source lang-java linenums">package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
+
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+<span class="nc bnc" id="L10" title="All 62 branches missed.">@Data</span>
+public class UserDTO {
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+<span class="nc" id="L15">    private String name;</span>
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+<span class="nc" id="L19">    private String lastName;</span>
+
+    @NotBlank
+    @Email
+<span class="nc" id="L23">    private String email;</span>
+
+    @NotBlank
+    @Size(min = 10, max = 30)
+<span class="nc" id="L27">    private String direction;</span>
+
+    @NotBlank
+    @Pattern(regexp = &quot;^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&amp;])[A-Za-z\\d@$!%*?&amp;]{6,}$&quot;)
+<span class="nc" id="L31">    private String password;</span>
+
+    @NotBlank
+    @Size(min = 22, max = 22, message = &quot;CVU must have 22 digits.&quot;)
+<span class="nc" id="L35">    private String cvuMercadoPago;</span>
+
+    @NotBlank
+    @Size(min = 8, max = 8, message = &quot;Wallet must have 8 digits.&quot;)
+<span class="nc" id="L39">    private String walletCrypto;</span>
+
+
+    public User toModel() {
+<span class="nc" id="L43">        User user = new User();</span>
+<span class="nc" id="L44">        user.setName(name);</span>
+<span class="nc" id="L45">        user.setLastName(lastName);</span>
+<span class="nc" id="L46">        user.setEmail(email);</span>
+<span class="nc" id="L47">        user.setDirection(direction);</span>
+<span class="nc" id="L48">        user.setPassword(password);</span>
+<span class="nc" id="L49">        user.setCvuMercadoPago(cvuMercadoPago);</span>
+<span class="nc" id="L50">        user.setWalletCrypto(walletCrypto);</span>
+<span class="nc" id="L51">        return user;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

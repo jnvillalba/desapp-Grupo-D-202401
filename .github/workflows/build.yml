@@ -41,3 +41,7 @@ jobs:
           SONAR_TOKEN: f8edfec48c96271e124cb72d82c4283d878b7091
         working-directory: ./backend-desapp-api
         run: ./gradlew build sonar --info
+
+      - name: Generate JaCoCo Report
+        working-directory: ./backend-desapp-api
+        run: ./gradlew jacocoTestReport

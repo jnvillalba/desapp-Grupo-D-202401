@@ -1,11 +1,10 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +13,8 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -47,11 +48,17 @@ public class User {
     @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
+    @Builder.Default
+    @ManyToMany
     private List<Role> roles = new ArrayList<>();
-
+    @Builder.Default
+    @ManyToMany
     private List<Intention> intentionsList = new ArrayList<>();
+    @Builder.Default
+    @ManyToMany
     private List<Operation> operationsList = new ArrayList<>();
 
+    @Builder.Default
     @DecimalMin(value = "0.00", inclusive = true, message = "Reputation must be at least 0")
     @DecimalMax(value = "100.00", inclusive = true, message = "Reputation must not exceed 100")
     private double reputation = 0.0;
@@ -101,7 +108,7 @@ public class User {
     }
 
     public void handleCancelledTransaction(Operation operation) {
-        if (isOperationBelongsToCurrentUser(operation)) {
+        if (isOperationBelongsToCurrentUser(operation) && operation.isCancelledByUser()) {
             reduceReputation(20.0);
             operationsList.add(operation);
         }
@@ -125,5 +132,17 @@ public class User {
         double reputationPoints = transaction.wasWithin30Minutes() ? 10.0 : 5.0;
         addReputation(reputationPoints);
         operationsList.add(transaction);
+    }
+
+    public Intention expressIntention(CryptoActive cryptoActive, OperationType operationType, double pesosAmount) {
+        Intention intention = new Intention();
+        intention.setUser(this);
+        intention.setCreationDateTime(LocalDateTime.now());
+        intention.setOperationType(operationType);
+        intention.setCryptoActive(cryptoActive);
+        intention.setPesosAmount(pesosAmount);
+
+        intentionsList.add(intention);
+        return intention;
     }
 }

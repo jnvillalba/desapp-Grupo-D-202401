@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,18 +10,24 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Data
+@Entity
 public class Operation {
-
-    private int operationId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long operationId;
 
     @NotNull(message = "The user cannot be null.")
+    @ManyToOne
     private User user;
 
+    @Enumerated(EnumType.STRING)
     private OperationType operationType;
 
     @NotNull(message = "The crypto active cannot be null.")
+    @ManyToOne
     private CryptoActive cryptoActive;
 
+    @Enumerated(EnumType.STRING)
     private TransactionStatus status;
 
     @NotBlank
@@ -65,5 +72,4 @@ public class Operation {
         LocalDateTime now = LocalDateTime.now();
         return Duration.between(createdAt, now).toMinutes() <= 30;
     }
-
 }

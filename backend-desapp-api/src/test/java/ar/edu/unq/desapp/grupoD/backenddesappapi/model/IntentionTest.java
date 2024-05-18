@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
-import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
@@ -12,7 +11,8 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
-public class IntentionTest {
+
+class IntentionTest {
     private Validator validator;
 
     @Mock

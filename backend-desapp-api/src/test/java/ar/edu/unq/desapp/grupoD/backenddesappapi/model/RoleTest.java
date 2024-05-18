@@ -1,19 +1,20 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class RoleTest {
+class RoleTest {
 
     @Test
-    public void testRoleNoArgsConstructor() {
+    void testRoleNoArgsConstructor() {
         Role role = new Role();
         assertNotNull(role);
     }
 
     @Test
-    public void testRoleDataAnnotation() {
+    void testRoleDataAnnotation() {
         Role role = new Role();
         role.setId(1L);
         role.setName("Admin");

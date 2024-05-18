@@ -1,4 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -7,13 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-
 import java.time.LocalDateTime;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CryptoActiveTest {
+class CryptoActiveTest {
 
     @Mock
     private Validator validator;
@@ -30,7 +30,6 @@ public class CryptoActiveTest {
                 .symbol("BTC")
                 .price(50000f)
                 .amount(0.5)
-                .quantity(1.0)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -44,7 +43,6 @@ public class CryptoActiveTest {
                 .symbol(null)
                 .price(50000f)
                 .amount(0.5)
-                .quantity(1.0)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -59,7 +57,6 @@ public class CryptoActiveTest {
                 .symbol("BTC")
                 .price(-50000f)
                 .amount(0.5)
-                .quantity(1.0)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -74,15 +71,11 @@ public class CryptoActiveTest {
         cryptoActive.setSymbol("BTC");
         cryptoActive.setPrice(50000f);
         cryptoActive.setAmount(0.5);
-        cryptoActive.setQuantity(1.0);
         cryptoActive.setLastUpdateDateAndTime(LocalDateTime.now());
 
         assertEquals("BTC", cryptoActive.getSymbol());
         assertEquals(50000f, cryptoActive.getPrice());
         assertEquals(0.5, cryptoActive.getAmount());
-        assertEquals(1.0, cryptoActive.getQuantity());
         assertNotNull(cryptoActive.getLastUpdateDateAndTime());
     }
-
-
 }
