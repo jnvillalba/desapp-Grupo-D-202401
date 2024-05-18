@@ -16,8 +16,8 @@ public class TransactionService {
 
     @Transactional
     public Operation processTransaction(ProcessTransactionDTO trx) {
-        Operation operation = operationRepository.findById(trx.getOperationId()).get();
-//                .orElseThrow(() -> new OperationNotFoundException( trx.getOperationId()));
+        Operation operation = operationRepository.findById(trx.getOperationId())
+                .orElseThrow(() -> new OperationNotFoundException( trx.getOperationId()));
 
         User user = operation.getUser();
         if (trx.getProcessType().equals(ProcessTransactionDTO.ProcessAccion.CANCEL)){

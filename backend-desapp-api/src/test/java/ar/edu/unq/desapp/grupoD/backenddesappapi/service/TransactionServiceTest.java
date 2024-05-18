@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @SpringBootTest
-public class TransactionServiceTest {
+class TransactionServiceTest {
 
     @Mock
     private OperationRepository operationRepository;
