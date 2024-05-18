@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ar.edu.unq.desapp.grupoD.backenddesappapi.service.IntentionServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-05-18T18:53:01" hostname="DESKTOP-SKCGK58" time="0.204">
+  <properties/>
+  <testcase name="getAllIntentionsWithTheSameCryptoActive()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.service.IntentionServiceTest" time="0.129"/>
+  <testcase name="expressIntention()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.service.IntentionServiceTest" time="0.032"/>
+  <testcase name="getAllIntentionsWithDifferentsCryptoActives()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.service.IntentionServiceTest" time="0.038"/>
+  <system-out><![CDATA[?[2m2024-05-18T15:53:01.087-03:00?[0;39m ?[32m INFO?[0;39m ?[35m3728?[0;39m ?[2m---?[0;39m ?[2m[backend-desapp-api] [    Test worker]?[0;39m ?[2m?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [ar.edu.unq.desapp.grupoD.backenddesappapi.service.IntentionServiceTest]: IntentionServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2024-05-18T15:53:01.112-03:00?[0;39m ?[32m INFO?[0;39m ?[35m3728?[0;39m ?[2m---?[0;39m ?[2m[backend-desapp-api] [    Test worker]?[0;39m ?[2m?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration ar.edu.unq.desapp.grupoD.backenddesappapi.BackendDesappApiApplication for test class ar.edu.unq.desapp.grupoD.backenddesappapi.service.IntentionServiceTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

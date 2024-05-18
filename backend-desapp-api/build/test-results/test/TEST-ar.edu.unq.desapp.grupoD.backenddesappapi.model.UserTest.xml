@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2024-05-18T18:53:00" hostname="DESKTOP-SKCGK58" time="0.769">
+  <properties/>
+  <testcase name="testWhenATransactionIsCancelledBySystemTheUserReputationIsNotAffected()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.053"/>
+  <testcase name="testWalletCryptoMinAndMaxLength()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.068"/>
+  <testcase name="testEmptyTransactionsList()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.014"/>
+  <testcase name="directionMinAndMaxLength()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.026"/>
+  <testcase name="lastnameMinAndMaxLength()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.025"/>
+  <testcase name="testWhenATransactionIsSuccessfulTheUserIsAdded5Points()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.016"/>
+  <testcase name="nameMinAndMaxLength()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.021"/>
+  <testcase name="testWhenATransactionIsCancelledTheUsersReputationCantGoBelow0Points()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.012"/>
+  <testcase name="testSingleFailedTransaction()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.275"/>
+  <testcase name="testCreateUser()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.045"/>
+  <testcase name="testNoSuccessfulTransactions()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.013"/>
+  <testcase name="testAUserKnowsHowToHandleASuccesfulTransaction()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.015"/>
+  <testcase name="testWhenATransactionIsCancelledTheUserWhoCancelledItHisReputationIsLoweredBy20Points()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.015"/>
+  <testcase name="testWhenATransactionIsCancelledAndTheUserHasAnEmptyListOfTransactionsHisReputationIs0Points()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.011"/>
+  <testcase name="testMixedTransactions()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.018"/>
+  <testcase name="testPasswordValidation()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.019"/>
+  <testcase name="testInvalidEmail()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.02"/>
+  <testcase name="testCVUMinAndMaxLength()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.007"/>
+  <testcase name="testSingleSuccessfulTransaction()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.012"/>
+  <testcase name="testUserCreation()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest" time="0.012"/>
+  <system-out><![CDATA[?[2m2024-05-18T15:53:00.106-03:00?[0;39m ?[32m INFO?[0;39m ?[35m3728?[0;39m ?[2m---?[0;39m ?[2m[backend-desapp-api] [    Test worker]?[0;39m ?[2m?[0;39m?[36mt.c.s.AnnotationConfigContextLoaderUtils?[0;39m ?[2m:?[0;39m Could not detect default configuration classes for test class [ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest]: UserTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+?[2m2024-05-18T15:53:00.210-03:00?[0;39m ?[32m INFO?[0;39m ?[35m3728?[0;39m ?[2m---?[0;39m ?[2m[backend-desapp-api] [    Test worker]?[0;39m ?[2m?[0;39m?[36m.b.t.c.SpringBootTestContextBootstrapper?[0;39m ?[2m:?[0;39m Found @SpringBootConfiguration ar.edu.unq.desapp.grupoD.backenddesappapi.BackendDesappApiApplication for test class ar.edu.unq.desapp.grupoD.backenddesappapi.model.UserTest
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

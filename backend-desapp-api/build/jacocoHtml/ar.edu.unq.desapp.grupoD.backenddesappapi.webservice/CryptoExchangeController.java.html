@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CryptoExchangeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend-desapp-api</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unq.desapp.grupoD.backenddesappapi.webservice</a> &gt; <span class="el_source">CryptoExchangeController.java</span></div><h1>CryptoExchangeController.java</h1><pre class="source lang-java linenums">package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
+
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@Transactional
+@RequestMapping(&quot;/api/crypto&quot;)
+<span class="fc" id="L25">@AllArgsConstructor</span>
+public class CryptoExchangeController {
+
+    private final BinanceAPIService binanceAPIService;
+    private final IntentionService intentionService;
+    private final UserService userService;
+    private final TransactionService transactionService;
+    @GetMapping(&quot;/crypto/{symbol}&quot;)
+    public ResponseEntity&lt;BinancePriceDTO&gt; getCryptoCurrencyValue(@PathVariable String symbol) {
+<span class="nc" id="L34">        BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);</span>
+<span class="nc" id="L35">        return ResponseEntity.ok().body(entity);</span>
+    }
+
+    @GetMapping(&quot;/crypto/prices&quot;)
+    public ResponseEntity&lt;List&lt;BinancePriceDTO&gt;&gt; getPricesOfCoins() {
+<span class="nc" id="L40">        return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());</span>
+    }
+
+    @GetMapping(&quot;/crypto/last24HrsPrices/{symbol}&quot;)
+    public ResponseEntity&lt;List&lt;BinancePriceDTO&gt;&gt; last24HrsPrices(@PathVariable String symbol) {
+<span class="nc" id="L45">        return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));</span>
+    }
+    @PostMapping(&quot;/operation/processTransaction&quot;)
+    public ResponseEntity&lt;String&gt; processTransaction(@RequestBody ProcessTransactionDTO trx) {
+<span class="nc" id="L49">        Operation operation = transactionService.processTransaction(trx);</span>
+<span class="nc" id="L50">        return ResponseEntity.ok().body(operation.getStatus().toString());</span>
+    }
+
+
+    @PostMapping(&quot;/intention&quot;)
+    public ResponseEntity&lt;String&gt; expressIntention(@Valid @RequestBody ExpressIntentionDTO expressIntentionDTO) {
+        //TODO get user from auth
+        //User user = getCurrentUser();
+<span class="nc" id="L58">        User user = userService.getUser();</span>
+
+<span class="nc" id="L60">        Intention intention = intentionService.expressIntention(</span>
+                user,
+                expressIntentionDTO
+        );
+
+<span class="nc" id="L65">        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Intention expressed successfully&quot;);</span>
+    }
+
+    @GetMapping(&quot;/intentions&quot;)
+    public ResponseEntity&lt;List&lt;Intention&gt;&gt; getAllIntentions() {
+<span class="nc" id="L70">        return ResponseEntity.ok().body(intentionService.getAllIntentions());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
