@@ -12,24 +12,24 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-<span class="fc" id="L15">@AllArgsConstructor</span>
+<span class="nc" id="L15">@AllArgsConstructor</span>
 public class IntentionService {
     private final IntentionRepository intentionRepository;
     private final CryptoActiveService cryptoActiveService;
 
     public Intention expressIntention(User user, ExpressIntentionDTO expressIntentionDTO) {
-<span class="fc" id="L21">        CryptoActive active = cryptoActiveService.getCryptoActive(expressIntentionDTO.getActiveId());</span>
-<span class="fc" id="L22">        Intention intention = new Intention();</span>
-<span class="fc" id="L23">        intention.setUser(user);</span>
-<span class="fc" id="L24">        intention.setCreationDateTime(LocalDateTime.now());</span>
-<span class="fc" id="L25">        intention.setOperationType(expressIntentionDTO.getOperationType());</span>
-<span class="fc" id="L26">        intention.setPesosAmount(expressIntentionDTO.getPesosAmount());</span>
-<span class="fc" id="L27">        intention.setCryptoActive(active);</span>
-<span class="fc" id="L28">        return intentionRepository.save(intention);</span>
+<span class="nc" id="L21">        CryptoActive active = cryptoActiveService.getCryptoActive(expressIntentionDTO.getActiveId());</span>
+<span class="nc" id="L22">        Intention intention = new Intention();</span>
+<span class="nc" id="L23">        intention.setUser(user);</span>
+<span class="nc" id="L24">        intention.setCreationDateTime(LocalDateTime.now());</span>
+<span class="nc" id="L25">        intention.setOperationType(expressIntentionDTO.getOperationType());</span>
+<span class="nc" id="L26">        intention.setPesosAmount(expressIntentionDTO.getPesosAmount());</span>
+<span class="nc" id="L27">        intention.setCryptoActive(active);</span>
+<span class="nc" id="L28">        return intentionRepository.save(intention);</span>
     }
 
     public List&lt;Intention&gt; getAllIntentions(){
-<span class="fc" id="L32">        return intentionRepository.findAll();</span>
+<span class="nc" id="L32">        return intentionRepository.findAll();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -3,9 +3,7 @@
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
@@ -22,19 +20,21 @@ import java.util.List;
 @RestController
 @Transactional
 @RequestMapping(&quot;/api/crypto&quot;)
-<span class="fc" id="L25">@AllArgsConstructor</span>
+<span class="nc" id="L23">@AllArgsConstructor</span>
 public class CryptoExchangeController {
 
     private final BinanceAPIService binanceAPIService;
     private final IntentionService intentionService;
     private final UserService userService;
     private final TransactionService transactionService;
+    @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get a cryptocurrency price&quot;)
     @GetMapping(&quot;/crypto/{symbol}&quot;)
     public ResponseEntity&lt;BinancePriceDTO&gt; getCryptoCurrencyValue(@PathVariable String symbol) {
-<span class="nc" id="L34">        BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);</span>
-<span class="nc" id="L35">        return ResponseEntity.ok().body(entity);</span>
+<span class="nc" id="L33">        BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);</span>
+<span class="nc" id="L34">        return ResponseEntity.ok().body(entity);</span>
     }
 
+    @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get all cryptocurrency prices&quot;)
     @GetMapping(&quot;/crypto/prices&quot;)
     public ResponseEntity&lt;List&lt;BinancePriceDTO&gt;&gt; getPricesOfCoins() {
 <span class="nc" id="L40">        return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());</span>
@@ -53,21 +53,25 @@ public class CryptoExchangeController {
 
     @PostMapping(&quot;/intention&quot;)
     public ResponseEntity&lt;String&gt; expressIntention(@Valid @RequestBody ExpressIntentionDTO expressIntentionDTO) {
-        //TODO get user from auth
-        //User user = getCurrentUser();
-<span class="nc" id="L58">        User user = userService.getUser();</span>
+<span class="nc" id="L56">        User user = userService.getUser(expressIntentionDTO.getUserId());</span>
 
-<span class="nc" id="L60">        Intention intention = intentionService.expressIntention(</span>
+<span class="nc" id="L58">        Intention intention = intentionService.expressIntention(</span>
                 user,
                 expressIntentionDTO
         );
 
-<span class="nc" id="L65">        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Intention expressed successfully&quot;);</span>
+<span class="nc" id="L63">        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Intention expressed successfully&quot;);</span>
     }
 
     @GetMapping(&quot;/intentions&quot;)
     public ResponseEntity&lt;List&lt;Intention&gt;&gt; getAllIntentions() {
-<span class="nc" id="L70">        return ResponseEntity.ok().body(intentionService.getAllIntentions());</span>
+<span class="nc" id="L68">        return ResponseEntity.ok().body(intentionService.getAllIntentions());</span>
+    }
+
+    @PostMapping(&quot;/operation/report&quot;)
+    public ResponseEntity&lt;OperationReportDTO&gt; generateReport(@RequestBody RequestReportDTO request) {
+<span class="nc" id="L73">        OperationReportDTO report = userService.generateReport(request);</span>
+<span class="nc" id="L74">        return ResponseEntity.ok().body(report);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

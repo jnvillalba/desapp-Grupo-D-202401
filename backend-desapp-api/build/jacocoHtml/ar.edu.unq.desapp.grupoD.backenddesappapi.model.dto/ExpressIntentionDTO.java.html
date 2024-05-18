@@ -5,15 +5,19 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-<span class="pc bnc" id="L8" title="All 24 branches missed.">@Data</span>
+<span class="nc bnc" id="L8" title="All 32 branches missed.">@Data</span>
 public class ExpressIntentionDTO {
-<span class="fc" id="L10">    private OperationType operationType;</span>
+
+    @NotNull(message = &quot;User cannot be null.&quot;)
+<span class="nc" id="L12">    private Long userId;</span>
+
+<span class="nc" id="L14">    private OperationType operationType;</span>
 
     @NotNull(message = &quot;Crypto active cannot be null.&quot;)
-<span class="fc" id="L13">    private Long activeId;</span>
+<span class="nc" id="L17">    private Long activeId;</span>
 
     @NotNull(message = &quot;Pesos Amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Pesos Amount cannot be negative.&quot;)
-<span class="fc" id="L17">    private double pesosAmount;</span>
+<span class="nc" id="L21">    private double pesosAmount;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

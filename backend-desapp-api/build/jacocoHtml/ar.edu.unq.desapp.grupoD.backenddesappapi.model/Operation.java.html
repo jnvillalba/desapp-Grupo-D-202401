@@ -9,68 +9,68 @@ import lombok.Data;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-<span class="pc bnc" id="L12" title="All 72 branches missed.">@Data</span>
+<span class="nc bnc" id="L12" title="All 72 branches missed.">@Data</span>
 @Entity
 public class Operation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L17">    private Long operationId;</span>
+<span class="nc" id="L17">    private Long operationId;</span>
 
     @NotNull(message = &quot;The user cannot be null.&quot;)
     @ManyToOne
-<span class="fc" id="L21">    private User user;</span>
+<span class="nc" id="L21">    private User user;</span>
 
     @Enumerated(EnumType.STRING)
-<span class="fc" id="L24">    private OperationType operationType;</span>
+<span class="nc" id="L24">    private OperationType operationType;</span>
 
     @NotNull(message = &quot;The crypto active cannot be null.&quot;)
     @ManyToOne
-<span class="fc" id="L28">    private CryptoActive cryptoActive;</span>
+<span class="nc" id="L28">    private CryptoActive cryptoActive;</span>
 
     @Enumerated(EnumType.STRING)
-<span class="fc" id="L31">    private TransactionStatus status;</span>
+<span class="nc" id="L31">    private TransactionStatus status;</span>
 
     @NotBlank
-<span class="fc" id="L34">    private String address;</span>
-<span class="fc" id="L35">    private String cvu;</span>
+<span class="nc" id="L34">    private String address;</span>
+<span class="nc" id="L35">    private String cvu;</span>
 
 
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;operation amount cannot be negative.&quot;)
-<span class="fc" id="L39">    private double operationAmount;</span>
+<span class="nc" id="L39">    private double operationAmount;</span>
 
-<span class="fc" id="L41">    private LocalDateTime createdAt;</span>
+<span class="nc" id="L41">    private LocalDateTime createdAt;</span>
 
 
-<span class="fc" id="L44">    public enum TransactionStatus {</span>
-<span class="fc" id="L45">        PENDING,</span>
-<span class="fc" id="L46">        CONFIRMED,</span>
-<span class="fc" id="L47">        CANCELED_BY_USER,</span>
-<span class="fc" id="L48">        CANCELED_BY_SYSTEM</span>
+<span class="nc" id="L44">    public enum TransactionStatus {</span>
+<span class="nc" id="L45">        PENDING,</span>
+<span class="nc" id="L46">        CONFIRMED,</span>
+<span class="nc" id="L47">        CANCELED_BY_USER,</span>
+<span class="nc" id="L48">        CANCELED_BY_SYSTEM</span>
     }
 
     boolean isSuccess(){
-<span class="fc" id="L52">        return status.equals(TransactionStatus.CONFIRMED);</span>
+<span class="nc" id="L52">        return status.equals(TransactionStatus.CONFIRMED);</span>
     }
 
     public boolean isCancelled() {
-<span class="pc bpc" id="L56" title="1 of 4 branches missed.">        return isCancelledByUser() || isCancelledBySystem() ;</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">        return isCancelledByUser() || isCancelledBySystem() ;</span>
     }
 
     public boolean isPending() {
-<span class="fc" id="L60">        return status.equals(TransactionStatus.PENDING);</span>
+<span class="nc" id="L60">        return status.equals(TransactionStatus.PENDING);</span>
     }
 
     public boolean isCancelledByUser(){
-<span class="fc bfc" id="L64" title="All 2 branches covered.">        return status == TransactionStatus.CANCELED_BY_USER;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        return status == TransactionStatus.CANCELED_BY_USER;</span>
 }
 
     public boolean isCancelledBySystem(){
-<span class="fc bfc" id="L68" title="All 2 branches covered.">        return status == TransactionStatus.CANCELED_BY_SYSTEM;</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        return status == TransactionStatus.CANCELED_BY_SYSTEM;</span>
     }
 
     public boolean wasWithin30Minutes() {
-<span class="fc" id="L72">        LocalDateTime now = LocalDateTime.now();</span>
-<span class="fc bfc" id="L73" title="All 2 branches covered.">        return Duration.between(createdAt, now).toMinutes() &lt;= 30;</span>
+<span class="nc" id="L72">        LocalDateTime now = LocalDateTime.now();</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        return Duration.between(createdAt, now).toMinutes() &lt;= 30;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-<span class="fc" id="L17">@AllArgsConstructor</span>
+<span class="nc" id="L17">@AllArgsConstructor</span>
 public class BinanceAPIService {
 
     //@Value(&quot;${integration.binance.api.url:NONE}&quot;)
-<span class="fc" id="L21">    private final String binanceApiUrl = &quot;https://api1.binance.com/api/v3/&quot;;</span>
-<span class="fc" id="L22">    private RestTemplate restTemplate = new RestTemplate();</span>
+<span class="nc" id="L21">    private final String binanceApiUrl = &quot;https://api1.binance.com/api/v3/&quot;;</span>
+<span class="nc" id="L22">    private RestTemplate restTemplate = new RestTemplate();</span>
 
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
 <span class="nc" id="L25">        String url = binanceApiUrl + &quot;ticker/price?symbol=&quot; + symbol;</span>

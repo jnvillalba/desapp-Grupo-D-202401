@@ -78,19 +78,19 @@ public class DataInitializer {
 
     private void initializeCryptoActives(CryptoActiveRepository cryptoActiveRepository) {
         CryptoActive btc = CryptoActive.builder()
-                .symbol("BTC")
+                .symbol("BTCUSDT")
                 .price(50000f)
                 .amount(0.5)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
         CryptoActive usdt = CryptoActive.builder()
-                .symbol("ETH")
+                .symbol("ETHUSDT")
                 .price(1f)
                 .amount(500)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
         CryptoActive doge = CryptoActive.builder()
-                .symbol("DOGE")
+                .symbol("DOGEUSDT")
                 .price(0.00002458f)
                 .amount(5000)
                 .lastUpdateDateAndTime(LocalDateTime.now())
@@ -110,7 +110,7 @@ public class DataInitializer {
         operation1.setOperationId(1L);
         operation1.setStatus(Operation.TransactionStatus.PENDING);
         operation1.setCreatedAt(LocalDateTime.now());
-        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTC");
+        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
         operation1.setCryptoActive(btc);
         User user = userRepository.findByEmail("John@example.com");
         operation1.setAddress(user.getWalletCrypto());
@@ -129,7 +129,7 @@ public class DataInitializer {
         operation2.setOperationType(OperationType.SELL);
         operation2.setOperationAmount(1000.0);
 
-        CryptoActive doge = cryptoActiveRepository.findBySymbol("DOGE");
+        CryptoActive doge = cryptoActiveRepository.findBySymbol("DOGEUSDT");
         operation2.setCryptoActive(doge);
 
         operationRepository.save(operation1);

@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.OperationNotFoundException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.UserNotFoundException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.*;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
@@ -11,12 +10,8 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -38,8 +33,8 @@ public class UserService {
 
         List<ActiveDTO> activeDTOs = mapOperationsToActiveDTOs(operations, request.getDolarBlue());
 
-        double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);
-        double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);
+        Double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);
+        Double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);
 
         return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG,activeDTOs);
     }

@@ -12,30 +12,30 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-<span class="pc bpc" id="L15" title="39 of 40 branches missed.">@Data</span>
-<span class="fc" id="L16">@NoArgsConstructor</span>
-<span class="fc" id="L17">@AllArgsConstructor</span>
-<span class="pc" id="L18">@Builder</span>
+<span class="nc bnc" id="L15" title="All 40 branches missed.">@Data</span>
+<span class="nc" id="L16">@NoArgsConstructor</span>
+<span class="nc" id="L17">@AllArgsConstructor</span>
+<span class="nc" id="L18">@Builder</span>
 @Entity
 public class CryptoActive {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L24">    private Long activeId;</span>
+<span class="nc" id="L24">    private Long activeId;</span>
 
     @NotBlank(message = &quot;Crypto symbol cannot be null.&quot;)
-<span class="fc" id="L27">    private String symbol;</span>
+<span class="nc" id="L27">    private String symbol;</span>
 
     @NotNull(message = &quot;Cripto price cannot be null.&quot;)
     @PositiveOrZero(message = &quot;Cripto price cannot be negative.&quot;)
     @Column(columnDefinition = &quot;FLOAT&quot;)
-<span class="fc" id="L32">    private Float price;</span>
+<span class="nc" id="L32">    private Float price;</span>
 
     @NotNull(message = &quot;Cripto amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Cripto amount cannot be negative.&quot;)
     @Column(columnDefinition = &quot;DOUBLE&quot;)
-<span class="fc" id="L37">    private double amount;</span>
+<span class="nc" id="L37">    private double amount;</span>
 
-<span class="fc" id="L39">    private LocalDateTime lastUpdateDateAndTime;</span>
+<span class="nc" id="L39">    private LocalDateTime lastUpdateDateAndTime;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

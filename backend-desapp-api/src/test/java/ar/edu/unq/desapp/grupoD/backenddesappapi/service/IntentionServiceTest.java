@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @Transactional
-public class IntentionServiceTest {
+class IntentionServiceTest {
     @Autowired
     private UserRepository userRepository;
     @Autowired
