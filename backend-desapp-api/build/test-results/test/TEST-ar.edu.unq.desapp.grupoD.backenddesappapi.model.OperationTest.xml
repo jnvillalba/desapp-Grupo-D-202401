@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2024-05-18T20:26:39" hostname="DESKTOP-SKCGK58" time="0.615">
+<testsuite name="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2024-05-18T20:35:31" hostname="DESKTOP-SKCGK58" time="0.344">
   <properties/>
-  <testcase name="testOperation()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.002"/>
-  <testcase name="testIsSuccess()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
-  <testcase name="testIsCancelledBySystem()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.006"/>
-  <testcase name="testUser()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.003"/>
+  <testcase name="testOperation()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testIsSuccess()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.002"/>
+  <testcase name="testIsCancelledBySystem()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.002"/>
+  <testcase name="testUser()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.007"/>
   <testcase name="testIsPending()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
-  <testcase name="testNotNullAnnotations()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.027"/>
+  <testcase name="testNotNullAnnotations()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.014"/>
   <testcase name="testIsCancelledByUser()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
   <testcase name="testWasWithin30Minutes()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
-  <testcase name="testNegativeOperationAmount()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.08"/>
-  <testcase name="testCriptoActive()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.013"/>
-  <testcase name="testOperationTypeNotNull()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
-  <testcase name="testOperationIdNotNull()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.003"/>
-  <testcase name="testIsCancelled()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.004"/>
-  <testcase name="testInvalidAddress()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.23"/>
+  <testcase name="testNegativeOperationAmount()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.014"/>
+  <testcase name="testCriptoActive()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.002"/>
+  <testcase name="testOperationTypeNotNull()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.002"/>
+  <testcase name="testOperationIdNotNull()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testIsCancelled()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testInvalidAddress()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationTest" time="0.1"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-05-18T20:26:38" hostname="DESKTOP-SKCGK58" time="0.782">
+<testsuite name="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-05-18T20:35:30" hostname="DESKTOP-SKCGK58" time="0.714">
   <properties/>
-  <testcase name="testValidIntention()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.481"/>
-  <testcase name="testGettersAndSetters()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.044"/>
-  <testcase name="testNegativePesosAmount()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.05"/>
-  <testcase name="testNullUser()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.111"/>
-  <testcase name="testNullCryptoActive()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.03"/>
-  <testcase name="testNullValues()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.018"/>
+  <testcase name="testValidIntention()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.506"/>
+  <testcase name="testGettersAndSetters()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.015"/>
+  <testcase name="testNegativePesosAmount()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.057"/>
+  <testcase name="testNullUser()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.029"/>
+  <testcase name="testNullCryptoActive()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.039"/>
+  <testcase name="testNullValues()" classname="ar.edu.unq.desapp.grupoD.backenddesappapi.model.IntentionTest" time="0.042"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
