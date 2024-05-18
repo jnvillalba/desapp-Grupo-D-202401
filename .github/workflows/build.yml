@@ -44,6 +44,5 @@ jobs:
 
       - name: Generate JaCoCo Report
         working-directory: ./backend-desapp-api
-        run: |
-          ./gradlew jacocoTestReport
+        run: ./gradlew jacocoTestReport
         
