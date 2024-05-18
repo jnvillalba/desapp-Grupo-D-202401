@@ -59,17 +59,14 @@ class UserTest {
         user.setName("Noe");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "name");
         assertTrue(violations.isEmpty());
-        //cumple con el minimo de 3
 
         user.setName("No");
         violations = validator.validateProperty(user, "name");
         assertFalse(violations.isEmpty());
-        //no cumple con el minimo de 3
 
         user.setName("Nominchuluunukhaanzayamunkherdeneenkhtuguldur");
         violations = validator.validateProperty(user, "name");
         assertFalse(violations.isEmpty());
-        //se pasa del maximo de 30
     }
 
     @Test
@@ -78,17 +75,13 @@ class UserTest {
         user.setLastName("Pie");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "lastName");
         assertTrue(violations.isEmpty());
-        //cumple con el minimo de 3
 
         user.setLastName("Pi");
         violations = validator.validateProperty(user, "lastName");
         assertFalse(violations.isEmpty());
-        //no cumple con el minimo de 3
-
         user.setLastName("Keihanaikukauakahihuliheekahaunaele");
         violations = validator.validateProperty(user, "lastName");
         assertFalse(violations.isEmpty());
-        //se pasa del maximo de 30
 
     }
 
@@ -109,17 +102,14 @@ class UserTest {
         user.setDirection("Calle Falsa 123");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "direction");
         assertTrue(violations.isEmpty());
-        //cumple con el minimo de 10
 
         user.setDirection("Calle");
         violations = validator.validateProperty(user, "direction");
         assertFalse(violations.isEmpty());
-        //no cumple con el minimo de 10
 
         user.setDirection("Calle Falsa 12345678901234567890");
         violations = validator.validateProperty(user, "direction");
         assertFalse(violations.isEmpty());
-        //se pasa del maximo de 30
     }
 
     @Test
@@ -127,17 +117,14 @@ class UserTest {
         user.setPassword("Password123!");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
         assertTrue(violations.isEmpty());
-        // contraseña que cumple con los requisitos
 
         user.setPassword("A5!");
         violations = validator.validateProperty(user, "password");
         assertFalse(violations.isEmpty());
-        // contraseña que no llega al min necesario
 
         user.setPassword("password123");
         violations = validator.validateProperty(user, "password");
         assertFalse(violations.isEmpty());
-        // constraseña que no tiene caracteres especiales
     }
 
     @Test
@@ -146,17 +133,14 @@ class UserTest {
         user.setCvuMercadoPago("0123456789012345678901");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "cvuMercadoPago");
         assertTrue(violations.isEmpty());
-        //cumple con 22 min/max
 
         user.setCvuMercadoPago("01234567890123456789012");
         violations = validator.validateProperty(user, "cvuMercadoPago");
         assertFalse(violations.isEmpty());
-        //se pasa del max de 22
 
         user.setCvuMercadoPago("012345678901234567890");
         violations = validator.validateProperty(user, "cvuMercadoPago");
         assertFalse(violations.isEmpty());
-        //no llega al min de 22
     }
 
     @Test
@@ -166,17 +150,14 @@ class UserTest {
         user.setWalletCrypto("12345678");
         Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "walletCrypto");
         assertTrue(violations.isEmpty());
-        //cumple con 8 min/max
 
         user.setWalletCrypto("123456789");
         violations = validator.validateProperty(user, "walletCrypto");
         assertFalse(violations.isEmpty());
-        //se pasa del max de 8
 
         user.setWalletCrypto("1234567");
         violations = validator.validateProperty(user, "walletCrypto");
         assertFalse(violations.isEmpty());
-        //no llega al min de 8
     }
 
     @Test
@@ -294,7 +275,6 @@ class UserTest {
     void testWhenATransactionIsCancelledTheUserWhoCancelledItHisReputationIsLoweredBy20Points() {
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         operation.setUser(user);
-        // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
         Operation operationSuccesful = new Operation();
         operationSuccesful.setStatus(Operation.TransactionStatus.CONFIRMED);
         user.getOperationsList().add(operationSuccesful);
@@ -309,7 +289,6 @@ class UserTest {
     void testWhenATransactionIsCancelledTheUsersReputationCantGoBelow0Points() {
         operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         operation.setUser(user);
-        // Le agrego una transaccion a la lista porque si su lista es vacia devuelve 0
         user.getOperationsList().add(operation);
         user.setReputation(5.0);
 
@@ -338,7 +317,6 @@ class UserTest {
         operation.setCreatedAt(LocalDateTime.now().minusDays(1));
 
         Operation operationCancelled = new Operation();
-        // Le agrego una una operationCancelled para que la reputation del user no sobrepase los 100 maximos.
         operationCancelled.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         operationCancelled.setUser(user);
 
