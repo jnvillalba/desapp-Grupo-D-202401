@@ -49,7 +49,7 @@ jobs:
       # Concatenar index.html con README.md
       - name: Append JaCoCo Report to README
         run: |
-          cat backend-desapp-api/build/reports/jacocoHtml/index.html >> README.md
+          cat backend-desapp-api/build/jacocoHtml/index.html >> README.md
 
       # Actualizar README.md en la rama que se está pusheando
       - name: Update README in current branch
