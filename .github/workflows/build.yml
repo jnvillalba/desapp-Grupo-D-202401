@@ -45,27 +45,3 @@ jobs:
       - name: Generate JaCoCo Report
         working-directory: ./backend-desapp-api
         run: ./gradlew jacocoTestReport
-      
-      # Configuración de GitHub Pages
-      - name: Configure GitHub Pages
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-
-      # Clona la rama gh-pages
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-          fetch-depth: 0
-
-      # Copia el informe JaCoCo a la rama gh-pages
-      - name: Copy JaCoCo Report to gh-pages
-        run: cp -r backend-desapp-api/build/jacocoHtml/* .
-
-      # Añade los cambios y realiza el commit
-      - name: Commit and push changes
-        run: |
-          git add .
-          git commit -m "Update JaCoCo Report"
-          git push origin gh-pages
