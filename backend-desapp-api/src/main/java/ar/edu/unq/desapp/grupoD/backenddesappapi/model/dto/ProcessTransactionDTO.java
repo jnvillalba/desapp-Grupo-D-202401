@@ -15,9 +15,9 @@ class ProcessTransactionDTO {
     @Getter
     @AllArgsConstructor
     public enum ProcessAccion {
-        REALIZAR_TRANSFERENCIA("Realize the transfer"),
-        CONFIRMAR_RECEPCION("Confirm reception"),
-        CANCELAR("Cancel");
+        TRANSFER("Realize the transfer"),
+        CONFIRM("Confirm reception"),
+        CANCEL("Cancel");
 
         private final String description;
     }

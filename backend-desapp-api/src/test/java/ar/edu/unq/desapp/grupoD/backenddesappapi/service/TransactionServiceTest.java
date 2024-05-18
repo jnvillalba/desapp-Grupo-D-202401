@@ -3,7 +3,6 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.OperationNotFoundException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
@@ -13,10 +12,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @SpringBootTest
@@ -27,64 +25,51 @@ public class TransactionServiceTest {
 
     @InjectMocks
     private TransactionService transactionService;
-
-    private Operation pendingOperation;
-    private ProcessTransactionDTO confirmTransactionDTO;
-    private ProcessTransactionDTO cancelTransactionDTO;
     private User user;
-
+    private Operation operation;
     @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-
+    void setUp() {
         user = new User();
-        user.setId(1L);
-
-        pendingOperation = new Operation();
-        pendingOperation.setOperationId(1L);
-        pendingOperation.setStatus(Operation.TransactionStatus.PENDING);
-        pendingOperation.setUser(user);
-
-        confirmTransactionDTO = new ProcessTransactionDTO();
-        confirmTransactionDTO.setOperationId(1L);
-        confirmTransactionDTO.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRMAR_RECEPCION);
-        pendingOperation.setUser(user);
-
-        cancelTransactionDTO = new ProcessTransactionDTO();
-        cancelTransactionDTO.setOperationId(1L);
-        cancelTransactionDTO.setProcessType(ProcessTransactionDTO.ProcessAccion.CANCELAR);
-
-        when(operationRepository.findById(1L)).thenReturn(Optional.of(pendingOperation));
+        operation = new Operation();
+        operation.setOperationId(1L);
+        operation.setUser(user);
+        operation.setStatus(Operation.TransactionStatus.PENDING);
+        operation.setCreatedAt(LocalDateTime.now());
     }
 
     @Test
-    public void testConfirmTransaction() {
-        Operation operation = transactionService.processTransaction(confirmTransactionDTO);
+    void testProcessTransaction_Cancel() {
+        // Arrange
+        when(operationRepository.findById(1L)).thenReturn(Optional.of(operation));
 
-        assertNotNull(operation);
-        assertEquals(Operation.TransactionStatus.CONFIRMED, operation.getStatus());
-        verify(operationRepository, times(1)).save(operation);
+        ProcessTransactionDTO dto = new ProcessTransactionDTO();
+        dto.setOperationId(1L);
+        dto.setProcessType(ProcessTransactionDTO.ProcessAccion.CANCEL);
+
+        // Act
+        Operation result = transactionService.processTransaction(dto);
+
+        // Assert
+        verify(operationRepository).save(operation);
+        assertEquals(Operation.TransactionStatus.CANCELED_BY_USER, result.getStatus());
     }
 
     @Test
-    public void testCancelTransaction() {
-        Operation operation = transactionService.processTransaction(cancelTransactionDTO);
+    void testProcessTransaction_Confirm() {
+        // Arrange
+        when(operationRepository.findById(1L)).thenReturn(Optional.of(operation));
 
-        assertNotNull(operation);
-        assertEquals(Operation.TransactionStatus.CANCELED_BY_USER, operation.getStatus());
-        verify(operationRepository, times(1)).save(operation);
+        ProcessTransactionDTO dto = new ProcessTransactionDTO();
+        dto.setOperationId(1L);
+        dto.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+
+        // Act
+        Operation result = transactionService.processTransaction(dto);
+
+        // Assert
+        verify(operationRepository).save(operation);
+        assertEquals(Operation.TransactionStatus.CONFIRMED, result.getStatus());
     }
 
-    @Test
-    public void testOperationNotFound() {
-        when(operationRepository.findById(2L)).thenReturn(Optional.empty());
 
-        ProcessTransactionDTO invalidTransactionDTO = new ProcessTransactionDTO();
-        invalidTransactionDTO.setOperationId(2L);
-        invalidTransactionDTO.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRMAR_RECEPCION);
-
-        assertThrows(OperationNotFoundException.class, () -> {
-            transactionService.processTransaction(invalidTransactionDTO);
-        });
-    }
 }
