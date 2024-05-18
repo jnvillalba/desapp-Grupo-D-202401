@@ -7,6 +7,10 @@ import lombok.Data;
 
 @Data
 public class ExpressIntentionDTO {
+
+    @NotNull(message = "User cannot be null.")
+    private Long userId;
+
     private OperationType operationType;
 
     @NotNull(message = "Crypto active cannot be null.")
