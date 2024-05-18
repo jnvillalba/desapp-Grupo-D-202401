@@ -61,7 +61,7 @@ jobs:
 
       # Copia el informe JaCoCo a la rama gh-pages
       - name: Copy JaCoCo Report to gh-pages
-        run: cp -r backend-desapp-api/build/reports/jacoco/jacocoHtml/* .
+        run: cp -r backend-desapp-api/build/jacocoHtml/* .
 
       # Añade los cambios y realiza el commit
       - name: Commit and push changes
