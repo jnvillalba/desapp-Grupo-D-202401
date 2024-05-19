@@ -1,7 +1,8 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.UserNotFoundException;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.*;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.OperationReportDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.RequestReportDTO;
@@ -24,7 +25,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(Long userId){
+    public User getUser(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
     }
 
@@ -36,7 +37,7 @@ public class UserService {
         Double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);
         Double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);
 
-        return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG,activeDTOs);
+        return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG, activeDTOs);
     }
 
     private List<Operation> getOperationsForUserAndDateRange(RequestReportDTO request) {
@@ -63,8 +64,5 @@ public class UserService {
                 .mapToDouble(ActiveDTO::getCurrentCryptoPrice)
                 .sum();
     }
-
-
-
 
 }

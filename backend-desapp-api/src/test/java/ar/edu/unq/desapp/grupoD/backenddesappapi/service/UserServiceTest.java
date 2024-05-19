@@ -1,6 +1,8 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.OperationReportDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.RequestReportDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
@@ -9,6 +11,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
@@ -55,4 +61,27 @@ class UserServiceTest {
       assertEquals("0123456789012345678901", registeredUser.getCvuMercadoPago());
       assertEquals("Password123!", registeredUser.getPassword());
    }
+
+   @Test
+   void testGenerateReport() {
+      RequestReportDTO requestReportDTO = new RequestReportDTO();
+      requestReportDTO.setUserId(1L);
+      requestReportDTO.setStartDate(LocalDate.now().minusDays(7));
+      requestReportDTO.setEndDate(LocalDate.now());
+      requestReportDTO.setDolarBlue(100f);
+
+      when(userRepository.findOperationsByUserIdAndDateRange(
+              requestReportDTO.getUserId(),
+              requestReportDTO.getStartDate().atStartOfDay(),
+              requestReportDTO.getEndDate().atStartOfDay()))
+              .thenReturn(new ArrayList<>());
+
+      OperationReportDTO operationReportDTO = userService.generateReport(requestReportDTO);
+
+      assertEquals(LocalDateTime.class, operationReportDTO.getRequestDateTime().getClass());
+      assertEquals(0.0, operationReportDTO.getTotalValueInDollars());
+      assertEquals(0.0, operationReportDTO.getTotalValueInPesosARG());
+      assertEquals(0, operationReportDTO.getActives().size());
+   }
+
 }

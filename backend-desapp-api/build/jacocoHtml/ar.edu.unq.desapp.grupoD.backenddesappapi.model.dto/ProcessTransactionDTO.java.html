@@ -4,20 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 
-<span class="nc bnc" id="L7" title="All 22 branches missed.">@Data</span>
+<span class="pc bnc" id="L7" title="All 22 branches missed.">@Data</span>
 public
 class ProcessTransactionDTO {
 
-<span class="nc" id="L11">    private ProcessAccion processType;</span>
-<span class="nc" id="L12">    private Long operationId;</span>
+<span class="fc" id="L11">    private ProcessAccion processType;</span>
+<span class="fc" id="L12">    private Long operationId;</span>
 
 
-<span class="nc" id="L15">    @Getter</span>
-<span class="nc" id="L16">    @AllArgsConstructor</span>
+<span class="fc" id="L15">    @Getter</span>
+<span class="fc" id="L16">    @AllArgsConstructor</span>
     public enum ProcessAccion {
-<span class="nc" id="L18">        TRANSFER(&quot;Realize the transfer&quot;),</span>
-<span class="nc" id="L19">        CONFIRM(&quot;Confirm reception&quot;),</span>
-<span class="nc" id="L20">        CANCEL(&quot;Cancel&quot;);</span>
+<span class="fc" id="L18">        TRANSFER(&quot;Realize the transfer&quot;),</span>
+<span class="fc" id="L19">        CONFIRM(&quot;Confirm reception&quot;),</span>
+<span class="fc" id="L20">        CANCEL(&quot;Cancel&quot;);</span>
 
 <span class="nc" id="L22">        private final String description;</span>
     }

@@ -8,10 +8,10 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 <span class="nc bnc" id="L10" title="All 30 branches missed.">@Data</span>
-<span class="nc" id="L11">@AllArgsConstructor</span>
+<span class="fc" id="L11">@AllArgsConstructor</span>
 public class BinancePriceDTO {
 <span class="nc" id="L13">    private String symbol;</span>
-<span class="nc" id="L14">    private Float price;</span>
+<span class="fc" id="L14">    private Float price;</span>
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern = &quot;dd/MM/yyyy HH:mm&quot;)
 <span class="nc" id="L17">    private LocalDateTime lastUpdateDateAndTime;</span>
