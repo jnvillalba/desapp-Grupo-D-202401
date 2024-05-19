@@ -125,7 +125,7 @@ public class User {
 
     private void addReputation(double amount) {
         calculateReputation();
-        reputation = Math.max(0, (reputation + amount));
+        reputation = Math.max(0, Math.min(100, reputation + amount));
     }
 
     public void handleSuccesfulTransaction(Operation transaction) {

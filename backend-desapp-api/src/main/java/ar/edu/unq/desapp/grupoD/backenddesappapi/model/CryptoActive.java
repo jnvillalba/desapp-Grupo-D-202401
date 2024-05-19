@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -28,12 +29,11 @@ public class CryptoActive {
 
     @NotNull(message = "Cripto price cannot be null.")
     @PositiveOrZero(message = "Cripto price cannot be negative.")
-    @Column(columnDefinition = "FLOAT")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "0.00000000")
     private Float price;
 
     @NotNull(message = "Cripto amount cannot be null.")
     @DecimalMin(value = "0.0", message = "Cripto amount cannot be negative.")
-    @Column(columnDefinition = "DOUBLE")
     private double amount;
 
     private LocalDateTime lastUpdateDateAndTime;

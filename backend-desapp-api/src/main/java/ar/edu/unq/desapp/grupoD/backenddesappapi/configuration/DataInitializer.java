@@ -3,10 +3,12 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,13 +23,15 @@ public class DataInitializer {
     public ApplicationRunner initializer(UserRepository userRepository,
                                          CryptoActiveRepository cryptoActiveRepository,
                                          IntentionRepository intentionRepository,
-                                         OperationRepository operationRepository) {
+                                         OperationRepository operationRepository,
+                                         TransactionService transactionService) {
         return args -> {
             clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository);
             initializeUsers(userRepository);
             initializeCryptoActives(cryptoActiveRepository);
             initializeOperations(operationRepository, userRepository, cryptoActiveRepository);
             initializeIntentions(intentionRepository);
+            prepareReport(transactionService);
         };
     }
 
@@ -54,7 +58,7 @@ public class DataInitializer {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
-                100
+                50
         );
 
         User user2 = new User(
@@ -92,7 +96,7 @@ public class DataInitializer {
         CryptoActive doge = CryptoActive.builder()
                 .symbol("DOGEUSDT")
                 .price(0.00002458f)
-                .amount(5000)
+                .amount(100000)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
 
@@ -138,5 +142,16 @@ public class DataInitializer {
 
     private void initializeIntentions(IntentionRepository intentionRepository) {
         //TODO: cami
+    }
+
+    private void prepareReport(TransactionService transactionService) {
+        var buyBTC = new ProcessTransactionDTO();
+        buyBTC.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+        buyBTC.setOperationId(1L);
+        transactionService.processTransaction(buyBTC);
+        var buyDOGE = new ProcessTransactionDTO();
+        buyDOGE.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+        buyDOGE.setOperationId(2L);
+        transactionService.processTransaction(buyDOGE);
     }
 }
