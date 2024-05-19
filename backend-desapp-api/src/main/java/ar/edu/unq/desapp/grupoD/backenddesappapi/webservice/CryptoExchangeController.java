@@ -14,9 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-
+@Tag(name = "CryptoCurrency services", description = "Manage cryptocurrencies")
 @RestController
 @Transactional
 @RequestMapping("/api/crypto")
@@ -39,11 +39,12 @@ public class CryptoExchangeController {
     public ResponseEntity<List<BinancePriceDTO>> getPricesOfCoins() {
         return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());
     }
-
+    @io.swagger.v3.oas.annotations.Operation(summary = "Get a cryptocurrency last 24Hrs Prices")
     @GetMapping("/crypto/last24HrsPrices/{symbol}")
     public ResponseEntity<List<BinancePriceDTO>> last24HrsPrices(@PathVariable String symbol) {
         return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));
     }
+    @io.swagger.v3.oas.annotations.Operation(summary = "Process the transaction reported by a user")
     @PostMapping("/operation/processTransaction")
     public ResponseEntity<String> processTransaction(@RequestBody ProcessTransactionDTO trx) {
         Operation operation = transactionService.processTransaction(trx);
@@ -67,7 +68,7 @@ public class CryptoExchangeController {
     public ResponseEntity<List<Intention>> getAllIntentions() {
         return ResponseEntity.ok().body(intentionService.getAllIntentions());
     }
-
+    @io.swagger.v3.oas.annotations.Operation(summary = "Report the traded volume of crypto assets between two dates of a user.")
     @PostMapping("/operation/report")
     public ResponseEntity<OperationReportDTO> generateReport(@RequestBody RequestReportDTO request) {
         OperationReportDTO report = userService.generateReport(request);
