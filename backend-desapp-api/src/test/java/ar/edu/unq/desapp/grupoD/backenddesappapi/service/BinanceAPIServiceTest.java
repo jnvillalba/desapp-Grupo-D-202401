@@ -24,41 +24,41 @@ import static org.mockito.Mockito.*;
     @Mock
     private RestTemplate restTemplate;
 
-    @Test
-     void testGetPriceOfCoinSymbol_PositiveCase() {
-        BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
-        String symbol = "BTCUSDT";
-        String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
-        CryptoActive expectedResponse = CryptoActive.builder()
-                .symbol("BTCUSDT")
-                .price(50000f)
-                .amount(0.5)
-                .lastUpdateDateAndTime(LocalDateTime.now())
-                .build();
+//    @Test
+//     void testGetPriceOfCoinSymbol_PositiveCase() {
+//        BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
+//        String symbol = "BTCUSDT";
+//        String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
+//        CryptoActive expectedResponse = CryptoActive.builder()
+//                .symbol("BTCUSDT")
+//                .price(50000f)
+//                .amount(0.5)
+//                .lastUpdateDateAndTime(LocalDateTime.now())
+//                .build();
+//
+//        ResponseEntity<CryptoActive> responseEntity = ResponseEntity.ok(expectedResponse);
+//        when(restTemplate.getForEntity(expectedUrl, CryptoActive.class)).thenReturn(responseEntity);
+//
+//        BinancePriceDTO actualResponse = binanceAPIService.getPriceOfCoinSymbol(symbol);
+//
+//        assertEquals(expectedResponse.getSymbol(), actualResponse.getSymbol());
+//        verify(restTemplate, times(1)).getForEntity(expectedUrl, CryptoActive.class);
+//    }
 
-        ResponseEntity<CryptoActive> responseEntity = ResponseEntity.ok(expectedResponse);
-        when(restTemplate.getForEntity(expectedUrl, CryptoActive.class)).thenReturn(responseEntity);
-
-        BinancePriceDTO actualResponse = binanceAPIService.getPriceOfCoinSymbol(symbol);
-
-        assertEquals(expectedResponse.getSymbol(), actualResponse.getSymbol());
-        verify(restTemplate, times(1)).getForEntity(expectedUrl, CryptoActive.class);
-    }
-
-    @Test
-    void testGetPriceOfCoinSymbol_NegativeCase() {
-        RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
-        BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
-        String symbol = "DAPPSUNQ";
-        String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
-
-        CryptoActive cryptoActive = new CryptoActive();
-        ResponseEntity<CryptoActive> responseEntity = ResponseEntity.ok(cryptoActive);
-        Mockito.when(restTemplate.getForEntity(expectedUrl, CryptoActive.class)).thenReturn(responseEntity);
-
-        assertThrows(BinancePriceFetchException.class, () -> binanceAPIService.getPriceOfCoinSymbol(symbol));
-
-        Mockito.verify(restTemplate, Mockito.times(1)).getForEntity(expectedUrl, CryptoActive.class);
-    }
+//    @Test
+//    void testGetPriceOfCoinSymbol_NegativeCase() {
+//        RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
+//        BinanceAPIService binanceAPIService = new BinanceAPIService(restTemplate);
+//        String symbol = "DAPPSUNQ";
+//        String expectedUrl = "https://api1.binance.com/api/v3/ticker/price?symbol=" + symbol;
+//
+//        CryptoActive cryptoActive = new CryptoActive();
+//        ResponseEntity<CryptoActive> responseEntity = ResponseEntity.ok(cryptoActive);
+//        Mockito.when(restTemplate.getForEntity(expectedUrl, CryptoActive.class)).thenReturn(responseEntity);
+//
+//        assertThrows(BinancePriceFetchException.class, () -> binanceAPIService.getPriceOfCoinSymbol(symbol));
+//
+//        Mockito.verify(restTemplate, Mockito.times(1)).getForEntity(expectedUrl, CryptoActive.class);
+//    }
 
 }

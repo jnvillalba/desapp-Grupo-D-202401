@@ -1,8 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.configuration;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.*;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
@@ -27,7 +24,7 @@ public class DataInitializer {
             initializeUsers(userRepository);
             initializeCryptoActives(cryptoActiveRepository);
             initializeOperations(operationRepository, userRepository, cryptoActiveRepository);
-            initializeIntentions(intentionRepository);
+            initializeIntentions(intentionRepository, userRepository, cryptoActiveRepository);
         };
     }
 
@@ -136,7 +133,15 @@ public class DataInitializer {
         operationRepository.save(operation2);
     }
 
-    private void initializeIntentions(IntentionRepository intentionRepository) {
-        //TODO: cami
+    private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository, CryptoActiveRepository cryptoActiveRepository) {
+        Intention intention = new Intention();
+        User user = userRepository.findByEmail("John@example.com");
+        intention.setUser(user);
+        intention.setCreationDateTime(LocalDateTime.now());
+        intention.setOperationType(OperationType.BUY);
+        intention.setPesosAmount(1);
+        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        intention.setCryptoActive(btc);
+        intentionRepository.save(intention);
     }
 }
