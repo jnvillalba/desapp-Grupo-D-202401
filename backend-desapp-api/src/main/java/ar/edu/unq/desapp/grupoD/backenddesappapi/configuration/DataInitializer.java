@@ -57,7 +57,6 @@ public class DataInitializer {
                 "0x123456",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
                 50
         );
 
@@ -70,7 +69,6 @@ public class DataInitializer {
                 "Password$123",
                 "0101234567890123456789",
                 "0x654321",
-                new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
                 0

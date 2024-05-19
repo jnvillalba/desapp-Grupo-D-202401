@@ -6,36 +6,34 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-<span class="pc bpc" id="L16" title="39 of 40 branches missed.">@Data</span>
-<span class="fc" id="L17">@NoArgsConstructor</span>
-<span class="fc" id="L18">@AllArgsConstructor</span>
-<span class="pc" id="L19">@Builder</span>
+<span class="pc" id="L13">@Setter</span>
+@Getter
+<span class="fc" id="L15">@NoArgsConstructor</span>
+<span class="fc" id="L16">@AllArgsConstructor</span>
+<span class="pc" id="L17">@Builder</span>
 @Entity
 public class CryptoActive {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L25">    private Long activeId;</span>
+<span class="fc" id="L23">    private Long activeId;</span>
 
     @NotBlank(message = &quot;Crypto symbol cannot be null.&quot;)
-<span class="fc" id="L28">    private String symbol;</span>
+<span class="fc" id="L26">    private String symbol;</span>
 
     @NotNull(message = &quot;Cripto price cannot be null.&quot;)
     @PositiveOrZero(message = &quot;Cripto price cannot be negative.&quot;)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;0.00000000&quot;)
-<span class="fc" id="L33">    private Float price;</span>
+<span class="fc" id="L31">    private Float price;</span>
 
     @NotNull(message = &quot;Cripto amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Cripto amount cannot be negative.&quot;)
-<span class="fc" id="L37">    private double amount;</span>
+<span class="fc" id="L35">    private double amount;</span>
 
-<span class="fc" id="L39">    private LocalDateTime lastUpdateDateAndTime;</span>
+<span class="fc" id="L37">    private LocalDateTime lastUpdateDateAndTime;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

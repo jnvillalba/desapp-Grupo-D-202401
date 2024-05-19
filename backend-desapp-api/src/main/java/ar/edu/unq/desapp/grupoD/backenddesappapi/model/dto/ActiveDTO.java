@@ -10,7 +10,7 @@ public class ActiveDTO {
     private Float currentCryptoPrice;
     private Float priceInPesosARG;
 
-    public ActiveDTO toActiveDTO(CryptoActive cryptoActive, Float dolarBlue ) {
+    public static ActiveDTO toActiveDTO(CryptoActive cryptoActive, Float dolarBlue) {
         ActiveDTO active = new ActiveDTO();
         active.setCrypto(cryptoActive.getSymbol());
         active.setNominalCryptoAmount(cryptoActive.getAmount());

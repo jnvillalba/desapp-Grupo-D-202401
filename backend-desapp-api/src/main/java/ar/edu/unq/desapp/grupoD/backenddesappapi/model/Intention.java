@@ -3,11 +3,13 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Data
+@Setter
+@Getter
 @Entity
 public class Intention {
     @Id
