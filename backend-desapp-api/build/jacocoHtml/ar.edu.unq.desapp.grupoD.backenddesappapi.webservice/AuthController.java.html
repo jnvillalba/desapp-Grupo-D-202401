@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend-desapp-api</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unq.desapp.grupoD.backenddesappapi.webservice</a> &gt; <span class="el_source">AuthController.java</span></div><h1>AuthController.java</h1><pre class="source lang-java linenums">package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = &quot;users&quot;)
 @RestController
 @RequestMapping(&quot;/api/auth&quot;)
 <span class="fc" id="L16">@AllArgsConstructor</span>
 public class AuthController {
     private final UserService userService;
 
-    private final UserRepository userRepository;
-    @Operation(summary = &quot;Register account&quot;)
+    @Operation(summary = &quot;Register a user&quot;)
     @PostMapping(&quot;/register&quot;)
     public ResponseEntity&lt;String&gt; registerUser(@Valid @RequestBody UserDTO userDTO) {
-<span class="nc" id="L24">        userService.registerUser(userDTO);</span>
-<span class="nc" id="L25">        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO.toString());</span>
+<span class="nc" id="L23">        userService.registerUser(userDTO);</span>
+<span class="nc" id="L24">        return ResponseEntity.status(HttpStatus.CREATED).body(userDTO.toString());</span>
     }
 
-    //TODO: borrar
-    @GetMapping(&quot;/c&quot;)
-    public ResponseEntity&lt;String&gt; c() {
-<span class="nc" id="L31">        User user = User.builder()</span>
-<span class="nc" id="L32">                .name(&quot;Nombre&quot;)</span>
-<span class="nc" id="L33">                .lastName(&quot;Apellido&quot;)</span>
-<span class="nc" id="L34">                .email(&quot;correo@example.com&quot;)</span>
-<span class="nc" id="L35">                .direction(&quot;CalleFalsaAAAAAAAAAA&quot;)</span>
-<span class="nc" id="L36">                .password(&quot;Password123!&quot;)</span>
-<span class="nc" id="L37">                .cvuMercadoPago(&quot;CVU1234567890123456789&quot;)</span>
-<span class="nc" id="L38">                .walletCrypto(&quot;12345678&quot;)</span>
-<span class="nc" id="L39">                .build();</span>
-<span class="nc" id="L40">        userRepository.save(user);</span>
-<span class="nc" id="L41">        return ResponseEntity.status(HttpStatus.CREATED).body(user.toString());</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

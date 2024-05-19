@@ -14,9 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-
+@Tag(name = &quot;CryptoCurrency services&quot;, description = &quot;Manage cryptocurrencies&quot;)
 @RestController
 @Transactional
 @RequestMapping(&quot;/api/crypto&quot;)
@@ -39,39 +39,40 @@ public class CryptoExchangeController {
     public ResponseEntity&lt;List&lt;BinancePriceDTO&gt;&gt; getPricesOfCoins() {
 <span class="nc" id="L40">        return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());</span>
     }
-
+    @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get a cryptocurrency last 24Hrs Prices&quot;)
     @GetMapping(&quot;/crypto/last24HrsPrices/{symbol}&quot;)
     public ResponseEntity&lt;List&lt;BinancePriceDTO&gt;&gt; last24HrsPrices(@PathVariable String symbol) {
 <span class="nc" id="L45">        return ResponseEntity.ok().body(binanceAPIService.last24HrsPrices(symbol));</span>
     }
+    @io.swagger.v3.oas.annotations.Operation(summary = &quot;Process the transaction reported by a user&quot;)
     @PostMapping(&quot;/operation/processTransaction&quot;)
     public ResponseEntity&lt;String&gt; processTransaction(@RequestBody ProcessTransactionDTO trx) {
-<span class="nc" id="L49">        Operation operation = transactionService.processTransaction(trx);</span>
-<span class="nc" id="L50">        return ResponseEntity.ok().body(operation.getStatus().toString());</span>
+<span class="nc" id="L50">        Operation operation = transactionService.processTransaction(trx);</span>
+<span class="nc" id="L51">        return ResponseEntity.ok().body(operation.getStatus().toString());</span>
     }
 
 
     @PostMapping(&quot;/intention&quot;)
     public ResponseEntity&lt;String&gt; expressIntention(@Valid @RequestBody ExpressIntentionDTO expressIntentionDTO) {
-<span class="nc" id="L56">        User user = userService.getUser(expressIntentionDTO.getUserId());</span>
+<span class="nc" id="L57">        User user = userService.getUser(expressIntentionDTO.getUserId());</span>
 
-<span class="nc" id="L58">        Intention intention = intentionService.expressIntention(</span>
+<span class="nc" id="L59">        Intention intention = intentionService.expressIntention(</span>
                 user,
                 expressIntentionDTO
         );
 
-<span class="nc" id="L63">        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Intention expressed successfully&quot;);</span>
+<span class="nc" id="L64">        return ResponseEntity.status(HttpStatus.CREATED).body(&quot;Intention expressed successfully&quot;);</span>
     }
 
     @GetMapping(&quot;/intentions&quot;)
     public ResponseEntity&lt;List&lt;Intention&gt;&gt; getAllIntentions() {
-<span class="nc" id="L68">        return ResponseEntity.ok().body(intentionService.getAllIntentions());</span>
+<span class="nc" id="L69">        return ResponseEntity.ok().body(intentionService.getAllIntentions());</span>
     }
-
+    @io.swagger.v3.oas.annotations.Operation(summary = &quot;Report the traded volume of crypto assets between two dates of a user.&quot;)
     @PostMapping(&quot;/operation/report&quot;)
     public ResponseEntity&lt;OperationReportDTO&gt; generateReport(@RequestBody RequestReportDTO request) {
-<span class="nc" id="L73">        OperationReportDTO report = userService.generateReport(request);</span>
-<span class="nc" id="L74">        return ResponseEntity.ok().body(report);</span>
+<span class="nc" id="L74">        OperationReportDTO report = userService.generateReport(request);</span>
+<span class="nc" id="L75">        return ResponseEntity.ok().body(report);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

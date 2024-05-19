@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

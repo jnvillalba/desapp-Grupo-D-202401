@@ -49,20 +49,21 @@ public class UserService {
 
     private List&lt;ActiveDTO&gt; mapOperationsToActiveDTOs(List&lt;Operation&gt; operations, Float dolarBlue) {
 <span class="fc" id="L51">        return operations.stream()</span>
-<span class="pc" id="L52">                .map(operation -&gt; new ActiveDTO().toActiveDTO(operation.getCryptoActive(), dolarBlue))</span>
+<span class="pc" id="L52">                .map(operation -&gt; ActiveDTO.toActiveDTO(operation.getCryptoActive(), dolarBlue))</span>
 <span class="fc" id="L53">                .toList();</span>
     }
 
+
     private Double calculateTotalPriceInPesos(List&lt;ActiveDTO&gt; activeDTOs) {
-<span class="fc" id="L57">        return activeDTOs.stream()</span>
-<span class="fc" id="L58">                .mapToDouble(ActiveDTO::getPriceInPesosARG)</span>
-<span class="fc" id="L59">                .sum();</span>
+<span class="fc" id="L58">        return activeDTOs.stream()</span>
+<span class="fc" id="L59">                .mapToDouble(ActiveDTO::getPriceInPesosARG)</span>
+<span class="fc" id="L60">                .sum();</span>
     }
 
     private Double calculateTotalValueInDollars(List&lt;ActiveDTO&gt; activeDTOs) {
-<span class="fc" id="L63">        return activeDTOs.stream()</span>
-<span class="fc" id="L64">                .mapToDouble(ActiveDTO::getCurrentCryptoPrice)</span>
-<span class="fc" id="L65">                .sum();</span>
+<span class="fc" id="L64">        return activeDTOs.stream()</span>
+<span class="fc" id="L65">                .mapToDouble(ActiveDTO::getCurrentCryptoPrice)</span>
+<span class="fc" id="L66">                .sum();</span>
     }
 
 }

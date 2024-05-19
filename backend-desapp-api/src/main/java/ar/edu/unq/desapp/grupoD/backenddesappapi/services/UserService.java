@@ -49,9 +49,10 @@ public class UserService {
 
     private List<ActiveDTO> mapOperationsToActiveDTOs(List<Operation> operations, Float dolarBlue) {
         return operations.stream()
-                .map(operation -> new ActiveDTO().toActiveDTO(operation.getCryptoActive(), dolarBlue))
+                .map(operation -> ActiveDTO.toActiveDTO(operation.getCryptoActive(), dolarBlue))
                 .toList();
     }
+
 
     private Double calculateTotalPriceInPesos(List<ActiveDTO> activeDTOs) {
         return activeDTOs.stream()
