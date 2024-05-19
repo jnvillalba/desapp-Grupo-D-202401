@@ -4,8 +4,11 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class ExpressIntentionDTO {
 
     @NotNull(message = "User cannot be null.")

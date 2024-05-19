@@ -2,8 +2,11 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class ActiveDTO {
     private String crypto;
     private Double nominalCryptoAmount;

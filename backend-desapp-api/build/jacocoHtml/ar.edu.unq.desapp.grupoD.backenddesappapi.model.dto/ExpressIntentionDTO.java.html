@@ -4,20 +4,23 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-<span class="pc bnc" id="L8" title="All 32 branches missed.">@Data</span>
-public class ExpressIntentionDTO {
+<span class="fc" id="L10">@Setter</span>
+@Getter
+<span class="fc" id="L12">public class ExpressIntentionDTO {</span>
 
     @NotNull(message = &quot;User cannot be null.&quot;)
-<span class="nc" id="L12">    private Long userId;</span>
+<span class="nc" id="L15">    private Long userId;</span>
 
-<span class="fc" id="L14">    private OperationType operationType;</span>
+<span class="fc" id="L17">    private OperationType operationType;</span>
 
     @NotNull(message = &quot;Crypto active cannot be null.&quot;)
-<span class="fc" id="L17">    private Long activeId;</span>
+<span class="fc" id="L20">    private Long activeId;</span>
 
     @NotNull(message = &quot;Pesos Amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Pesos Amount cannot be negative.&quot;)
-<span class="fc" id="L21">    private double pesosAmount;</span>
+<span class="fc" id="L24">    private double pesosAmount;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
