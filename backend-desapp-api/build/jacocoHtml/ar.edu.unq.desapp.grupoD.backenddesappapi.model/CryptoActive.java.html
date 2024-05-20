@@ -10,30 +10,30 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-<span class="pc" id="L13">@Setter</span>
+<span class="nc" id="L13">@Setter</span>
 @Getter
-<span class="fc" id="L15">@NoArgsConstructor</span>
-<span class="fc" id="L16">@AllArgsConstructor</span>
-<span class="pc" id="L17">@Builder</span>
+<span class="nc" id="L15">@NoArgsConstructor</span>
+<span class="nc" id="L16">@AllArgsConstructor</span>
+<span class="nc" id="L17">@Builder</span>
 @Entity
 public class CryptoActive {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="fc" id="L23">    private Long activeId;</span>
+<span class="nc" id="L23">    private Long activeId;</span>
 
     @NotBlank(message = &quot;Crypto symbol cannot be null.&quot;)
-<span class="fc" id="L26">    private String symbol;</span>
+<span class="nc" id="L26">    private String symbol;</span>
 
     @NotNull(message = &quot;Cripto price cannot be null.&quot;)
     @PositiveOrZero(message = &quot;Cripto price cannot be negative.&quot;)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = &quot;0.00000000&quot;)
-<span class="fc" id="L31">    private Float price;</span>
+<span class="nc" id="L31">    private Float price;</span>
 
     @NotNull(message = &quot;Cripto amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Cripto amount cannot be negative.&quot;)
-<span class="fc" id="L35">    private double amount;</span>
+<span class="nc" id="L35">    private double amount;</span>
 
-<span class="fc" id="L37">    private LocalDateTime lastUpdateDateAndTime;</span>
+<span class="nc" id="L37">    private LocalDateTime lastUpdateDateAndTime;</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

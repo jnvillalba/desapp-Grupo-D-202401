@@ -8,17 +8,20 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class DTOsTests {
 
     @Mock
-    Validator validator;
+    private Validator validator;
+
 
     @Test
     void testToActiveDTO() {
@@ -47,5 +50,15 @@ class DTOsTests {
         Set<ConstraintViolation<ExpressIntentionDTO>> violations = validator.validate(dto);
 
         assertEquals(2, violations.size());
+    }
+
+    @Test
+    void testGetUserId() {
+        ExpressIntentionDTO dto = new ExpressIntentionDTO();
+        dto.setUserId(1L);
+        dto.setActiveId(1L);
+        dto.setPesosAmount(100);
+
+        assertEquals(1L, dto.getUserId());
     }
 }

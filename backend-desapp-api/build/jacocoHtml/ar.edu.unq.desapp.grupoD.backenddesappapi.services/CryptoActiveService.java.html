@@ -6,12 +6,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-<span class="fc" id="L9">@AllArgsConstructor</span>
+<span class="nc" id="L9">@AllArgsConstructor</span>
 public class CryptoActiveService {
     private final CryptoActiveRepository cryptoActiveRepository;
 
     public CryptoActive getCryptoActive(Long id){
-<span class="fc" id="L14">        return cryptoActiveRepository.findById(id).orElseThrow();</span>
+<span class="nc" id="L14">        return cryptoActiveRepository.findById(id).orElseThrow();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

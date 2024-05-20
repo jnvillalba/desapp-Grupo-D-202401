@@ -7,16 +7,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-<span class="fc" id="L10">@AllArgsConstructor</span>
+<span class="nc" id="L10">@AllArgsConstructor</span>
 @Getter
 public class OperationReportDTO {
     @JsonFormat(pattern = &quot;dd/MM/yyyy HH:mm&quot;)
-<span class="fc" id="L14">    private LocalDateTime requestDateTime;</span>
+<span class="nc" id="L14">    private LocalDateTime requestDateTime;</span>
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT, pattern = &quot;0.00&quot;)
-<span class="fc" id="L16">    private Double totalValueInDollars;</span>
+<span class="nc" id="L16">    private Double totalValueInDollars;</span>
     @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT, pattern = &quot;0.00&quot;)
-<span class="fc" id="L18">    private Double totalValueInPesosARG;</span>
-<span class="fc" id="L19">    private List&lt;ActiveDTO&gt; actives;</span>
+<span class="nc" id="L18">    private Double totalValueInPesosARG;</span>
+<span class="nc" id="L19">    private List&lt;ActiveDTO&gt; actives;</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 
 @Getter
 <span class="nc" id="L13">@Setter</span>
-<span class="fc" id="L14">@AllArgsConstructor</span>
+<span class="nc" id="L14">@AllArgsConstructor</span>
 public class BinancePriceDTO {
 <span class="nc" id="L16">    private String symbol;</span>
-<span class="fc" id="L17">    private Float price;</span>
+<span class="nc" id="L17">    private Float price;</span>
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern = &quot;dd/MM/yyyy HH:mm&quot;)
 <span class="nc" id="L20">    private LocalDateTime lastUpdateDateAndTime;</span>

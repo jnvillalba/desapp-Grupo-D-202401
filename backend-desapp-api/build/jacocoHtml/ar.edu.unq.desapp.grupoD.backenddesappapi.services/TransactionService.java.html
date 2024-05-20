@@ -9,25 +9,25 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 @Service
-<span class="fc" id="L12">@AllArgsConstructor</span>
+<span class="nc" id="L12">@AllArgsConstructor</span>
 public class TransactionService {
 
     public final OperationRepository operationRepository;
 
     @Transactional
     public Operation processTransaction(ProcessTransactionDTO trx) {
-<span class="fc" id="L19">        Operation operation = operationRepository.findById(trx.getOperationId())</span>
-<span class="pc" id="L20">                .orElseThrow(() -&gt; new OperationNotFoundException( trx.getOperationId()));</span>
+<span class="nc" id="L19">        Operation operation = operationRepository.findById(trx.getOperationId())</span>
+<span class="nc" id="L20">                .orElseThrow(() -&gt; new OperationNotFoundException( trx.getOperationId()));</span>
 
-<span class="fc" id="L22">        User user = operation.getUser();</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (trx.getProcessType().equals(ProcessTransactionDTO.ProcessAccion.CANCEL)){</span>
-<span class="fc" id="L24">            operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);</span>
+<span class="nc" id="L22">        User user = operation.getUser();</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (trx.getProcessType().equals(ProcessTransactionDTO.ProcessAccion.CANCEL)){</span>
+<span class="nc" id="L24">            operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);</span>
         } else {
-<span class="fc" id="L26">            operation.setStatus(Operation.TransactionStatus.CONFIRMED);</span>
+<span class="nc" id="L26">            operation.setStatus(Operation.TransactionStatus.CONFIRMED);</span>
         }
-<span class="fc" id="L28">        user.processTransaction(operation);</span>
-<span class="fc" id="L29">        operationRepository.save(operation);</span>
-<span class="fc" id="L30">        return operation;</span>
+<span class="nc" id="L28">        user.processTransaction(operation);</span>
+<span class="nc" id="L29">        operationRepository.save(operation);</span>
+<span class="nc" id="L30">        return operation;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
