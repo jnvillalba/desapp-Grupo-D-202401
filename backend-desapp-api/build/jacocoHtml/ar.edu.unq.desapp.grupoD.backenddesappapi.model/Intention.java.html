@@ -8,29 +8,29 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-<span class="nc" id="L11">@Setter</span>
+<span class="fc" id="L11">@Setter</span>
 @Getter
 @Entity
-<span class="nc" id="L14">public class Intention {</span>
+<span class="fc" id="L14">public class Intention {</span>
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<span class="nc" id="L17">    private Long intentionId;</span>
+<span class="fc" id="L17">    private Long intentionId;</span>
 
-<span class="nc" id="L19">    private LocalDateTime creationDateTime;</span>
+<span class="fc" id="L19">    private LocalDateTime creationDateTime;</span>
 
     @NotNull(message = &quot;The user cannot be null.&quot;)
     @ManyToOne
-<span class="nc" id="L23">    private User user;</span>
+<span class="fc" id="L23">    private User user;</span>
 
-<span class="nc" id="L25">    private OperationType operationType;</span>
+<span class="fc" id="L25">    private OperationType operationType;</span>
 
     @NotNull(message = &quot;Crypto active cannot be null.&quot;)
     @ManyToOne
-<span class="nc" id="L29">    private CryptoActive cryptoActive;</span>
+<span class="fc" id="L29">    private CryptoActive cryptoActive;</span>
 
     @NotNull(message = &quot;Pesos Amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Pesos Amount cannot be negative.&quot;)
-<span class="nc" id="L33">    private double pesosAmount;</span>
+<span class="fc" id="L33">    private double pesosAmount;</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

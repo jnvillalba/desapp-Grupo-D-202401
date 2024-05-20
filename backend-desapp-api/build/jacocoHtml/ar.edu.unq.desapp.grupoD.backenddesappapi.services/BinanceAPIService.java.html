@@ -14,18 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-<span class="nc" id="L17">@AllArgsConstructor</span>
+<span class="fc" id="L17">@AllArgsConstructor</span>
 public class BinanceAPIService {
 
     //@Value(&quot;${integration.binance.api.url:NONE}&quot;)
-<span class="nc" id="L21">    private final String binanceApiUrl = &quot;https://api1.binance.com/api/v3/&quot;;</span>
-<span class="nc" id="L22">    private RestTemplate restTemplate = new RestTemplate();</span>
+<span class="fc" id="L21">    private final String binanceApiUrl = &quot;https://api1.binance.com/api/v3/&quot;;</span>
+<span class="fc" id="L22">    private RestTemplate restTemplate = new RestTemplate();</span>
 
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
-<span class="nc" id="L25">        String url = binanceApiUrl + &quot;ticker/price?symbol=&quot; + symbol;</span>
-<span class="nc" id="L26">        ResponseEntity&lt;BinancePriceDTO&gt; responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (responseEntity.getStatusCode().is2xxSuccessful()) {</span>
-<span class="nc" id="L28">            return responseEntity.getBody();</span>
+<span class="fc" id="L25">        String url = binanceApiUrl + &quot;ticker/price?symbol=&quot; + symbol;</span>
+<span class="fc" id="L26">        ResponseEntity&lt;BinancePriceDTO&gt; responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if (responseEntity.getStatusCode().is2xxSuccessful()) {</span>
+<span class="fc" id="L28">            return responseEntity.getBody();</span>
         } else {
 <span class="nc" id="L30">            throw new BinancePriceFetchException(symbol, responseEntity.getStatusCode().value());</span>
         }

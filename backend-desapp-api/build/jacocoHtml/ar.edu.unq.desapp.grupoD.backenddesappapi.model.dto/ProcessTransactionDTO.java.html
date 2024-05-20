@@ -5,20 +5,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-<span class="nc" id="L8">@Setter</span>
+<span class="fc" id="L8">@Setter</span>
 public
-<span class="nc" id="L10">class ProcessTransactionDTO {</span>
+<span class="fc" id="L10">class ProcessTransactionDTO {</span>
 
-<span class="nc" id="L12">    private ProcessAccion processType;</span>
-<span class="nc" id="L13">    private Long operationId;</span>
+<span class="fc" id="L12">    private ProcessAccion processType;</span>
+<span class="fc" id="L13">    private Long operationId;</span>
 
 
-<span class="nc" id="L16">    @Getter</span>
-<span class="nc" id="L17">    @AllArgsConstructor</span>
+<span class="fc" id="L16">    @Getter</span>
+<span class="fc" id="L17">    @AllArgsConstructor</span>
     public enum ProcessAccion {
-<span class="nc" id="L19">        TRANSFER(&quot;Realize the transfer&quot;),</span>
-<span class="nc" id="L20">        CONFIRM(&quot;Confirm reception&quot;),</span>
-<span class="nc" id="L21">        CANCEL(&quot;Cancel&quot;);</span>
+<span class="fc" id="L19">        TRANSFER(&quot;Realize the transfer&quot;),</span>
+<span class="fc" id="L20">        CONFIRM(&quot;Confirm reception&quot;),</span>
+<span class="fc" id="L21">        CANCEL(&quot;Cancel&quot;);</span>
 
 <span class="nc" id="L23">        private final String description;</span>
     }

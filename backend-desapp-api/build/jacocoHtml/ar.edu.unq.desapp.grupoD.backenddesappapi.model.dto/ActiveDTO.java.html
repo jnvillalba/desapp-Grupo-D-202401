@@ -5,22 +5,22 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-<span class="nc" id="L8">@Setter</span>
+<span class="fc" id="L8">@Setter</span>
 @Getter
-<span class="nc" id="L10">public class ActiveDTO {</span>
-<span class="nc" id="L11">    private String crypto;</span>
-<span class="nc" id="L12">    private Double nominalCryptoAmount;</span>
-<span class="nc" id="L13">    private Float currentCryptoPrice;</span>
-<span class="nc" id="L14">    private Float priceInPesosARG;</span>
+<span class="fc" id="L10">public class ActiveDTO {</span>
+<span class="fc" id="L11">    private String crypto;</span>
+<span class="fc" id="L12">    private Double nominalCryptoAmount;</span>
+<span class="fc" id="L13">    private Float currentCryptoPrice;</span>
+<span class="fc" id="L14">    private Float priceInPesosARG;</span>
 
     public static ActiveDTO toActiveDTO(CryptoActive cryptoActive, Float dolarBlue) {
-<span class="nc" id="L17">        ActiveDTO active = new ActiveDTO();</span>
-<span class="nc" id="L18">        active.setCrypto(cryptoActive.getSymbol());</span>
-<span class="nc" id="L19">        active.setNominalCryptoAmount(cryptoActive.getAmount());</span>
-<span class="nc" id="L20">        Float price = cryptoActive.getPrice();</span>
-<span class="nc" id="L21">        active.setCurrentCryptoPrice(price);</span>
-<span class="nc" id="L22">        active.setPriceInPesosARG(price*dolarBlue);</span>
-<span class="nc" id="L23">        return active;</span>
+<span class="fc" id="L17">        ActiveDTO active = new ActiveDTO();</span>
+<span class="fc" id="L18">        active.setCrypto(cryptoActive.getSymbol());</span>
+<span class="fc" id="L19">        active.setNominalCryptoAmount(cryptoActive.getAmount());</span>
+<span class="fc" id="L20">        Float price = cryptoActive.getPrice();</span>
+<span class="fc" id="L21">        active.setCurrentCryptoPrice(price);</span>
+<span class="fc" id="L22">        active.setPriceInPesosARG(price*dolarBlue);</span>
+<span class="fc" id="L23">        return active;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

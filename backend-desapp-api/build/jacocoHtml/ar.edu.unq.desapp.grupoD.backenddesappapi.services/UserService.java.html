@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-<span class="nc" id="L18">@AllArgsConstructor</span>
+<span class="fc" id="L18">@AllArgsConstructor</span>
 public class UserService {
 
     private final UserRepository userRepository;
 
     public User registerUser(UserDTO userDTO) {
-<span class="nc" id="L24">        User user = userDTO.toModel();</span>
-<span class="nc" id="L25">        return userRepository.save(user);</span>
+<span class="fc" id="L24">        User user = userDTO.toModel();</span>
+<span class="fc" id="L25">        return userRepository.save(user);</span>
     }
 
     public User getUser(Long userId) {
@@ -30,40 +30,40 @@ public class UserService {
     }
 
     public OperationReportDTO generateReport(RequestReportDTO request) {
-<span class="nc" id="L33">        List&lt;Operation&gt; operations = getOperationsForUserAndDateRange(request);</span>
+<span class="fc" id="L33">        List&lt;Operation&gt; operations = getOperationsForUserAndDateRange(request);</span>
 
-<span class="nc" id="L35">        List&lt;ActiveDTO&gt; activeDTOs = mapOperationsToActiveDTOs(operations, request.getDolarBlue());</span>
+<span class="fc" id="L35">        List&lt;ActiveDTO&gt; activeDTOs = mapOperationsToActiveDTOs(operations, request.getDolarBlue());</span>
 
-<span class="nc" id="L37">        Double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);</span>
-<span class="nc" id="L38">        Double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);</span>
+<span class="fc" id="L37">        Double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);</span>
+<span class="fc" id="L38">        Double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);</span>
 
-<span class="nc" id="L40">        return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG, activeDTOs);</span>
+<span class="fc" id="L40">        return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG, activeDTOs);</span>
     }
 
     private List&lt;Operation&gt; getOperationsForUserAndDateRange(RequestReportDTO request) {
-<span class="nc" id="L44">        return userRepository.findOperationsByUserIdAndDateRange(</span>
-<span class="nc" id="L45">                request.getUserId(),</span>
-<span class="nc" id="L46">                request.getStartDate().atStartOfDay(),</span>
-<span class="nc" id="L47">                request.getEndDate().atStartOfDay());</span>
+<span class="fc" id="L44">        return userRepository.findOperationsByUserIdAndDateRange(</span>
+<span class="fc" id="L45">                request.getUserId(),</span>
+<span class="fc" id="L46">                request.getStartDate().atStartOfDay(),</span>
+<span class="fc" id="L47">                request.getEndDate().atStartOfDay());</span>
     }
 
     private List&lt;ActiveDTO&gt; mapOperationsToActiveDTOs(List&lt;Operation&gt; operations, Float dolarBlue) {
-<span class="nc" id="L51">        return operations.stream()</span>
-<span class="nc" id="L52">                .map(operation -&gt; ActiveDTO.toActiveDTO(operation.getCryptoActive(), dolarBlue))</span>
-<span class="nc" id="L53">                .toList();</span>
+<span class="fc" id="L51">        return operations.stream()</span>
+<span class="pc" id="L52">                .map(operation -&gt; ActiveDTO.toActiveDTO(operation.getCryptoActive(), dolarBlue))</span>
+<span class="fc" id="L53">                .toList();</span>
     }
 
 
     private Double calculateTotalPriceInPesos(List&lt;ActiveDTO&gt; activeDTOs) {
-<span class="nc" id="L58">        return activeDTOs.stream()</span>
-<span class="nc" id="L59">                .mapToDouble(ActiveDTO::getPriceInPesosARG)</span>
-<span class="nc" id="L60">                .sum();</span>
+<span class="fc" id="L58">        return activeDTOs.stream()</span>
+<span class="fc" id="L59">                .mapToDouble(ActiveDTO::getPriceInPesosARG)</span>
+<span class="fc" id="L60">                .sum();</span>
     }
 
     private Double calculateTotalValueInDollars(List&lt;ActiveDTO&gt; activeDTOs) {
-<span class="nc" id="L64">        return activeDTOs.stream()</span>
-<span class="nc" id="L65">                .mapToDouble(ActiveDTO::getCurrentCryptoPrice)</span>
-<span class="nc" id="L66">                .sum();</span>
+<span class="fc" id="L64">        return activeDTOs.stream()</span>
+<span class="fc" id="L65">                .mapToDouble(ActiveDTO::getCurrentCryptoPrice)</span>
+<span class="fc" id="L66">                .sum();</span>
     }
 
 }
