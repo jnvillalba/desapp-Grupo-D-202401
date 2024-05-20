@@ -130,16 +130,4 @@ public class User {
         addReputation(reputationPoints);
         operationsList.add(transaction);
     }
-
-    public Intention expressIntention(CryptoActive cryptoActive, OperationType operationType, double pesosAmount) {
-        Intention intention = new Intention();
-        intention.setUser(this);
-        intention.setCreationDateTime(LocalDateTime.now());
-        intention.setOperationType(operationType);
-        intention.setCryptoActive(cryptoActive);
-        intention.setPesosAmount(pesosAmount);
-
-        intentionsList.add(intention);
-        return intention;
-    }
 }

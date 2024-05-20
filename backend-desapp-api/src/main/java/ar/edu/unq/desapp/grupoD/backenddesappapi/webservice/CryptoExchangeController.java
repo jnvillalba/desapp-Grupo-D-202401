@@ -71,6 +71,7 @@ public class CryptoExchangeController {
     public ResponseEntity<List<Intention>> getAllIntentions() {
         return ResponseEntity.ok().body(intentionService.getAllIntentions());
     }
+
     @io.swagger.v3.oas.annotations.Operation(summary = "Report the traded volume of crypto assets between two dates of a user.")
     @PostMapping("/operation/report")
     public ResponseEntity<OperationReportDTO> generateReport(@RequestBody RequestReportDTO request) {

@@ -135,7 +135,8 @@ public class DataInitializer {
         operationRepository.save(operation2);
     }
 
-    private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository, CryptoActiveRepository cryptoActiveRepository) {
+    private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository,
+                                      CryptoActiveRepository cryptoActiveRepository) {
         Intention intention = new Intention();
         User user = userRepository.findByEmail("John@example.com");
         intention.setUser(user);

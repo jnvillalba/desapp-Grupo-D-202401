@@ -130,17 +130,5 @@ public class User {
 <span class="fc" id="L130">        addReputation(reputationPoints);</span>
 <span class="fc" id="L131">        operationsList.add(transaction);</span>
 <span class="fc" id="L132">    }</span>
-
-    public Intention expressIntention(CryptoActive cryptoActive, OperationType operationType, double pesosAmount) {
-<span class="nc" id="L135">        Intention intention = new Intention();</span>
-<span class="nc" id="L136">        intention.setUser(this);</span>
-<span class="nc" id="L137">        intention.setCreationDateTime(LocalDateTime.now());</span>
-<span class="nc" id="L138">        intention.setOperationType(operationType);</span>
-<span class="nc" id="L139">        intention.setCryptoActive(cryptoActive);</span>
-<span class="nc" id="L140">        intention.setPesosAmount(pesosAmount);</span>
-
-<span class="nc" id="L142">        intentionsList.add(intention);</span>
-<span class="nc" id="L143">        return intention;</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
