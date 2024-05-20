@@ -50,7 +50,7 @@ public class CryptoExchangeController {
         return ResponseEntity.ok().body(operation.getStatus().toString());
     }
 
-
+    @io.swagger.v3.oas.annotations.Operation(summary = "Creates an intention")
     @PostMapping("/intention")
     public ResponseEntity<String> expressIntention(@Valid @RequestBody ExpressIntentionDTO expressIntentionDTO) {
         User user = userService.getUser(expressIntentionDTO.getUserId());
@@ -63,6 +63,7 @@ public class CryptoExchangeController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Intention expressed successfully");
     }
 
+    @io.swagger.v3.oas.annotations.Operation(summary = "Get all intentions")
     @GetMapping("/intentions")
     public ResponseEntity<List<Intention>> getAllIntentions() {
         return ResponseEntity.ok().body(intentionService.getAllIntentions());

@@ -1,9 +1,7 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.controller;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.webservice.CryptoExchangeController;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -13,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -21,31 +20,36 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class CryptoExchangeControllerTest {
-    @Autowired
-    private CryptoExchangeController cryptoExchangeController;
+public class AuthControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockBean
-    private BinanceAPIService binanceAPIService;
+    private UserService userService;
 
     @Test
-    void expressIntention() throws Exception {
-        ExpressIntentionDTO expressIntentionDTO = new ExpressIntentionDTO();
-        expressIntentionDTO.setUserId(1L);
-        expressIntentionDTO.setOperationType(OperationType.BUY);
-        expressIntentionDTO.setActiveId(1L);
-        expressIntentionDTO.setPesosAmount(2);
+    void registerUser() throws Exception {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName("John");
+        userDTO.setLastName("Doe");
+        userDTO.setEmail("johndoe@example.com");
+        userDTO.setDirection("123 Main St");
+        userDTO.setPassword("Password@123");
+        userDTO.setCvuMercadoPago("1234567890123456789012");
+        userDTO.setWalletCrypto("12345678");
+
+        User user = userDTO.toModel();
+
         mvc.perform(
-            post("/api/crypto/intention")
-            .content(asJsonString(expressIntentionDTO))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isCreated())
-        .andExpect(content().string("Intention expressed successfully"));
+                        post("/api/auth/register")
+                                .content(asJsonString(userDTO))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isCreated())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().string(userDTO.toString()));
     }
 
     public static String asJsonString(final Object obj) {
@@ -56,3 +60,4 @@ public class CryptoExchangeControllerTest {
         }
     }
 }
+
