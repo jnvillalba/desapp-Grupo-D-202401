@@ -45,7 +45,7 @@ public class CryptoExchangeControllerTest {
             .accept(MediaType.APPLICATION_JSON)
         )
         .andExpect(status().isCreated())
-        .andExpect(content().string("Intention expressed successfully"));
+        .andExpect(content().string("Intention of BUY expressed successfully"));
     }
 
     public static String asJsonString(final Object obj) {
