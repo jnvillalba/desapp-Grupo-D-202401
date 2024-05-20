@@ -61,7 +61,9 @@ public class CryptoExchangeController {
                 expressIntentionDTO
         );
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Intention expressed successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                "Intention of " + intention.getOperationType()
+                        +" expressed successfully");
     }
 
     @io.swagger.v3.oas.annotations.Operation(summary = "Get all intentions")
