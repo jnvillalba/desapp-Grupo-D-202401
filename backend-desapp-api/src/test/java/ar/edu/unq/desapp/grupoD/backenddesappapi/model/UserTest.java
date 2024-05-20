@@ -252,7 +252,6 @@ class UserTest {
                 "12345678",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
                 95.5
         );
 
@@ -262,7 +261,7 @@ class UserTest {
         assertEquals("user@example.com", user.getEmail());
 
         User user2 = User.builder()
-                .id(1L)
+                .id(2L)
                 .name("John")
                 .lastName("Doe")
                 .email("user@example.com")
@@ -270,14 +269,15 @@ class UserTest {
                 .password("Password123")
                 .cvuMercadoPago("0123456789012345678901")
                 .walletCrypto("12345678")
-                .roles(new ArrayList<>())
                 .intentionsList(new ArrayList<>())
                 .operationsList(new ArrayList<>())
                 .reputation(95.5)
                 .build();
 
-        assertEquals(user, user2);
-        assertEquals(user.hashCode(), user2.hashCode());
+        assertEquals(2L, user2.getId());
+        assertEquals("John", user2.getName());
+        assertEquals("user@example.com", user2.getEmail());
+
     }
 
     @Test

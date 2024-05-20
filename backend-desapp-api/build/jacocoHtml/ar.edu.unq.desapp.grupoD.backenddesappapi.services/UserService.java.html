@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend-desapp-api</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unq.desapp.grupoD.backenddesappapi.services</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
+
+import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.UserNotFoundException;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.OperationReportDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.RequestReportDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+<span class="fc" id="L18">@AllArgsConstructor</span>
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public User registerUser(UserDTO userDTO) {
+<span class="fc" id="L24">        User user = userDTO.toModel();</span>
+<span class="fc" id="L25">        return userRepository.save(user);</span>
+    }
+
+    public User getUser(Long userId) {
+<span class="nc" id="L29">        return userRepository.findById(userId).orElseThrow(() -&gt; new UserNotFoundException(userId));</span>
+    }
+
+    public OperationReportDTO generateReport(RequestReportDTO request) {
+<span class="fc" id="L33">        List&lt;Operation&gt; operations = getOperationsForUserAndDateRange(request);</span>
+
+<span class="fc" id="L35">        List&lt;ActiveDTO&gt; activeDTOs = mapOperationsToActiveDTOs(operations, request.getDolarBlue());</span>
+
+<span class="fc" id="L37">        Double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);</span>
+<span class="fc" id="L38">        Double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);</span>
+
+<span class="fc" id="L40">        return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG, activeDTOs);</span>
+    }
+
+    private List&lt;Operation&gt; getOperationsForUserAndDateRange(RequestReportDTO request) {
+<span class="fc" id="L44">        return userRepository.findOperationsByUserIdAndDateRange(</span>
+<span class="fc" id="L45">                request.getUserId(),</span>
+<span class="fc" id="L46">                request.getStartDate().atStartOfDay(),</span>
+<span class="fc" id="L47">                request.getEndDate().atStartOfDay());</span>
+    }
+
+    private List&lt;ActiveDTO&gt; mapOperationsToActiveDTOs(List&lt;Operation&gt; operations, Float dolarBlue) {
+<span class="fc" id="L51">        return operations.stream()</span>
+<span class="pc" id="L52">                .map(operation -&gt; ActiveDTO.toActiveDTO(operation.getCryptoActive(), dolarBlue))</span>
+<span class="fc" id="L53">                .toList();</span>
+    }
+
+
+    private Double calculateTotalPriceInPesos(List&lt;ActiveDTO&gt; activeDTOs) {
+<span class="fc" id="L58">        return activeDTOs.stream()</span>
+<span class="fc" id="L59">                .mapToDouble(ActiveDTO::getPriceInPesosARG)</span>
+<span class="fc" id="L60">                .sum();</span>
+    }
+
+    private Double calculateTotalValueInDollars(List&lt;ActiveDTO&gt; activeDTOs) {
+<span class="fc" id="L64">        return activeDTOs.stream()</span>
+<span class="fc" id="L65">                .mapToDouble(ActiveDTO::getCurrentCryptoPrice)</span>
+<span class="fc" id="L66">                .sum();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

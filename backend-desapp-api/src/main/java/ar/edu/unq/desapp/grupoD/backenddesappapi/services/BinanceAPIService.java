@@ -24,7 +24,6 @@ public class BinanceAPIService {
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
         String url = binanceApiUrl + "ticker/price?symbol=" + symbol;
         ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
-
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
         } else {

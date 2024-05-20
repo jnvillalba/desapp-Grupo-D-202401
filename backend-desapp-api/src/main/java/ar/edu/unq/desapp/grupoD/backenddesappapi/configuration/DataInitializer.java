@@ -1,9 +1,11 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.configuration;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.*;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,12 +20,14 @@ public class DataInitializer {
     public ApplicationRunner initializer(UserRepository userRepository,
                                          CryptoActiveRepository cryptoActiveRepository,
                                          IntentionRepository intentionRepository,
-                                         OperationRepository operationRepository) {
+                                         OperationRepository operationRepository,
+                                         TransactionService transactionService) {
         return args -> {
             clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository);
             initializeUsers(userRepository);
             initializeCryptoActives(cryptoActiveRepository);
             initializeOperations(operationRepository, userRepository, cryptoActiveRepository);
+            prepareReport(transactionService);
             initializeIntentions(intentionRepository, userRepository, cryptoActiveRepository);
         };
     }
@@ -50,7 +54,6 @@ public class DataInitializer {
                 "0x123456",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
                 100
         );
 
@@ -63,7 +66,6 @@ public class DataInitializer {
                 "Password$123",
                 "0101234567890123456789",
                 "0x654321",
-                new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
                 0
@@ -143,5 +145,16 @@ public class DataInitializer {
         CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
         intention.setCryptoActive(btc);
         intentionRepository.save(intention);
+    }
+
+    private void prepareReport(TransactionService transactionService) {
+        var buyBTC = new ProcessTransactionDTO();
+        buyBTC.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+        buyBTC.setOperationId(1L);
+        transactionService.processTransaction(buyBTC);
+        var buyDOGE = new ProcessTransactionDTO();
+        buyDOGE.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+        buyDOGE.setOperationId(2L);
+        transactionService.processTransaction(buyDOGE);
     }
 }

@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -48,9 +49,6 @@ public class User {
     @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
-    @Builder.Default
-    @ManyToMany
-    private List<Role> roles = new ArrayList<>();
     @Builder.Default
     @ManyToMany
     private List<Intention> intentionsList = new ArrayList<>();
@@ -125,7 +123,7 @@ public class User {
 
     private void addReputation(double amount) {
         calculateReputation();
-        reputation = Math.max(0, (reputation + amount));
+        reputation = Math.max(0, Math.min(100, reputation + amount));
     }
 
     public void handleSuccesfulTransaction(Operation transaction) {
