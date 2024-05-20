@@ -49,7 +49,7 @@ public class AuthControllerTest {
                 )
                 .andExpect(status().isCreated())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().string(userDTO.toString()));
+                .andExpect(content().string(userDTO.getEmail()));
     }
 
     public static String asJsonString(final Object obj) {
