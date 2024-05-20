@@ -6,12 +6,6 @@ build/resources/
 build/test-results/
 build/tmp/
 build/jacoco/
-**/build/classes/
-**/build/generated/
-**/build/resources/
-**/build/test-results/
-**/build/tmp/
-**/build/jacoco/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
