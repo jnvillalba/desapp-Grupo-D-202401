@@ -22,6 +22,7 @@ public class Intention {
     @ManyToOne
     private User user;
 
+    @Enumerated(EnumType.STRING)
     private OperationType operationType;
 
     @NotNull(message = "Crypto active cannot be null.")
