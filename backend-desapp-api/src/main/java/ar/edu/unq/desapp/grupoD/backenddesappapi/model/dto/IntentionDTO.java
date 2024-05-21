@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
@@ -28,4 +29,9 @@ public class IntentionDTO {
         dto.setPesosAmount(intention.getPesosAmount());
         return dto;
     }
+
+    public String getFormattedCreationDateTime() {
+        return creationDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    }
+
 }

@@ -26,6 +26,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -132,17 +133,22 @@ public class CryptoExchangeControllerTest {
 
     @Test
     void testGetAllIntentions() throws Exception {
-        IntentionDTO intention1 = new IntentionDTO(2L,
-                LocalDateTime.now(),
+        LocalDateTime now = LocalDateTime.now();
+        String formattedNow = now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        IntentionDTO intention1 = new IntentionDTO(1L,
+                now,
                 1L,
-                BUY,
+                OperationType.BUY,
                 1L,
                 1000D);
 
-
-        IntentionDTO intention2 = new IntentionDTO(2L,LocalDateTime.now(),
-                1L,  SELL,1L,1000D);
-
+        IntentionDTO intention2 = new IntentionDTO(2L,
+                now,
+                1L,
+                OperationType.SELL,
+                1L,
+                1000D);
 
         List<IntentionDTO> intentions = Arrays.asList(intention1, intention2);
         Mockito.when(intentionService.getAllIntentions()).thenReturn(intentions);
@@ -150,17 +156,18 @@ public class CryptoExchangeControllerTest {
         mvc.perform(get("/api/crypto/intentions")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].intentionId").value(1L))
-                .andExpect(jsonPath("$[0].creationDateTime").value(LocalDateTime.now()))
+                .andExpect(jsonPath("$[0].creationDateTime").value(formattedNow))
                 .andExpect(jsonPath("$[0].userId").value(1L))
                 .andExpect(jsonPath("$[0].operationType").value("BUY"))
                 .andExpect(jsonPath("$[0].cryptoActiveId").value(1L))
                 .andExpect(jsonPath("$[0].pesosAmount").value(1000D))
                 .andExpect(jsonPath("$[1].intentionId").value(2L))
-                .andExpect(jsonPath("$[1].creationDateTime").value(LocalDateTime.now()))
+                .andExpect(jsonPath("$[1].creationDateTime").value(formattedNow))
                 .andExpect(jsonPath("$[1].userId").value(1L))
                 .andExpect(jsonPath("$[1].operationType").value("SELL"))
-                .andExpect(jsonPath("$[0].cryptoActiveId").value(1L))
-                .andExpect(jsonPath("$[0].pesosAmount").value(1000D));
+                .andExpect(jsonPath("$[1].cryptoActiveId").value(1L))
+                .andExpect(jsonPath("$[1].pesosAmount").value(1000D));
     }
 }
