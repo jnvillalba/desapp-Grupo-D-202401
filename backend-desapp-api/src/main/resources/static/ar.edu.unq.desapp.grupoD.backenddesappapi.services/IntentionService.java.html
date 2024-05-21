@@ -26,13 +26,14 @@ public class IntentionService {
 <span class="fc" id="L26">        intention.setOperationType(expressIntentionDTO.getOperationType());</span>
 <span class="fc" id="L27">        intention.setPesosAmount(expressIntentionDTO.getPesosAmount());</span>
 <span class="fc" id="L28">        intention.setCryptoActive(active);</span>
-<span class="fc" id="L29">        return intentionRepository.save(intention);</span>
+<span class="fc" id="L29">        user.addIntention(intention);</span>
+<span class="fc" id="L30">        return intentionRepository.save(intention);</span>
     }
 
     public List&lt;IntentionDTO&gt; getAllIntentions(){
-<span class="fc" id="L33">        List&lt;Intention&gt; intentionList = intentionRepository.findAll();</span>
-<span class="fc" id="L34">        return intentionList.stream()</span>
-<span class="fc" id="L35">                .map(IntentionDTO::toDto).toList();</span>
+<span class="fc" id="L34">        List&lt;Intention&gt; intentionList = intentionRepository.findAll();</span>
+<span class="fc" id="L35">        return intentionList.stream()</span>
+<span class="fc" id="L36">                .map(IntentionDTO::toDto).toList();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
