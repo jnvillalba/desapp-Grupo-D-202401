@@ -4,12 +4,14 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -28,7 +30,9 @@ public class IntentionService {
         return intentionRepository.save(intention);
     }
 
-    public List<Intention> getAllIntentions(){
-        return intentionRepository.findAll();
+    public List<IntentionDTO> getAllIntentions(){
+        List<Intention> intentionList = intentionRepository.findAll();
+        return intentionList.stream()
+                .map(IntentionDTO::toDto).toList();
     }
 }

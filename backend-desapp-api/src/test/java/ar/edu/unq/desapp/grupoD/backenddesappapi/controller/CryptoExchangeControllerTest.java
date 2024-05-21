@@ -5,6 +5,7 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
@@ -131,23 +132,35 @@ public class CryptoExchangeControllerTest {
 
     @Test
     void testGetAllIntentions() throws Exception {
-        Intention intention1 = new Intention();
-        intention1.setIntentionId(1L);
-        intention1.setOperationType(OperationType.BUY);
+        IntentionDTO intention1 = new IntentionDTO(2L,
+                LocalDateTime.now(),
+                1L,
+                BUY,
+                1L,
+                1000D);
 
-        Intention intention2 = new Intention();
-        intention2.setIntentionId(2L);
-        intention2.setOperationType(OperationType.SELL);
 
-        List<Intention> intentions = Arrays.asList(intention1, intention2);
+        IntentionDTO intention2 = new IntentionDTO(2L,LocalDateTime.now(),
+                1L,  SELL,1L,1000D);
+
+
+        List<IntentionDTO> intentions = Arrays.asList(intention1, intention2);
         Mockito.when(intentionService.getAllIntentions()).thenReturn(intentions);
 
         mvc.perform(get("/api/crypto/intentions")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].intentionId").value(1L))
+                .andExpect(jsonPath("$[0].creationDateTime").value(LocalDateTime.now()))
+                .andExpect(jsonPath("$[0].userId").value(1L))
                 .andExpect(jsonPath("$[0].operationType").value("BUY"))
+                .andExpect(jsonPath("$[0].cryptoActiveId").value(1L))
+                .andExpect(jsonPath("$[0].pesosAmount").value(1000D))
                 .andExpect(jsonPath("$[1].intentionId").value(2L))
-                .andExpect(jsonPath("$[1].operationType").value("SELL"));
+                .andExpect(jsonPath("$[1].creationDateTime").value(LocalDateTime.now()))
+                .andExpect(jsonPath("$[1].userId").value(1L))
+                .andExpect(jsonPath("$[1].operationType").value("SELL"))
+                .andExpect(jsonPath("$[0].cryptoActiveId").value(1L))
+                .andExpect(jsonPath("$[0].pesosAmount").value(1000D));
     }
 }

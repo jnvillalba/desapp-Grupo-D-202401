@@ -6,6 +6,7 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
@@ -63,7 +64,7 @@ class IntentionServiceTest {
         input2.setPesosAmount(1);
         intentionService.expressIntention(user, input2);
 
-        List<Intention> intentions = intentionService.getAllIntentions();
+        List<IntentionDTO> intentions = intentionService.getAllIntentions();
 
         assertEquals(4, intentions.size());
     }
@@ -87,7 +88,7 @@ class IntentionServiceTest {
         input2.setPesosAmount(1);
         intentionService.expressIntention(user2, input2);
 
-        List<Intention> intentions = intentionService.getAllIntentions();
+        List<IntentionDTO> intentions = intentionService.getAllIntentions();
 
         assertEquals(4, intentions.size());
     }
