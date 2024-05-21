@@ -65,7 +65,7 @@ class IntentionServiceTest {
 
         List<Intention> intentions = intentionService.getAllIntentions();
 
-        assertEquals(3, intentions.size());
+        assertEquals(4, intentions.size());
     }
 
     @Test
@@ -89,6 +89,6 @@ class IntentionServiceTest {
 
         List<Intention> intentions = intentionService.getAllIntentions();
 
-        assertEquals(3, intentions.size());
+        assertEquals(4, intentions.size());
     }
 }

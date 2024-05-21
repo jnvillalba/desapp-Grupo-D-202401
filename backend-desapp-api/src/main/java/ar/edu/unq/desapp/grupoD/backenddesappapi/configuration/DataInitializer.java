@@ -146,7 +146,18 @@ public class DataInitializer {
         CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
         intention.setCryptoActive(btc);
         intentionRepository.save(intention);
+
+        Intention intention2 = new Intention();
+        User user2 = userRepository.findByEmail("Jane@example.com");
+        intention2.setUser(user);
+        intention2.setCreationDateTime(LocalDateTime.now());
+        intention2.setOperationType(OperationType.SELL);
+        intention2.setPesosAmount(10000);
+        CryptoActive eth = cryptoActiveRepository.findBySymbol("ETHUSDT");
+        intention2.setCryptoActive(eth);
+        intentionRepository.save(intention2);
     }
+
 
     private void prepareReport(TransactionService transactionService) {
         var buyBTC = new ProcessTransactionDTO();
