@@ -135,27 +135,39 @@ import java.util.ArrayList;
 <span class="fc" id="L135">        operationRepository.save(operation2);</span>
 <span class="fc" id="L136">    }</span>
 
-    private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository, CryptoActiveRepository cryptoActiveRepository) {
-<span class="fc" id="L139">        Intention intention = new Intention();</span>
-<span class="fc" id="L140">        User user = userRepository.findByEmail(&quot;John@example.com&quot;);</span>
-<span class="fc" id="L141">        intention.setUser(user);</span>
-<span class="fc" id="L142">        intention.setCreationDateTime(LocalDateTime.now());</span>
-<span class="fc" id="L143">        intention.setOperationType(OperationType.BUY);</span>
-<span class="fc" id="L144">        intention.setPesosAmount(1);</span>
-<span class="fc" id="L145">        CryptoActive btc = cryptoActiveRepository.findBySymbol(&quot;BTCUSDT&quot;);</span>
-<span class="fc" id="L146">        intention.setCryptoActive(btc);</span>
-<span class="fc" id="L147">        intentionRepository.save(intention);</span>
-<span class="fc" id="L148">    }</span>
+    private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository,
+                                      CryptoActiveRepository cryptoActiveRepository) {
+<span class="fc" id="L140">        Intention intention = new Intention();</span>
+<span class="fc" id="L141">        User user = userRepository.findByEmail(&quot;John@example.com&quot;);</span>
+<span class="fc" id="L142">        intention.setUser(user);</span>
+<span class="fc" id="L143">        intention.setCreationDateTime(LocalDateTime.now());</span>
+<span class="fc" id="L144">        intention.setOperationType(OperationType.BUY);</span>
+<span class="fc" id="L145">        intention.setPesosAmount(1);</span>
+<span class="fc" id="L146">        CryptoActive btc = cryptoActiveRepository.findBySymbol(&quot;BTCUSDT&quot;);</span>
+<span class="fc" id="L147">        intention.setCryptoActive(btc);</span>
+<span class="fc" id="L148">        intentionRepository.save(intention);</span>
+
+<span class="fc" id="L150">        Intention intention2 = new Intention();</span>
+<span class="fc" id="L151">        User user2 = userRepository.findByEmail(&quot;Jane@example.com&quot;);</span>
+<span class="fc" id="L152">        intention2.setUser(user2);</span>
+<span class="fc" id="L153">        intention2.setCreationDateTime(LocalDateTime.now());</span>
+<span class="fc" id="L154">        intention2.setOperationType(OperationType.SELL);</span>
+<span class="fc" id="L155">        intention2.setPesosAmount(10000);</span>
+<span class="fc" id="L156">        CryptoActive eth = cryptoActiveRepository.findBySymbol(&quot;ETHUSDT&quot;);</span>
+<span class="fc" id="L157">        intention2.setCryptoActive(eth);</span>
+<span class="fc" id="L158">        intentionRepository.save(intention2);</span>
+<span class="fc" id="L159">    }</span>
+
 
     private void prepareReport(TransactionService transactionService) {
-<span class="fc" id="L151">        var buyBTC = new ProcessTransactionDTO();</span>
-<span class="fc" id="L152">        buyBTC.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);</span>
-<span class="fc" id="L153">        buyBTC.setOperationId(1L);</span>
-<span class="fc" id="L154">        transactionService.processTransaction(buyBTC);</span>
-<span class="fc" id="L155">        var buyDOGE = new ProcessTransactionDTO();</span>
-<span class="fc" id="L156">        buyDOGE.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);</span>
-<span class="fc" id="L157">        buyDOGE.setOperationId(2L);</span>
-<span class="fc" id="L158">        transactionService.processTransaction(buyDOGE);</span>
-<span class="fc" id="L159">    }</span>
+<span class="fc" id="L163">        var buyBTC = new ProcessTransactionDTO();</span>
+<span class="fc" id="L164">        buyBTC.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);</span>
+<span class="fc" id="L165">        buyBTC.setOperationId(1L);</span>
+<span class="fc" id="L166">        transactionService.processTransaction(buyBTC);</span>
+<span class="fc" id="L167">        var buyDOGE = new ProcessTransactionDTO();</span>
+<span class="fc" id="L168">        buyDOGE.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);</span>
+<span class="fc" id="L169">        buyDOGE.setOperationId(2L);</span>
+<span class="fc" id="L170">        transactionService.processTransaction(buyDOGE);</span>
+<span class="fc" id="L171">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

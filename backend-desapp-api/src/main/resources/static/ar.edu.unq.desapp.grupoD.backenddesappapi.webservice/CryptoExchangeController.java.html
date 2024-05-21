@@ -30,14 +30,14 @@ public class CryptoExchangeController {
     @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get a cryptocurrency price&quot;)
     @GetMapping(&quot;/crypto/{symbol}&quot;)
     public ResponseEntity&lt;BinancePriceDTO&gt; getCryptoCurrencyValue(@PathVariable String symbol) {
-<span class="nc" id="L33">        BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);</span>
-<span class="nc" id="L34">        return ResponseEntity.ok().body(entity);</span>
+<span class="fc" id="L33">        BinancePriceDTO entity = binanceAPIService.getPriceOfCoinSymbol(symbol);</span>
+<span class="fc" id="L34">        return ResponseEntity.ok().body(entity);</span>
     }
 
     @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get all cryptocurrency prices&quot;)
     @GetMapping(&quot;/crypto/prices&quot;)
     public ResponseEntity&lt;List&lt;BinancePriceDTO&gt;&gt; getPricesOfCoins() {
-<span class="nc" id="L40">        return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());</span>
+<span class="fc" id="L40">        return ResponseEntity.ok().body(binanceAPIService.getPricesOfCoins());</span>
     }
     @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get a cryptocurrency last 24Hrs Prices&quot;)
     @GetMapping(&quot;/crypto/last24HrsPrices/{symbol}&quot;)
@@ -47,8 +47,8 @@ public class CryptoExchangeController {
     @io.swagger.v3.oas.annotations.Operation(summary = &quot;Process the transaction reported by a user&quot;)
     @PostMapping(&quot;/operation/processTransaction&quot;)
     public ResponseEntity&lt;String&gt; processTransaction(@RequestBody ProcessTransactionDTO trx) {
-<span class="nc" id="L50">        Operation operation = transactionService.processTransaction(trx);</span>
-<span class="nc" id="L51">        return ResponseEntity.ok().body(operation.getStatus().toString());</span>
+<span class="fc" id="L50">        Operation operation = transactionService.processTransaction(trx);</span>
+<span class="fc" id="L51">        return ResponseEntity.ok().body(operation.getStatus().toString());</span>
     }
 
     @io.swagger.v3.oas.annotations.Operation(summary = &quot;Creates an intention&quot;)
@@ -65,12 +65,18 @@ public class CryptoExchangeController {
 <span class="fc" id="L65">                &quot;Intention of &quot; + intention.getOperationType()</span>
                         +&quot; expressed successfully&quot;);
     }
-    
+
+    @io.swagger.v3.oas.annotations.Operation(summary = &quot;Get all intentions&quot;)
+    @GetMapping(&quot;/intentions&quot;)
+    public ResponseEntity&lt;List&lt;Intention&gt;&gt; getAllIntentions() {
+<span class="fc" id="L72">        return ResponseEntity.ok().body(intentionService.getAllIntentions());</span>
+    }
+
     @io.swagger.v3.oas.annotations.Operation(summary = &quot;Report the traded volume of crypto assets between two dates of a user.&quot;)
     @PostMapping(&quot;/operation/report&quot;)
     public ResponseEntity&lt;OperationReportDTO&gt; generateReport(@RequestBody RequestReportDTO request) {
-<span class="nc" id="L72">        OperationReportDTO report = userService.generateReport(request);</span>
-        return ResponseEntity.ok().body(report);
+<span class="nc" id="L78">        OperationReportDTO report = userService.generateReport(request);</span>
+<span class="nc" id="L79">        return ResponseEntity.ok().body(report);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

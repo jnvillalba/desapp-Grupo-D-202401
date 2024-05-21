@@ -4,13 +4,13 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 class DTOsTests {
 
@@ -72,6 +71,9 @@ class DTOsTests {
         LocalDateTime lastUpdateDateAndTime = LocalDateTime.now();
 
         BinancePriceDTO binancePriceDTO = new BinancePriceDTO(symbol, price, lastUpdateDateAndTime);
+        binancePriceDTO.setSymbol(symbol);
+        binancePriceDTO.setPrice(price);
+        binancePriceDTO.setLastUpdateDateAndTime(lastUpdateDateAndTime);
 
         assertEquals(symbol, binancePriceDTO.getSymbol());
         assertEquals(price, binancePriceDTO.getPrice());
@@ -79,21 +81,20 @@ class DTOsTests {
     }
 
     @Test
-     void testAllArgsConstructor() {
+    void testAllArgsConstructor() {
         String symbol = "BTCUSDT";
         Float price = 40000.0f;
         LocalDateTime lastUpdateDateAndTime = LocalDateTime.now();
 
         BinancePriceDTO binancePriceDTO = new BinancePriceDTO(symbol, price, lastUpdateDateAndTime);
 
-        // Assert
         assertEquals(symbol, binancePriceDTO.getSymbol());
         assertEquals(price, binancePriceDTO.getPrice());
         assertEquals(lastUpdateDateAndTime, binancePriceDTO.getLastUpdateDateAndTime());
     }
 
     @Test
-     void testJsonIncludeNonNull() {
+    void testJsonIncludeNonNull() {
         String symbol = "BTCUSDT";
         Float price = 40000.0f;
         LocalDateTime lastUpdateDateAndTime = LocalDateTime.now();
@@ -106,15 +107,19 @@ class DTOsTests {
 
     @Test
     void testJsonFormat() throws NoSuchFieldException {
-        // Arrange
         String pattern = "dd/MM/yyyy HH:mm";
 
-        // Act
         JsonFormat jsonFormatAnnotation = BinancePriceDTO.class.getDeclaredField("lastUpdateDateAndTime")
                 .getAnnotation(JsonFormat.class);
 
-        // Assert
         assertNotNull(jsonFormatAnnotation);
         assertEquals(pattern, jsonFormatAnnotation.pattern());
+    }
+
+    @Test
+    void testProcessAccionDescription() {
+        assertEquals("Realize the transfer", ProcessTransactionDTO.ProcessAccion.TRANSFER.getDescription());
+        assertEquals("Confirm reception", ProcessTransactionDTO.ProcessAccion.CONFIRM.getDescription());
+        assertEquals("Cancel", ProcessTransactionDTO.ProcessAccion.CANCEL.getDescription());
     }
 }
