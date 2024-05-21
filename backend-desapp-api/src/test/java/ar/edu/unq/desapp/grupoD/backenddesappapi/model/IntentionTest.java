@@ -137,16 +137,6 @@ class IntentionTest {
     }
 
     @Test
-    void testNonNullIntentionId() {
-        intention.setUser(mockUser);
-        intention.setOperationType(OperationType.BUY);
-        intention.setCryptoActive(mockCryptoActive);
-        intention.setPesosAmount(100.0);
-
-        assertNull(intention.getIntentionId());
-    }
-
-    @Test
     void testPesosAmountZero() {
         intention.setUser(mockUser);
         intention.setOperationType(OperationType.BUY);

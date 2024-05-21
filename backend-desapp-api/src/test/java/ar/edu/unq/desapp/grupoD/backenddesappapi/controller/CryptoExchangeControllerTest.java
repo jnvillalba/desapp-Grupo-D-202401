@@ -1,20 +1,30 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.controller;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.webservice.CryptoExchangeController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
+
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDateTime;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,6 +40,25 @@ public class CryptoExchangeControllerTest {
 
     @MockBean
     private BinanceAPIService binanceAPIService;
+    @SpyBean
+    private UserService userService;
+
+    @MockBean
+    private TransactionService transactionService;
+
+    @Test
+    public void testGetCryptoCurrencyValue() throws Exception {
+        // Arrange
+        BinancePriceDTO priceDTO = new BinancePriceDTO("BTC", 50000.0F, LocalDateTime.now());
+        Mockito.when(binanceAPIService.getPriceOfCoinSymbol("BTC")).thenReturn(priceDTO);
+
+        // Act & Assert
+        mvc.perform(get("/api/crypto/crypto/BTC"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.symbol").value("BTC"))
+                .andExpect(jsonPath("$.price").value(50000.0));
+    }
 
     @Test
     void expressIntention() throws Exception {
