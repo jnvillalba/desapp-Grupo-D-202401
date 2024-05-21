@@ -4,12 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -48,9 +47,6 @@ public class User {
     @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
-    @Builder.Default
-    @ManyToMany
-    private List<Role> roles = new ArrayList<>();
     @Builder.Default
     @ManyToMany
     private List<Intention> intentionsList = new ArrayList<>();
@@ -125,24 +121,12 @@ public class User {
 
     private void addReputation(double amount) {
         calculateReputation();
-        reputation = Math.max(0, (reputation + amount));
+        reputation = Math.max(0, Math.min(100, reputation + amount));
     }
 
     public void handleSuccesfulTransaction(Operation transaction) {
         double reputationPoints = transaction.wasWithin30Minutes() ? 10.0 : 5.0;
         addReputation(reputationPoints);
         operationsList.add(transaction);
-    }
-
-    public Intention expressIntention(CryptoActive cryptoActive, OperationType operationType, double pesosAmount) {
-        Intention intention = new Intention();
-        intention.setUser(this);
-        intention.setCreationDateTime(LocalDateTime.now());
-        intention.setOperationType(operationType);
-        intention.setCryptoActive(cryptoActive);
-        intention.setPesosAmount(pesosAmount);
-
-        intentionsList.add(intention);
-        return intention;
     }
 }

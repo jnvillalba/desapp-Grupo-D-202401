@@ -1,12 +1,11 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.configuration;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.*;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,13 +20,15 @@ public class DataInitializer {
     public ApplicationRunner initializer(UserRepository userRepository,
                                          CryptoActiveRepository cryptoActiveRepository,
                                          IntentionRepository intentionRepository,
-                                         OperationRepository operationRepository) {
+                                         OperationRepository operationRepository,
+                                         TransactionService transactionService) {
         return args -> {
             clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository);
             initializeUsers(userRepository);
             initializeCryptoActives(cryptoActiveRepository);
             initializeOperations(operationRepository, userRepository, cryptoActiveRepository);
-            initializeIntentions(intentionRepository);
+            prepareReport(transactionService);
+            initializeIntentions(intentionRepository, userRepository, cryptoActiveRepository);
         };
     }
 
@@ -53,7 +54,6 @@ public class DataInitializer {
                 "0x123456",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
                 100
         );
 
@@ -68,7 +68,6 @@ public class DataInitializer {
                 "0x654321",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
                 0
         );
 
@@ -78,19 +77,19 @@ public class DataInitializer {
 
     private void initializeCryptoActives(CryptoActiveRepository cryptoActiveRepository) {
         CryptoActive btc = CryptoActive.builder()
-                .symbol("BTC")
+                .symbol("BTCUSDT")
                 .price(50000f)
                 .amount(0.5)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
         CryptoActive usdt = CryptoActive.builder()
-                .symbol("ETH")
+                .symbol("ETHUSDT")
                 .price(1f)
                 .amount(500)
                 .lastUpdateDateAndTime(LocalDateTime.now())
                 .build();
         CryptoActive doge = CryptoActive.builder()
-                .symbol("DOGE")
+                .symbol("DOGEUSDT")
                 .price(0.00002458f)
                 .amount(5000)
                 .lastUpdateDateAndTime(LocalDateTime.now())
@@ -110,7 +109,7 @@ public class DataInitializer {
         operation1.setOperationId(1L);
         operation1.setStatus(Operation.TransactionStatus.PENDING);
         operation1.setCreatedAt(LocalDateTime.now());
-        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTC");
+        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
         operation1.setCryptoActive(btc);
         User user = userRepository.findByEmail("John@example.com");
         operation1.setAddress(user.getWalletCrypto());
@@ -129,14 +128,45 @@ public class DataInitializer {
         operation2.setOperationType(OperationType.SELL);
         operation2.setOperationAmount(1000.0);
 
-        CryptoActive doge = cryptoActiveRepository.findBySymbol("DOGE");
+        CryptoActive doge = cryptoActiveRepository.findBySymbol("DOGEUSDT");
         operation2.setCryptoActive(doge);
 
         operationRepository.save(operation1);
         operationRepository.save(operation2);
     }
 
-    private void initializeIntentions(IntentionRepository intentionRepository) {
-        //TODO: cami
+    private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository,
+                                      CryptoActiveRepository cryptoActiveRepository) {
+        Intention intention = new Intention();
+        User user = userRepository.findByEmail("John@example.com");
+        intention.setUser(user);
+        intention.setCreationDateTime(LocalDateTime.now());
+        intention.setOperationType(OperationType.BUY);
+        intention.setPesosAmount(1);
+        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        intention.setCryptoActive(btc);
+        intentionRepository.save(intention);
+
+        Intention intention2 = new Intention();
+        User user2 = userRepository.findByEmail("Jane@example.com");
+        intention2.setUser(user2);
+        intention2.setCreationDateTime(LocalDateTime.now());
+        intention2.setOperationType(OperationType.SELL);
+        intention2.setPesosAmount(10000);
+        CryptoActive eth = cryptoActiveRepository.findBySymbol("ETHUSDT");
+        intention2.setCryptoActive(eth);
+        intentionRepository.save(intention2);
+    }
+
+
+    private void prepareReport(TransactionService transactionService) {
+        var buyBTC = new ProcessTransactionDTO();
+        buyBTC.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+        buyBTC.setOperationId(1L);
+        transactionService.processTransaction(buyBTC);
+        var buyDOGE = new ProcessTransactionDTO();
+        buyDOGE.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
+        buyDOGE.setOperationId(2L);
+        transactionService.processTransaction(buyDOGE);
     }
 }

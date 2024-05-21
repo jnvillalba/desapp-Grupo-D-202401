@@ -9,7 +9,6 @@ plugins {
 
 jacoco {
 	toolVersion = "0.8.7"
-	//reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 }
 
 sonar {
@@ -64,7 +63,7 @@ jacocoTestReport {
 	reports {
 		xml.required.set(true)
 		html.required.set(true)
-		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+		html.outputLocation = layout.projectDirectory.dir("src/main/resources/static")
 	}
 
 }

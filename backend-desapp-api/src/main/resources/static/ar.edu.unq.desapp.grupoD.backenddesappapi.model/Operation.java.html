@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Operation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend-desapp-api</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unq.desapp.grupoD.backenddesappapi.model</a> &gt; <span class="el_source">Operation.java</span></div><h1>Operation.java</h1><pre class="source lang-java linenums">package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+
+<span class="fc" id="L12">@Setter</span>
+@Getter
+@Entity
+<span class="fc" id="L15">public class Operation {</span>
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<span class="fc" id="L18">    private Long operationId;</span>
+
+    @NotNull(message = &quot;The user cannot be null.&quot;)
+    @ManyToOne
+<span class="fc" id="L22">    private User user;</span>
+
+    @Enumerated(EnumType.STRING)
+<span class="fc" id="L25">    private OperationType operationType;</span>
+
+    @NotNull(message = &quot;The crypto active cannot be null.&quot;)
+    @ManyToOne
+<span class="fc" id="L29">    private CryptoActive cryptoActive;</span>
+
+    @Enumerated(EnumType.STRING)
+<span class="fc" id="L32">    private TransactionStatus status;</span>
+
+    @NotBlank
+<span class="fc" id="L35">    private String address;</span>
+<span class="fc" id="L36">    private String cvu;</span>
+
+
+    @DecimalMin(value = &quot;0.0&quot;, message = &quot;operation amount cannot be negative.&quot;)
+<span class="fc" id="L40">    private double operationAmount;</span>
+
+<span class="fc" id="L42">    private LocalDateTime createdAt;</span>
+
+
+<span class="fc" id="L45">    public enum TransactionStatus {</span>
+<span class="fc" id="L46">        PENDING,</span>
+<span class="fc" id="L47">        CONFIRMED,</span>
+<span class="fc" id="L48">        CANCELED_BY_USER,</span>
+<span class="fc" id="L49">        CANCELED_BY_SYSTEM</span>
+    }
+
+    boolean isSuccess(){
+<span class="fc" id="L53">        return status.equals(TransactionStatus.CONFIRMED);</span>
+    }
+
+    public boolean isCancelled() {
+<span class="pc bpc" id="L57" title="1 of 4 branches missed.">        return isCancelledByUser() || isCancelledBySystem() ;</span>
+    }
+
+    public boolean isPending() {
+<span class="fc" id="L61">        return status.equals(TransactionStatus.PENDING);</span>
+    }
+
+    public boolean isCancelledByUser(){
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        return status == TransactionStatus.CANCELED_BY_USER;</span>
+}
+
+    public boolean isCancelledBySystem(){
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        return status == TransactionStatus.CANCELED_BY_SYSTEM;</span>
+    }
+
+    public boolean wasWithin30Minutes() {
+<span class="fc" id="L73">        LocalDateTime now = LocalDateTime.now();</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        return Duration.between(createdAt, now).toMinutes() &lt;= 30;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

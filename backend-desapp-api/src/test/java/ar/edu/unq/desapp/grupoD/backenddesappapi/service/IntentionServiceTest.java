@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
 
+import ar.edu.unq.desapp.grupoD.backenddesappapi.configuration.DataInitializer;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
@@ -21,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @Transactional
-public class IntentionServiceTest {
+class IntentionServiceTest {
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -31,21 +32,8 @@ public class IntentionServiceTest {
 
     @Test
     void expressIntention() {
-        User user = userRepository.save(User.builder()
-                .name("John")
-                .lastName("Doe")
-                .email("user@example.com")
-                .direction("123 Main St")
-                .password("Password123!")
-                .cvuMercadoPago("0123456789012345678901")
-                .walletCrypto("12345678").build());
-
-        CryptoActive cryptoActive = cryptoActiveRepository.save(CryptoActive.builder()
-                .symbol("BTC")
-                .price(0.1f)
-                .amount(1)
-                .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
-
+        CryptoActive cryptoActive = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        User user = userRepository.findByEmail("John@example.com");
         ExpressIntentionDTO input = new ExpressIntentionDTO();
         input.setActiveId(cryptoActive.getActiveId());
         input.setOperationType(OperationType.BUY);
@@ -60,77 +48,47 @@ public class IntentionServiceTest {
 
     @Test
     void getAllIntentionsWithTheSameCryptoActive() {
-        //TODO hacer setups para tests
-        User user = userRepository.save(User.builder()
-                .name("John")
-                .lastName("Doe")
-                .email("user@example.com")
-                .direction("123 Main St")
-                .password("Password123!")
-                .cvuMercadoPago("0123456789012345678901")
-                .walletCrypto("12345678").build());
-
-        CryptoActive cryptoActive = cryptoActiveRepository.save(CryptoActive.builder()
-                .symbol("BTC")
-                .price(0.1f)
-                .amount(1)
-                .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
+        CryptoActive cryptoActive = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        User user = userRepository.findByEmail("John@example.com");
 
         ExpressIntentionDTO input = new ExpressIntentionDTO();
         input.setActiveId(cryptoActive.getActiveId());
         input.setOperationType(OperationType.BUY);
         input.setPesosAmount(1);
-        Intention intention = intentionService.expressIntention(user, input);
+        intentionService.expressIntention(user, input);
 
         ExpressIntentionDTO input2 = new ExpressIntentionDTO();
         input2.setActiveId(cryptoActive.getActiveId());
         input2.setOperationType(OperationType.SELL);
         input2.setPesosAmount(1);
-        Intention intention2 = intentionService.expressIntention(user, input2);
+        intentionService.expressIntention(user, input2);
 
         List<Intention> intentions = intentionService.getAllIntentions();
 
-        assertEquals(2, intentions.size());
+        assertEquals(4, intentions.size());
     }
 
     @Test
     void getAllIntentionsWithDifferentsCryptoActives() {
-        //TODO hacer setups para tests
-        User user2 = userRepository.save(User.builder()
-                .name("Jane")
-                .lastName("Dam")
-                .email("user2@example.com")
-                .direction("123 Street")
-                .password("Password123!")
-                .cvuMercadoPago("0123456789012345678902")
-                .walletCrypto("87654321").build());
+        CryptoActive cryptoActive = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        CryptoActive cryptoActive2 = cryptoActiveRepository.findBySymbol("DOGEUSDT");
 
-        CryptoActive cryptoActive = cryptoActiveRepository.save(CryptoActive.builder()
-                .symbol("BTC")
-                .price(0.1f)
-                .amount(1)
-                .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
-
-        CryptoActive cryptoActive2 = cryptoActiveRepository.save(CryptoActive.builder()
-                .symbol("USD")
-                .price(0.1f)
-                .amount(1)
-                .lastUpdateDateAndTime(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS)).build());
+        User user2 = userRepository.findByEmail("Jane@example.com");
 
         ExpressIntentionDTO input = new ExpressIntentionDTO();
         input.setActiveId(cryptoActive.getActiveId());
         input.setOperationType(OperationType.BUY);
         input.setPesosAmount(1);
-        Intention intention = intentionService.expressIntention(user2, input);
+        intentionService.expressIntention(user2, input);
 
         ExpressIntentionDTO input2 = new ExpressIntentionDTO();
         input2.setActiveId(cryptoActive2.getActiveId());
         input2.setOperationType(OperationType.SELL);
         input2.setPesosAmount(1);
-        Intention intention2 = intentionService.expressIntention(user2, input2);
+        intentionService.expressIntention(user2, input2);
 
         List<Intention> intentions = intentionService.getAllIntentions();
 
-        assertEquals(2, intentions.size());
+        assertEquals(4, intentions.size());
     }
 }

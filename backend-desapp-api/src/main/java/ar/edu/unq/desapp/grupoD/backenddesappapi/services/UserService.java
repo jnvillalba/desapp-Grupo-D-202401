@@ -1,15 +1,18 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.UserNotFoundException;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.OperationReportDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.RequestReportDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +25,45 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUser(){
-        return userRepository.findAll().stream().findFirst().orElseThrow();
+    public User getUser(Long userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
     }
+
+    public OperationReportDTO generateReport(RequestReportDTO request) {
+        List<Operation> operations = getOperationsForUserAndDateRange(request);
+
+        List<ActiveDTO> activeDTOs = mapOperationsToActiveDTOs(operations, request.getDolarBlue());
+
+        Double totalPriceInPesosARG = calculateTotalPriceInPesos(activeDTOs);
+        Double totalValueInDollars = calculateTotalValueInDollars(activeDTOs);
+
+        return new OperationReportDTO(LocalDateTime.now(), totalValueInDollars, totalPriceInPesosARG, activeDTOs);
+    }
+
+    private List<Operation> getOperationsForUserAndDateRange(RequestReportDTO request) {
+        return userRepository.findOperationsByUserIdAndDateRange(
+                request.getUserId(),
+                request.getStartDate().atStartOfDay(),
+                request.getEndDate().atStartOfDay());
+    }
+
+    private List<ActiveDTO> mapOperationsToActiveDTOs(List<Operation> operations, Float dolarBlue) {
+        return operations.stream()
+                .map(operation -> ActiveDTO.toActiveDTO(operation.getCryptoActive(), dolarBlue))
+                .toList();
+    }
+
+
+    private Double calculateTotalPriceInPesos(List<ActiveDTO> activeDTOs) {
+        return activeDTOs.stream()
+                .mapToDouble(ActiveDTO::getPriceInPesosARG)
+                .sum();
+    }
+
+    private Double calculateTotalValueInDollars(List<ActiveDTO> activeDTOs) {
+        return activeDTOs.stream()
+                .mapToDouble(ActiveDTO::getCurrentCryptoPrice)
+                .sum();
+    }
+
 }

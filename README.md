@@ -7,4 +7,4 @@
  </div>     
 
 <h3>Jacoco Report:</h3>
- https://jnvillalba.github.io/desapp-Grupo-D-202401/backend-desapp-api/build/jacocoHtml/index.html
+https://jnvillalba.github.io/desapp-Grupo-D-202401/backend-desapp-api/src/main/resources/static/index.html#dn-c

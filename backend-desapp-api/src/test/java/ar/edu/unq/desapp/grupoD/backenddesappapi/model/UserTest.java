@@ -161,6 +161,38 @@ class UserTest {
     }
 
     @Test
+    void testIntentionsListInitialization() {
+        assertNotNull(user.getIntentionsList());
+        assertTrue(user.getIntentionsList().isEmpty());
+    }
+
+    @Test
+    void testAddIntentionToList() {
+        Intention intention = new Intention();
+        user.getIntentionsList().add(intention);
+        assertFalse(user.getIntentionsList().isEmpty());
+        assertEquals(1, user.getIntentionsList().size());
+        assertTrue(user.getIntentionsList().contains(intention));
+    }
+
+    @Test
+    void testRemoveIntentionFromList() {
+        Intention intention = new Intention();
+        user.getIntentionsList().add(intention);
+        user.getIntentionsList().remove(intention);
+        assertTrue(user.getIntentionsList().isEmpty());
+    }
+
+    @Test
+    void testSetIntentionsList() {
+        List<Intention> newIntentionsList = new ArrayList<>();
+        Intention intention = new Intention();
+        newIntentionsList.add(intention);
+        user.setIntentionsList(newIntentionsList);
+        assertEquals(newIntentionsList, user.getIntentionsList());
+    }
+
+    @Test
     void testEmptyTransactionsList() {
         double reputation = user.getReputation();
         assertEquals(0.0, reputation);
@@ -233,7 +265,6 @@ class UserTest {
                 "12345678",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                new ArrayList<>(),
                 95.5
         );
 
@@ -243,7 +274,7 @@ class UserTest {
         assertEquals("user@example.com", user.getEmail());
 
         User user2 = User.builder()
-                .id(1L)
+                .id(2L)
                 .name("John")
                 .lastName("Doe")
                 .email("user@example.com")
@@ -251,14 +282,15 @@ class UserTest {
                 .password("Password123")
                 .cvuMercadoPago("0123456789012345678901")
                 .walletCrypto("12345678")
-                .roles(new ArrayList<>())
                 .intentionsList(new ArrayList<>())
                 .operationsList(new ArrayList<>())
                 .reputation(95.5)
                 .build();
 
-        assertEquals(user, user2);
-        assertEquals(user.hashCode(), user2.hashCode());
+        assertEquals(2L, user2.getId());
+        assertEquals("John", user2.getName());
+        assertEquals("user@example.com", user2.getEmail());
+
     }
 
     @Test
