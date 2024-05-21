@@ -58,7 +58,7 @@ public class CryptoExchangeControllerTest {
     private IntentionService intentionService;
 
     @Test
-    public void testGetCryptoCurrencyValue() throws Exception {
+    void testGetCryptoCurrencyValue() throws Exception {
         BinancePriceDTO priceDTO = new BinancePriceDTO("BTC", 50000.0F, LocalDateTime.now());
         Mockito.when(binanceAPIService.getPriceOfCoinSymbol("BTC")).thenReturn(priceDTO);
 
@@ -70,7 +70,7 @@ public class CryptoExchangeControllerTest {
     }
 
     @Test
-    public void testGetPricesOfCoins() throws Exception {
+    void testGetPricesOfCoins() throws Exception {
         BinancePriceDTO price1 = new BinancePriceDTO("BTC", 50000.0F, LocalDateTime.now());
         BinancePriceDTO price2 = new BinancePriceDTO("ETH", 3000.0F, LocalDateTime.now());
         List<BinancePriceDTO> prices = Arrays.asList(price1, price2);
@@ -88,7 +88,7 @@ public class CryptoExchangeControllerTest {
     }
 
     @Test
-    public void testProcessTransaction() throws Exception {
+    void testProcessTransaction() throws Exception {
         ProcessTransactionDTO trx = new ProcessTransactionDTO();
 
         Operation operation = new Operation();
@@ -130,7 +130,7 @@ public class CryptoExchangeControllerTest {
     }
 
     @Test
-    public void testGetAllIntentions() throws Exception {
+    void testGetAllIntentions() throws Exception {
         Intention intention1 = new Intention();
         intention1.setIntentionId(1L);
         intention1.setOperationType(OperationType.BUY);
