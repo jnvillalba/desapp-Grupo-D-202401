@@ -22,15 +22,16 @@ import java.time.LocalDateTime;
     @ManyToOne
 <span class="fc" id="L23">    private User user;</span>
 
-<span class="fc" id="L25">    private OperationType operationType;</span>
+    @Enumerated(EnumType.STRING)
+<span class="fc" id="L26">    private OperationType operationType;</span>
 
     @NotNull(message = &quot;Crypto active cannot be null.&quot;)
     @ManyToOne
-<span class="fc" id="L29">    private CryptoActive cryptoActive;</span>
+<span class="fc" id="L30">    private CryptoActive cryptoActive;</span>
 
     @NotNull(message = &quot;Pesos Amount cannot be null.&quot;)
     @DecimalMin(value = &quot;0.0&quot;, message = &quot;Pesos Amount cannot be negative.&quot;)
-<span class="fc" id="L33">    private double pesosAmount;</span>
+<span class="fc" id="L34">    private double pesosAmount;</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
