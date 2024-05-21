@@ -68,7 +68,7 @@ public class CryptoExchangeController {
 
     @io.swagger.v3.oas.annotations.Operation(summary = "Get all intentions")
     @GetMapping("/intentions")
-    public ResponseEntity<List<Intention>> getAllIntentions() {
+    public ResponseEntity<List<IntentionDTO>> getAllIntentions() {
         return ResponseEntity.ok().body(intentionService.getAllIntentions());
     }
 

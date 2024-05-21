@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IntentionDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">backend-desapp-api</a> &gt; <a href="index.source.html" class="el_package">ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto</a> &gt; <span class="el_source">IntentionDTO.java</span></div><h1>IntentionDTO.java</h1><pre class="source lang-java linenums">package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
+
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+<span class="pc bnc" id="L11" title="All 48 branches missed.">@Data</span>
+<span class="fc" id="L12">@AllArgsConstructor</span>
+<span class="fc" id="L13">@NoArgsConstructor</span>
+public class IntentionDTO {
+<span class="fc" id="L15">    private Long intentionId;</span>
+<span class="fc" id="L16">    private LocalDateTime creationDateTime;</span>
+<span class="fc" id="L17">    private Long userId;</span>
+<span class="fc" id="L18">    private OperationType operationType;</span>
+<span class="fc" id="L19">    private Long cryptoActiveId;</span>
+<span class="fc" id="L20">    private double pesosAmount;</span>
+
+    public static IntentionDTO toDto(Intention intention) {
+<span class="fc" id="L23">        IntentionDTO dto = new IntentionDTO();</span>
+<span class="fc" id="L24">        dto.setIntentionId(intention.getIntentionId());</span>
+<span class="fc" id="L25">        dto.setCreationDateTime(intention.getCreationDateTime());</span>
+<span class="fc" id="L26">        dto.setUserId(intention.getUser().getId());</span>
+<span class="fc" id="L27">        dto.setOperationType(intention.getOperationType());</span>
+<span class="fc" id="L28">        dto.setCryptoActiveId(intention.getCryptoActive().getActiveId());</span>
+<span class="fc" id="L29">        dto.setPesosAmount(intention.getPesosAmount());</span>
+<span class="fc" id="L30">        return dto;</span>
+    }
+
+    public String getFormattedCreationDateTime() {
+<span class="fc" id="L34">        return creationDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

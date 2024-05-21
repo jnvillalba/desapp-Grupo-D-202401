@@ -129,4 +129,12 @@ public class User {
         addReputation(reputationPoints);
         operationsList.add(transaction);
     }
+
+    public void addIntention(Intention intention) {
+        if (intentionsList == null) {
+            intentionsList = new ArrayList<>();
+        }
+        intentionsList.add(intention);
+        intention.getUsers().add(this);
+    }
 }

@@ -39,37 +39,29 @@ class TransactionServiceTest {
 
     @Test
     void testProcessTransaction_Cancel() {
-        // Arrange
         when(operationRepository.findById(1L)).thenReturn(Optional.of(operation));
 
         ProcessTransactionDTO dto = new ProcessTransactionDTO();
         dto.setOperationId(1L);
         dto.setProcessType(ProcessTransactionDTO.ProcessAccion.CANCEL);
 
-        // Act
         Operation result = transactionService.processTransaction(dto);
 
-        // Assert
         verify(operationRepository).save(operation);
         assertEquals(Operation.TransactionStatus.CANCELED_BY_USER, result.getStatus());
     }
 
     @Test
     void testProcessTransaction_Confirm() {
-        // Arrange
         when(operationRepository.findById(1L)).thenReturn(Optional.of(operation));
 
         ProcessTransactionDTO dto = new ProcessTransactionDTO();
         dto.setOperationId(1L);
         dto.setProcessType(ProcessTransactionDTO.ProcessAccion.CONFIRM);
 
-        // Act
         Operation result = transactionService.processTransaction(dto);
 
-        // Assert
         verify(operationRepository).save(operation);
         assertEquals(Operation.TransactionStatus.CONFIRMED, result.getStatus());
     }
-
-
 }

@@ -1,11 +1,11 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.configuration.DataInitializer;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
@@ -13,8 +13,6 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -63,7 +61,7 @@ class IntentionServiceTest {
         input2.setPesosAmount(1);
         intentionService.expressIntention(user, input2);
 
-        List<Intention> intentions = intentionService.getAllIntentions();
+        List<IntentionDTO> intentions = intentionService.getAllIntentions();
 
         assertEquals(4, intentions.size());
     }
@@ -87,7 +85,7 @@ class IntentionServiceTest {
         input2.setPesosAmount(1);
         intentionService.expressIntention(user2, input2);
 
-        List<Intention> intentions = intentionService.getAllIntentions();
+        List<IntentionDTO> intentions = intentionService.getAllIntentions();
 
         assertEquals(4, intentions.size());
     }

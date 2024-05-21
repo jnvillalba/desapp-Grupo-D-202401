@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-<span class="pc" id="L10">@Setter</span>
+<span class="fc" id="L10">@Setter</span>
 @Getter
 <span class="fc" id="L12">@NoArgsConstructor</span>
 <span class="fc" id="L13">@AllArgsConstructor</span>
@@ -129,5 +129,13 @@ public class User {
 <span class="fc" id="L129">        addReputation(reputationPoints);</span>
 <span class="fc" id="L130">        operationsList.add(transaction);</span>
 <span class="fc" id="L131">    }</span>
+
+    public void addIntention(Intention intention) {
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">        if (intentionsList == null) {</span>
+<span class="nc" id="L135">            intentionsList = new ArrayList&lt;&gt;();</span>
+        }
+<span class="fc" id="L137">        intentionsList.add(intention);</span>
+<span class="fc" id="L138">        intention.getUsers().add(this);</span>
+<span class="fc" id="L139">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
