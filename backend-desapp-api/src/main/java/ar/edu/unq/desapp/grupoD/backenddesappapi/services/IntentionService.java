@@ -26,6 +26,7 @@ public class IntentionService {
         intention.setOperationType(expressIntentionDTO.getOperationType());
         intention.setPesosAmount(expressIntentionDTO.getPesosAmount());
         intention.setCryptoActive(active);
+        user.addIntention(intention);
         return intentionRepository.save(intention);
     }
 

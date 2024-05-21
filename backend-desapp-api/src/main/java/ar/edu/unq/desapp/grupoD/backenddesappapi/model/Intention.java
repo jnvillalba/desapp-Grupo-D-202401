@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -32,5 +34,8 @@ public class Intention {
     @NotNull(message = "Pesos Amount cannot be null.")
     @DecimalMin(value = "0.0", message = "Pesos Amount cannot be negative.")
     private double pesosAmount;
+
+    @ManyToMany(mappedBy = "intentionsList")
+    private List<User> users = new ArrayList<>();
 }
 
