@@ -149,7 +149,7 @@ public class DataInitializer {
 
         Intention intention2 = new Intention();
         User user2 = userRepository.findByEmail("Jane@example.com");
-        intention2.setUser(user);
+        intention2.setUser(user2);
         intention2.setCreationDateTime(LocalDateTime.now());
         intention2.setOperationType(OperationType.SELL);
         intention2.setPesosAmount(10000);
