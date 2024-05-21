@@ -32,7 +32,7 @@ public class BinanceAPIService {
     }
 
     public List&lt;BinancePriceDTO&gt; getPricesOfCoins() {
-<span class="nc" id="L35">        String[] symbols = {</span>
+<span class="fc" id="L35">        String[] symbols = {</span>
                 &quot;ALICEUSDT&quot;,
                 &quot;MATICUSDT&quot;,
                 &quot;AXSUSDT&quot;,
@@ -48,45 +48,45 @@ public class BinanceAPIService {
                 &quot;TRXUSDT&quot;,
                 &quot;AUDIOUSDT&quot;
         };
-<span class="nc" id="L51">        List&lt;BinancePriceDTO&gt; pricesList = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (String symbol : symbols) {</span>
-<span class="nc" id="L53">            pricesList.add(getPriceOfCoinSymbol(symbol));</span>
+<span class="fc" id="L51">        List&lt;BinancePriceDTO&gt; pricesList = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (String symbol : symbols) {</span>
+<span class="fc" id="L53">            pricesList.add(getPriceOfCoinSymbol(symbol));</span>
         }
-<span class="nc" id="L55">        return pricesList;</span>
+<span class="fc" id="L55">        return pricesList;</span>
     }
 
     public List&lt;BinancePriceDTO&gt; last24HrsPrices(String symbol) {
-<span class="nc" id="L59">        long endTime = Instant.now().toEpochMilli();</span>
-<span class="nc" id="L60">        long startTime = endTime - (24 * 60 * 60 * 1000);</span>
+<span class="fc" id="L59">        long endTime = Instant.now().toEpochMilli();</span>
+<span class="fc" id="L60">        long startTime = endTime - (24 * 60 * 60 * 1000);</span>
 
-<span class="nc" id="L62">        String apiUrl = binanceApiUrl + &quot;klines?symbol=&quot; + symbol + &quot;&amp;interval=1h&amp;startTime=&quot; + startTime + &quot;&amp;endTime=&quot; + endTime;</span>
+<span class="fc" id="L62">        String apiUrl = binanceApiUrl + &quot;klines?symbol=&quot; + symbol + &quot;&amp;interval=1h&amp;startTime=&quot; + startTime + &quot;&amp;endTime=&quot; + endTime;</span>
 
-<span class="nc" id="L64">        String[][] response = restTemplate.getForObject(apiUrl, String[][].class);</span>
+<span class="fc" id="L64">        String[][] response = restTemplate.getForObject(apiUrl, String[][].class);</span>
 
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (response == null) {</span>
-<span class="nc" id="L67">            throw new BinancePriceFetchException(symbol);</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (response == null) {</span>
+<span class="fc" id="L67">            throw new BinancePriceFetchException(symbol);</span>
         }
-<span class="nc" id="L69">        return mapResponseToBinancePriceDTOList(response, symbol);</span>
+<span class="fc" id="L69">        return mapResponseToBinancePriceDTOList(response, symbol);</span>
     }
 
     private List&lt;BinancePriceDTO&gt; mapResponseToBinancePriceDTOList(String[][] response, String symbol) {
-<span class="nc" id="L73">        List&lt;BinancePriceDTO&gt; resultList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L73">        List&lt;BinancePriceDTO&gt; resultList = new ArrayList&lt;&gt;();</span>
 
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (String[] data : response) {</span>
-<span class="nc" id="L76">            long timestampInMillis = Long.parseLong(data[6]);</span>
-<span class="nc" id="L77">            LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampInMillis), ZoneId.systemDefault());</span>
-<span class="nc" id="L78">            dateTime = dateTime.withMinute(0);</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (String[] data : response) {</span>
+<span class="fc" id="L76">            long timestampInMillis = Long.parseLong(data[6]);</span>
+<span class="fc" id="L77">            LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestampInMillis), ZoneId.systemDefault());</span>
+<span class="fc" id="L78">            dateTime = dateTime.withMinute(0);</span>
 
-<span class="nc" id="L80">            BinancePriceDTO binancePriceDTO = new BinancePriceDTO(</span>
+<span class="fc" id="L80">            BinancePriceDTO binancePriceDTO = new BinancePriceDTO(</span>
                     symbol,
-<span class="nc" id="L82">                    Float.parseFloat(data[4]),</span>
+<span class="fc" id="L82">                    Float.parseFloat(data[4]),</span>
                     dateTime
             );
 
-<span class="nc" id="L86">            resultList.add(binancePriceDTO);</span>
+<span class="fc" id="L86">            resultList.add(binancePriceDTO);</span>
         }
 
-<span class="nc" id="L89">        return resultList;</span>
+<span class="fc" id="L89">        return resultList;</span>
     }
 
 
