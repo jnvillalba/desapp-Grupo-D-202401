@@ -4,6 +4,8 @@ import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
@@ -65,6 +67,23 @@ public class CryptoExchangeControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.symbol").value("BTC"))
                 .andExpect(jsonPath("$.price").value(50000.0));
+    }
+
+    @Test
+    public void testProcessTransaction() throws Exception {
+        ProcessTransactionDTO trx = new ProcessTransactionDTO();
+
+        Operation operation = new Operation();
+        operation.setStatus(Operation.TransactionStatus.CONFIRMED);
+
+        Mockito.when(transactionService.processTransaction(Mockito.any(ProcessTransactionDTO.class)))
+                .thenReturn(operation);
+
+        mvc.perform(post("/api/crypto/operation/processTransaction")
+                        .content(asJsonString(trx))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Operation.TransactionStatus.CONFIRMED.toString()));
     }
 
     @Test
