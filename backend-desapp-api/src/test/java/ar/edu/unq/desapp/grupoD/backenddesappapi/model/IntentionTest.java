@@ -115,4 +115,44 @@ class IntentionTest {
 
         assertTrue(validator.validate(intention).isEmpty());
     }
+
+    @Test
+    void testNonNullOperationType() {
+        intention.setUser(mockUser);
+        intention.setOperationType(OperationType.BUY);
+        intention.setCryptoActive(mockCryptoActive);
+        intention.setPesosAmount(100.0);
+
+        assertTrue(validator.validate(intention).isEmpty());
+    }
+
+    @Test
+    void testNonNullCryptoActive() {
+        intention.setUser(mockUser);
+        intention.setOperationType(OperationType.BUY);
+        intention.setCryptoActive(mockCryptoActive);
+        intention.setPesosAmount(100.0);
+
+        assertTrue(validator.validate(intention).isEmpty());
+    }
+
+    @Test
+    void testNonNullIntentionId() {
+        intention.setUser(mockUser);
+        intention.setOperationType(OperationType.BUY);
+        intention.setCryptoActive(mockCryptoActive);
+        intention.setPesosAmount(100.0);
+
+        assertNull(intention.getIntentionId());
+    }
+
+    @Test
+    void testPesosAmountZero() {
+        intention.setUser(mockUser);
+        intention.setOperationType(OperationType.BUY);
+        intention.setCryptoActive(mockCryptoActive);
+        intention.setPesosAmount(0.0);
+
+        assertTrue(validator.validate(intention).isEmpty());
+    }
 }
