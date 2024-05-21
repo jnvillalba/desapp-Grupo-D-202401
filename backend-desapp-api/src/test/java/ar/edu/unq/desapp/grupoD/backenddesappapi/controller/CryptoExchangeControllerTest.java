@@ -1,12 +1,8 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.controller;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
@@ -16,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +27,8 @@ import java.util.List;
 
 import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.BUY;
 import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.SELL;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -62,7 +59,7 @@ public class CryptoExchangeControllerTest {
     @Test
     void testGetCryptoCurrencyValue() throws Exception {
         BinancePriceDTO priceDTO = new BinancePriceDTO("BTC", 50000.0F, LocalDateTime.now());
-        Mockito.when(binanceAPIService.getPriceOfCoinSymbol("BTC")).thenReturn(priceDTO);
+        when(binanceAPIService.getPriceOfCoinSymbol("BTC")).thenReturn(priceDTO);
 
         mvc.perform(get("/api/crypto/crypto/BTC"))
                 .andExpect(status().isOk())
@@ -77,7 +74,7 @@ public class CryptoExchangeControllerTest {
         BinancePriceDTO price2 = new BinancePriceDTO("ETH", 3000.0F, LocalDateTime.now());
         List<BinancePriceDTO> prices = Arrays.asList(price1, price2);
 
-        Mockito.when(binanceAPIService.getPricesOfCoins()).thenReturn(prices);
+        when(binanceAPIService.getPricesOfCoins()).thenReturn(prices);
 
         mvc.perform(get("/api/crypto/crypto/prices")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -96,7 +93,7 @@ public class CryptoExchangeControllerTest {
         Operation operation = new Operation();
         operation.setStatus(Operation.TransactionStatus.CONFIRMED);
 
-        Mockito.when(transactionService.processTransaction(Mockito.any(ProcessTransactionDTO.class)))
+        when(transactionService.processTransaction(any(ProcessTransactionDTO.class)))
                 .thenReturn(operation);
 
         mvc.perform(post("/api/crypto/operation/processTransaction")
@@ -114,13 +111,13 @@ public class CryptoExchangeControllerTest {
         expressIntentionDTO.setActiveId(1L);
         expressIntentionDTO.setPesosAmount(2);
         mvc.perform(
-            post("/api/crypto/intention")
-            .content(asJsonString(expressIntentionDTO))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isCreated())
-        .andExpect(content().string("Intention of BUY expressed successfully"));
+                        post("/api/crypto/intention")
+                                .content(asJsonString(expressIntentionDTO))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isCreated())
+                .andExpect(content().string("Intention of BUY expressed successfully"));
     }
 
     public static String asJsonString(final Object obj) {
@@ -151,7 +148,7 @@ public class CryptoExchangeControllerTest {
                 1000D);
 
         List<IntentionDTO> intentions = Arrays.asList(intention1, intention2);
-        Mockito.when(intentionService.getAllIntentions()).thenReturn(intentions);
+        when(intentionService.getAllIntentions()).thenReturn(intentions);
 
         mvc.perform(get("/api/crypto/intentions")
                         .contentType(MediaType.APPLICATION_JSON))

@@ -88,6 +88,4 @@ public class BinanceAPIService {
 
         return resultList;
     }
-
-
 }
