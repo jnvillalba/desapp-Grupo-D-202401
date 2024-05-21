@@ -180,6 +180,38 @@ class UserTest {
     }
 
     @Test
+    void testIntentionsListInitialization() {
+        assertNotNull(user.getIntentionsList());
+        assertTrue(user.getIntentionsList().isEmpty());
+    }
+
+    @Test
+    void testAddIntentionToList() {
+        Intention intention = new Intention();
+        user.getIntentionsList().add(intention);
+        assertFalse(user.getIntentionsList().isEmpty());
+        assertEquals(1, user.getIntentionsList().size());
+        assertTrue(user.getIntentionsList().contains(intention));
+    }
+
+    @Test
+    void testRemoveIntentionFromList() {
+        Intention intention = new Intention();
+        user.getIntentionsList().add(intention);
+        user.getIntentionsList().remove(intention);
+        assertTrue(user.getIntentionsList().isEmpty());
+    }
+
+    @Test
+    void testSetIntentionsList() {
+        List<Intention> newIntentionsList = new ArrayList<>();
+        Intention intention = new Intention();
+        newIntentionsList.add(intention);
+        user.setIntentionsList(newIntentionsList);
+        assertEquals(newIntentionsList, user.getIntentionsList());
+    }
+
+    @Test
     void testEmptyTransactionsList() {
         double reputation = user.getReputation();
         assertEquals(0.0, reputation);
