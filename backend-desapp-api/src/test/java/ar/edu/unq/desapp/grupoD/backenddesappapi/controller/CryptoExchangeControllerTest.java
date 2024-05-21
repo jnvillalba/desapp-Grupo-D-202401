@@ -70,6 +70,24 @@ public class CryptoExchangeControllerTest {
     }
 
     @Test
+    public void testGetPricesOfCoins() throws Exception {
+        BinancePriceDTO price1 = new BinancePriceDTO("BTC", 50000.0F, LocalDateTime.now());
+        BinancePriceDTO price2 = new BinancePriceDTO("ETH", 3000.0F, LocalDateTime.now());
+        List<BinancePriceDTO> prices = Arrays.asList(price1, price2);
+
+        Mockito.when(binanceAPIService.getPricesOfCoins()).thenReturn(prices);
+
+        mvc.perform(get("/api/crypto/crypto/prices")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].symbol").value("BTC"))
+                .andExpect(jsonPath("$[0].price").value(50000.0))
+                .andExpect(jsonPath("$[1].symbol").value("ETH"))
+                .andExpect(jsonPath("$[1].price").value(3000.0));
+    }
+
+    @Test
     public void testProcessTransaction() throws Exception {
         ProcessTransactionDTO trx = new ProcessTransactionDTO();
 
