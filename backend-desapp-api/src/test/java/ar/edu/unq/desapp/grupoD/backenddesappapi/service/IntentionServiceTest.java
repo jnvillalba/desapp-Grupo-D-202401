@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.configuration.DataInitializer;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
@@ -14,8 +13,6 @@ import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

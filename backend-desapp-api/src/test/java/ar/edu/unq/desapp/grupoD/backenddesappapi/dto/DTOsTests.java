@@ -1,10 +1,10 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.dto;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -121,5 +121,40 @@ class DTOsTests {
         assertEquals("Realize the transfer", ProcessTransactionDTO.ProcessAccion.TRANSFER.getDescription());
         assertEquals("Confirm reception", ProcessTransactionDTO.ProcessAccion.CONFIRM.getDescription());
         assertEquals("Cancel", ProcessTransactionDTO.ProcessAccion.CANCEL.getDescription());
+    }
+
+    @Test
+    void testToDtoConversion() {
+        Intention intention = new Intention();
+        intention.setIntentionId(1L);
+        intention.setCreationDateTime(LocalDateTime.now());
+        User user = new User();
+        user.setId(100L);
+        intention.setUser(user);
+        intention.setOperationType(OperationType.BUY);
+        CryptoActive cryptoActive = new CryptoActive();
+        cryptoActive.setActiveId(200L);
+        intention.setCryptoActive(cryptoActive);
+        intention.setPesosAmount(500.0);
+
+        IntentionDTO dto = IntentionDTO.toDto(intention);
+
+        assertEquals(intention.getIntentionId(), dto.getIntentionId());
+        assertEquals(intention.getCreationDateTime(), dto.getCreationDateTime());
+        assertEquals(user.getId(), dto.getUserId());
+        assertEquals(intention.getOperationType(), dto.getOperationType());
+        assertEquals(cryptoActive.getActiveId(), dto.getCryptoActiveId());
+        assertEquals(intention.getPesosAmount(), dto.getPesosAmount());
+    }
+
+    @Test
+    void testGetFormattedCreationDateTime() {
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 12, 30);
+        IntentionDTO dto = new IntentionDTO();
+        dto.setCreationDateTime(dateTime);
+
+        String formattedDateTime = dto.getFormattedCreationDateTime();
+
+        assertEquals("2022-10-15T12:30:00", formattedDateTime);
     }
 }

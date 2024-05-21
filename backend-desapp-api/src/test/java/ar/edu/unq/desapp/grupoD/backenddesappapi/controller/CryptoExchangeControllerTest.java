@@ -1,12 +1,8 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.controller;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
@@ -16,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,11 +21,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
 import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.BUY;
 import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.SELL;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -61,7 +59,7 @@ public class CryptoExchangeControllerTest {
     @Test
     void testGetCryptoCurrencyValue() throws Exception {
         BinancePriceDTO priceDTO = new BinancePriceDTO("BTC", 50000.0F, LocalDateTime.now());
-        Mockito.when(binanceAPIService.getPriceOfCoinSymbol("BTC")).thenReturn(priceDTO);
+        when(binanceAPIService.getPriceOfCoinSymbol("BTC")).thenReturn(priceDTO);
 
         mvc.perform(get("/api/crypto/crypto/BTC"))
                 .andExpect(status().isOk())
@@ -76,7 +74,7 @@ public class CryptoExchangeControllerTest {
         BinancePriceDTO price2 = new BinancePriceDTO("ETH", 3000.0F, LocalDateTime.now());
         List<BinancePriceDTO> prices = Arrays.asList(price1, price2);
 
-        Mockito.when(binanceAPIService.getPricesOfCoins()).thenReturn(prices);
+        when(binanceAPIService.getPricesOfCoins()).thenReturn(prices);
 
         mvc.perform(get("/api/crypto/crypto/prices")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -95,7 +93,7 @@ public class CryptoExchangeControllerTest {
         Operation operation = new Operation();
         operation.setStatus(Operation.TransactionStatus.CONFIRMED);
 
-        Mockito.when(transactionService.processTransaction(Mockito.any(ProcessTransactionDTO.class)))
+        when(transactionService.processTransaction(any(ProcessTransactionDTO.class)))
                 .thenReturn(operation);
 
         mvc.perform(post("/api/crypto/operation/processTransaction")
@@ -113,13 +111,13 @@ public class CryptoExchangeControllerTest {
         expressIntentionDTO.setActiveId(1L);
         expressIntentionDTO.setPesosAmount(2);
         mvc.perform(
-            post("/api/crypto/intention")
-            .content(asJsonString(expressIntentionDTO))
-            .contentType(MediaType.APPLICATION_JSON)
-            .accept(MediaType.APPLICATION_JSON)
-        )
-        .andExpect(status().isCreated())
-        .andExpect(content().string("Intention of BUY expressed successfully"));
+                        post("/api/crypto/intention")
+                                .content(asJsonString(expressIntentionDTO))
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isCreated())
+                .andExpect(content().string("Intention of BUY expressed successfully"));
     }
 
     public static String asJsonString(final Object obj) {
@@ -132,35 +130,41 @@ public class CryptoExchangeControllerTest {
 
     @Test
     void testGetAllIntentions() throws Exception {
-        IntentionDTO intention1 = new IntentionDTO(2L,
-                LocalDateTime.now(),
+        LocalDateTime now = LocalDateTime.now();
+        String formattedNow = now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        IntentionDTO intention1 = new IntentionDTO(1L,
+                now,
                 1L,
-                BUY,
+                OperationType.BUY,
                 1L,
                 1000D);
 
-
-        IntentionDTO intention2 = new IntentionDTO(2L,LocalDateTime.now(),
-                1L,  SELL,1L,1000D);
-
+        IntentionDTO intention2 = new IntentionDTO(2L,
+                now,
+                1L,
+                OperationType.SELL,
+                1L,
+                1000D);
 
         List<IntentionDTO> intentions = Arrays.asList(intention1, intention2);
-        Mockito.when(intentionService.getAllIntentions()).thenReturn(intentions);
+        when(intentionService.getAllIntentions()).thenReturn(intentions);
 
         mvc.perform(get("/api/crypto/intentions")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].intentionId").value(1L))
-                .andExpect(jsonPath("$[0].creationDateTime").value(LocalDateTime.now()))
+                .andExpect(jsonPath("$[0].creationDateTime").value(formattedNow))
                 .andExpect(jsonPath("$[0].userId").value(1L))
                 .andExpect(jsonPath("$[0].operationType").value("BUY"))
                 .andExpect(jsonPath("$[0].cryptoActiveId").value(1L))
                 .andExpect(jsonPath("$[0].pesosAmount").value(1000D))
                 .andExpect(jsonPath("$[1].intentionId").value(2L))
-                .andExpect(jsonPath("$[1].creationDateTime").value(LocalDateTime.now()))
+                .andExpect(jsonPath("$[1].creationDateTime").value(formattedNow))
                 .andExpect(jsonPath("$[1].userId").value(1L))
                 .andExpect(jsonPath("$[1].operationType").value("SELL"))
-                .andExpect(jsonPath("$[0].cryptoActiveId").value(1L))
-                .andExpect(jsonPath("$[0].pesosAmount").value(1000D));
+                .andExpect(jsonPath("$[1].cryptoActiveId").value(1L))
+                .andExpect(jsonPath("$[1].pesosAmount").value(1000D));
     }
 }
