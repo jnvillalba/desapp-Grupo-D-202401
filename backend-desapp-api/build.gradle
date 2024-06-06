@@ -19,7 +19,7 @@ sonar {
 	}
 }
 
-group = 'ar.edu.unq.desapp.grupoD'
+group = 'ar.edu.unq.desapp.grupod'
 version = '0.0.1-SNAPSHOT'
 
 java {

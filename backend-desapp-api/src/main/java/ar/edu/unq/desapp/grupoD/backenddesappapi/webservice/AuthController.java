@@ -1,7 +1,7 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
+package ar.edu.unq.desapp.grupod.backenddesappapi.webservice;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

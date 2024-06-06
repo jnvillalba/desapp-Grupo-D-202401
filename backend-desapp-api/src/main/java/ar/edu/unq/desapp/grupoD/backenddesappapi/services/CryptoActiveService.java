@@ -1,7 +1,7 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
+package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

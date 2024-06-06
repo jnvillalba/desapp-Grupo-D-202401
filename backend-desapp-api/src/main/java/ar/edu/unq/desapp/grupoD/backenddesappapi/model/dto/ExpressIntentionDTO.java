@@ -1,6 +1,6 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
+package ar.edu.unq.desapp.grupod.backenddesappapi.model.dto;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

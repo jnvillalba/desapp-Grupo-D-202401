@@ -1,13 +1,13 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
+package ar.edu.unq.desapp.grupod.backenddesappapi.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.OperationRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

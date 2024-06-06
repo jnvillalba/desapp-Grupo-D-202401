@@ -1,7 +1,7 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
+package ar.edu.unq.desapp.grupod.backenddesappapi.model.dto;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

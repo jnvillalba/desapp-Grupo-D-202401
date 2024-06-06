@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
+package ar.edu.unq.desapp.grupod.backenddesappapi.model;
 
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;

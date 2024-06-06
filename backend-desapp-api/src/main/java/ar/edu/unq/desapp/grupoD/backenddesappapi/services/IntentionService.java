@@ -1,11 +1,11 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
+package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.IntentionRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.IntentionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

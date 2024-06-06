@@ -1,7 +1,7 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.controller;
+package ar.edu.unq.desapp.grupod.backenddesappapi.controller;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;

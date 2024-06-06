@@ -1,13 +1,13 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.webservice;
+package ar.edu.unq.desapp.grupod.backenddesappapi.webservice;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.IntentionService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

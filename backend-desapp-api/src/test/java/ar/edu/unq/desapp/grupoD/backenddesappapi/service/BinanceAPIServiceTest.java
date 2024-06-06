@@ -1,7 +1,7 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
+package ar.edu.unq.desapp.grupod.backenddesappapi.service;
+import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

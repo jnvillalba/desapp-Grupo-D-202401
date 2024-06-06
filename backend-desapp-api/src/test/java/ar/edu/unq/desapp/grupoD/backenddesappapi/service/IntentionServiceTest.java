@@ -1,14 +1,14 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.service;
+package ar.edu.unq.desapp.grupod.backenddesappapi.service;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ExpressIntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.IntentionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.CryptoActiveRepository;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ExpressIntentionDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.IntentionService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,10 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
+package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.OperationNotFoundException;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ProcessTransactionDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.OperationRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.OperationNotFoundException;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.OperationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
