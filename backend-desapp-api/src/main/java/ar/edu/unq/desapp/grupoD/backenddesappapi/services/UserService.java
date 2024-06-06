@@ -3,15 +3,15 @@ package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.UserNotFoundException;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.OperationReportDTO;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JwtTokenProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -20,10 +20,26 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final CustomUserDetailsService customUserDetailsService;
+
+    private final JwtTokenProvider jwtprovider;
+
     public User registerUser(UserDTO userDTO) {
         User user = userDTO.toModel();
         return userRepository.save(user);
     }
+
+    public JwtDTO loginUser(LoginDTO loginUsuario) {
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(loginUsuario.getEmail());
+
+        String jwt = jwtprovider.generateToken(userDetails);
+
+        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+
+        return new JwtDTO(jwt, userDetails.getUsername(), authorities);
+    }
+
+
 
     public User getUser(Long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));

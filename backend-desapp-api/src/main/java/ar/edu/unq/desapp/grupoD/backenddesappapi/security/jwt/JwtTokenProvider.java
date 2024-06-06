@@ -6,9 +6,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
 @Component
@@ -25,9 +24,8 @@ public class JwtTokenProvider {
         this.secretKey = secretKey;
         this.expDate = expDate;
     }
-
-    public String generateToken(Authentication authentication) {
-        String email = authentication.getName();
+    public String generateToken(UserDetails userDetails) {
+        String email = userDetails.getUsername();
         Date now = new Date();
         Date expirationToken = new Date(now.getTime() + expDate);
 
@@ -38,6 +36,7 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
+
 
     public String getEmailFromJwt(String token) {
         Claims claims = Jwts.parser()

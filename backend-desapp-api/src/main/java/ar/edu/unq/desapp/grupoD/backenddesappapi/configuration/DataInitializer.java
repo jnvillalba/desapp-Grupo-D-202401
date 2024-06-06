@@ -1,10 +1,7 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.configuration;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO;
-import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository;
-import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.IntentionRepository;
-import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.OperationRepository;
-import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.*;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.*;
 import org.springframework.boot.ApplicationRunner;
@@ -13,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class DataInitializer {
@@ -22,10 +20,12 @@ public class DataInitializer {
                                          CryptoActiveRepository cryptoActiveRepository,
                                          IntentionRepository intentionRepository,
                                          OperationRepository operationRepository,
-                                         TransactionService transactionService) {
+                                         TransactionService transactionService,
+                                         RoleRepository roleRepository) {
         return args -> {
-            clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository);
-            initializeUsers(userRepository);
+            clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository ,roleRepository);
+            initializeRoles(roleRepository);
+            initializeUsers(userRepository,roleRepository);
             initializeCryptoActives(cryptoActiveRepository);
             initializeOperations(operationRepository, userRepository, cryptoActiveRepository);
             prepareReport(transactionService);
@@ -40,14 +40,28 @@ public class DataInitializer {
     private void clearDatabase(UserRepository userRepository,
                                CryptoActiveRepository cryptoActiveRepository,
                                IntentionRepository intentionRepository,
-                               OperationRepository operationRepository) {
+                               OperationRepository operationRepository,
+                               RoleRepository roleRepository) {
         userRepository.deleteAll();
         cryptoActiveRepository.deleteAll();
         intentionRepository.deleteAll();
         operationRepository.deleteAll();
+        roleRepository.deleteAll();
+
     }
 
-    private void initializeUsers(UserRepository userRepository) {
+    private void initializeRoles(RoleRepository roleRepository) {
+        Role user = new Role();
+        user.setName("USER");
+        Role admin = new Role();
+        admin.setName("ADMIN");
+        roleRepository.save(user);
+        roleRepository.save(admin);
+    }
+
+    private void initializeUsers(UserRepository userRepository,RoleRepository roleRepository) {
+        List<Role> roles = roleRepository.findAll();
+
         User user1 = new User(
                 1L,
                 "John",
@@ -59,7 +73,8 @@ public class DataInitializer {
                 "0x123456",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                100
+                100,
+                new ArrayList<>(roles)
         );
 
         User user2 = new User(
@@ -73,7 +88,8 @@ public class DataInitializer {
                 "0x654321",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                0
+                0,
+                new ArrayList<>(roles)
         );
 
         userRepository.save(user1);

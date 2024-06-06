@@ -284,7 +284,8 @@ class UserTest {
                 "12345678",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                95.5
+                95.5,
+                new ArrayList<>()
         );
 
 

@@ -1,5 +1,7 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.webservice;
 
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.JwtDTO;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,6 +24,12 @@ public class AuthController {
     public ResponseEntity<String> registerUser(@Valid @RequestBody UserDTO userDTO) {
         userService.registerUser(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(userDTO.getEmail());
+    }
+
+    @PostMapping(value = "/login")
+    public ResponseEntity<JwtDTO> login(@RequestBody LoginDTO loginRequest) {
+        JwtDTO jwtDto = userService.loginUser(loginRequest);
+        return ResponseEntity.ok(jwtDto);
     }
 
 }
