@@ -1,7 +1,7 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.services;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.Role;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
@@ -25,7 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     public Collection<GrantedAuthority> mapToAuthorities(List<Role> roleList){
-        return roleList.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        return new ArrayList<>(roleList.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .toList());
     }
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

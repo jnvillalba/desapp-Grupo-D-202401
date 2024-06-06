@@ -8,7 +8,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,12 +17,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+@AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
-    @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
     private String getTokenFromRequest(HttpServletRequest httpServletRequest){
@@ -38,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String token = getTokenFromRequest(request);
-        if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)){
+        if (StringUtils.hasText(token) && Boolean.TRUE.equals(jwtTokenProvider.validateToken(token))){
             String email = jwtTokenProvider.getEmailFromJwt(token);
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
 
