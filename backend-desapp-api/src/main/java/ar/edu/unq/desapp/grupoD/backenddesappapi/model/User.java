@@ -59,6 +59,10 @@ public class User {
     @DecimalMax(value = "100.00", inclusive = true, message = "Reputation must not exceed 100")
     private double reputation = 0.0;
 
+    @Builder.Default
+    @ManyToMany
+    private List<Role> roles = new ArrayList<>();
+
     public double getReputation() {
         calculateReputation();
         return reputation;
