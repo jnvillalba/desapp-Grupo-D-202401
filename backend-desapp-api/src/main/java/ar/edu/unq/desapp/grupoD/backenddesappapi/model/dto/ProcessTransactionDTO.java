@@ -12,7 +12,6 @@ class ProcessTransactionDTO {
     private ProcessAccion processType;
     private Long operationId;
 
-
     @Getter
     @AllArgsConstructor
     public enum ProcessAccion {
