@@ -5,6 +5,8 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -31,15 +33,7 @@ class IntentionTest {
         validator = factory.getValidator();
     }
 
-    @Test
-    void testValidIntention() {
-        intention.setUser(mockUser);
-        intention.setOperationType(OperationType.BUY);
-        intention.setCryptoActive(mockCryptoActive);
-        intention.setPesosAmount(100.0);
 
-        assertTrue(validator.validate(intention).isEmpty());
-    }
 
     @Test
     void testNullUser() {
@@ -116,32 +110,26 @@ class IntentionTest {
         assertTrue(validator.validate(intention).isEmpty());
     }
 
-    @Test
-    void testNonNullOperationType() {
-        intention.setUser(mockUser);
-        intention.setOperationType(OperationType.BUY);
-        intention.setCryptoActive(mockCryptoActive);
-        intention.setPesosAmount(100.0);
+    @ParameterizedTest
+    @CsvSource({
+            "BUY, true, true, 100.0",
+            "BUY, true, true, 0.0"
+    })
+    void testIntentionValidation(OperationType operationType, boolean hasUser, boolean hasCryptoActive, double pesosAmount) {
+        if (hasUser) {
+            intention.setUser(mockUser);
+        } else {
+            intention.setUser(null);
+        }
 
-        assertTrue(validator.validate(intention).isEmpty());
-    }
+        if (hasCryptoActive) {
+            intention.setCryptoActive(mockCryptoActive);
+        } else {
+            intention.setCryptoActive(null);
+        }
 
-    @Test
-    void testNonNullCryptoActive() {
-        intention.setUser(mockUser);
-        intention.setOperationType(OperationType.BUY);
-        intention.setCryptoActive(mockCryptoActive);
-        intention.setPesosAmount(100.0);
-
-        assertTrue(validator.validate(intention).isEmpty());
-    }
-
-    @Test
-    void testPesosAmountZero() {
-        intention.setUser(mockUser);
-        intention.setOperationType(OperationType.BUY);
-        intention.setCryptoActive(mockCryptoActive);
-        intention.setPesosAmount(0.0);
+        intention.setOperationType(operationType);
+        intention.setPesosAmount(pesosAmount);
 
         assertTrue(validator.validate(intention).isEmpty());
     }

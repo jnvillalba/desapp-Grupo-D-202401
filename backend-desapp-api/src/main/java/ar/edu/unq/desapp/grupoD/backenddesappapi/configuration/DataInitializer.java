@@ -1,11 +1,12 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.configuration;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.*;
+
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.IntentionRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.OperationRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.*;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,10 @@ public class DataInitializer {
         };
     }
 
+    private static final String JOHN_EMAIL = "John@example.com";
+
+    private static final String BTCUSDT = "BTCUSDT";
+
     private void clearDatabase(UserRepository userRepository,
                                CryptoActiveRepository cryptoActiveRepository,
                                IntentionRepository intentionRepository,
@@ -47,7 +52,7 @@ public class DataInitializer {
                 1L,
                 "John",
                 "Doe",
-                "John@example.com",
+                JOHN_EMAIL,
                 "123 Calle Falsa",
                 "Password$123",
                 "0123456789012345678901",
@@ -77,7 +82,7 @@ public class DataInitializer {
 
     private void initializeCryptoActives(CryptoActiveRepository cryptoActiveRepository) {
         CryptoActive btc = CryptoActive.builder()
-                .symbol("BTCUSDT")
+                .symbol(BTCUSDT)
                 .price(50000f)
                 .amount(0.5)
                 .lastUpdateDateAndTime(LocalDateTime.now())
@@ -109,9 +114,9 @@ public class DataInitializer {
         operation1.setOperationId(1L);
         operation1.setStatus(Operation.TransactionStatus.PENDING);
         operation1.setCreatedAt(LocalDateTime.now());
-        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        CryptoActive btc = cryptoActiveRepository.findBySymbol(BTCUSDT);
         operation1.setCryptoActive(btc);
-        User user = userRepository.findByEmail("John@example.com");
+        User user = userRepository.findByEmail(JOHN_EMAIL);
         operation1.setAddress(user.getWalletCrypto());
         operation1.setUser(user);
         operation1.setOperationType(OperationType.BUY);
@@ -138,12 +143,12 @@ public class DataInitializer {
     private void initializeIntentions(IntentionRepository intentionRepository, UserRepository userRepository,
                                       CryptoActiveRepository cryptoActiveRepository) {
         Intention intention = new Intention();
-        User user = userRepository.findByEmail("John@example.com");
+        User user = userRepository.findByEmail(JOHN_EMAIL);
         intention.setUser(user);
         intention.setCreationDateTime(LocalDateTime.now());
         intention.setOperationType(OperationType.BUY);
         intention.setPesosAmount(1);
-        CryptoActive btc = cryptoActiveRepository.findBySymbol("BTCUSDT");
+        CryptoActive btc = cryptoActiveRepository.findBySymbol(BTCUSDT);
         intention.setCryptoActive(btc);
         intentionRepository.save(intention);
 

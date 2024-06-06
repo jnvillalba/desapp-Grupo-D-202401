@@ -18,11 +18,11 @@ import java.util.List;
 public class BinanceAPIService {
 
     //@Value("${integration.binance.api.url:NONE}")
-    private final String binanceApiUrl = "https://api1.binance.com/api/v3/";
+    private static final String BINANCE_API_URL = "https://api1.binance.com/api/v3/";
     private RestTemplate restTemplate = new RestTemplate();
 
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
-        String url = binanceApiUrl + "ticker/price?symbol=" + symbol;
+        String url = BINANCE_API_URL + "ticker/price?symbol=" + symbol;
         ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
@@ -59,7 +59,7 @@ public class BinanceAPIService {
         long endTime = Instant.now().toEpochMilli();
         long startTime = endTime - (24 * 60 * 60 * 1000);
 
-        String apiUrl = binanceApiUrl + "klines?symbol=" + symbol + "&interval=1h&startTime=" + startTime + "&endTime=" + endTime;
+        String apiUrl = BINANCE_API_URL + "klines?symbol=" + symbol + "&interval=1h&startTime=" + startTime + "&endTime=" + endTime;
 
         String[][] response = restTemplate.getForObject(apiUrl, String[][].class);
 
