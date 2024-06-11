@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.model;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;

@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.exceptions;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions;
 
 public class BinancePriceFetchException extends RuntimeException {
     public BinancePriceFetchException(String symbol, int statusCode) {

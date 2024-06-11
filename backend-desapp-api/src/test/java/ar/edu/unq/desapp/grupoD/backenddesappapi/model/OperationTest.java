@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.model;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
@@ -112,7 +112,7 @@ class OperationTest {
     @Test
     void testUser() {
         Operation operation = new Operation();
-        User userMock = mock(User.class);
+        User userMock = Mockito.mock(User.class);
         operation.setUser(userMock);
         assertEquals(userMock, operation.getUser());
     }
@@ -120,7 +120,7 @@ class OperationTest {
     @Test
     void testCriptoActive() {
         Operation operation = new Operation();
-        CryptoActive cryptoActive = mock(CryptoActive.class);
+        CryptoActive cryptoActive = Mockito.mock(CryptoActive.class);
         operation.setCryptoActive(cryptoActive);
         assertEquals(cryptoActive, operation.getCryptoActive());
     }

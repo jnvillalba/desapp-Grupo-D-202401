@@ -1,7 +1,7 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.services;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.BinancePriceFetchException;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.BinancePriceDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

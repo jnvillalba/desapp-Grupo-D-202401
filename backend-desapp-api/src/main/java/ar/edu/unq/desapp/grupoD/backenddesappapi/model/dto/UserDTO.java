@@ -1,6 +1,6 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.model.dto;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
 
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

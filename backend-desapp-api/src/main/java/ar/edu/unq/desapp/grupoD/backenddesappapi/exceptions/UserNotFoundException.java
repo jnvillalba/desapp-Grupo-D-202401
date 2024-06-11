@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.exceptions;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(Long id) {

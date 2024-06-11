@@ -1,13 +1,13 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.controller;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.controller;
 
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation;
-import ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService;
-import ar.edu.unq.desapp.grupod.backenddesappapi.services.IntentionService;
-import ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService;
-import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
-import ar.edu.unq.desapp.grupod.backenddesappapi.webservice.CryptoExchangeController;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.BinanceAPIService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.IntentionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.TransactionService;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.webservice.CryptoExchangeController;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
-import static ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType.BUY;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -106,7 +105,7 @@ public class CryptoExchangeControllerTest {
     void expressIntention() throws Exception {
         ExpressIntentionDTO expressIntentionDTO = new ExpressIntentionDTO();
         expressIntentionDTO.setUserId(1L);
-        expressIntentionDTO.setOperationType(BUY);
+        expressIntentionDTO.setOperationType(OperationType.BUY);
         expressIntentionDTO.setActiveId(1L);
         expressIntentionDTO.setPesosAmount(2);
         mvc.perform(

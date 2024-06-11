@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.model.dto;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

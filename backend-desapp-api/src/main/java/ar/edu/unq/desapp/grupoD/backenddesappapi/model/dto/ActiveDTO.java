@@ -1,6 +1,6 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.model.dto;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
 
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
 import lombok.Getter;
 import lombok.Setter;
 

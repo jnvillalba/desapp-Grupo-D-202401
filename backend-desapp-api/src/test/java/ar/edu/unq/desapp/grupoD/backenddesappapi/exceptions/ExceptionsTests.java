@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.exceptions;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi;
+package ar.edu.unq.desapp.grupoD.backenddesappapi;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

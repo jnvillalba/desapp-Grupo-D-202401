@@ -1,10 +1,10 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.dto;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.dto;
 
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.CryptoActive;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Intention;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;

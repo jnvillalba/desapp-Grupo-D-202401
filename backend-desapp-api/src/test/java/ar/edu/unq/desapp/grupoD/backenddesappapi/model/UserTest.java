@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.model;
+package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
