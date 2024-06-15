@@ -7,11 +7,8 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JwtTokenProvider;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -29,15 +26,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public JwtDTO loginUser(LoginDTO loginUsuario) {
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername(loginUsuario.getEmail());
-
-        String jwt = jwtprovider.generateToken(userDetails);
-
-        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
-
-        return new JwtDTO(jwt, userDetails.getUsername(), authorities);
-    }
+//    public JwtDTO loginUser(LoginDTO loginUsuario) {
+//        UserDetails userDetails = customUserDetailsService.loadUserByUsername(loginUsuario.getEmail());
+//
+//        String jwt = jwtprovider.generateToken(userDetails);
+//
+//        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+//
+//        return new JwtDTO(jwt, userDetails.getUsername(), authorities);
+//    }
 
 
 

@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.security;
+package ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt;
 
 import java.util.Date;
 
@@ -11,12 +11,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JWTTokenHelper {
 
     public static final long JWT_TOKEN_VALIDITY_MILLIS =  5 * 60000; // 5 mins
-    private String secret = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
+    private final String secret = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
 
-
-    //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
-
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
     }
 

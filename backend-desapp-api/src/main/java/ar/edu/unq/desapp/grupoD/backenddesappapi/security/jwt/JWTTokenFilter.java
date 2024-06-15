@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupod.backenddesappapi.security;
+package ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt;
 import java.io.IOException;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService;

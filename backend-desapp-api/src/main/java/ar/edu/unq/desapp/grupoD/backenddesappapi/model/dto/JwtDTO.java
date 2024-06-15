@@ -14,8 +14,8 @@ public class JwtDTO {
     @JsonProperty("email")
     private String email;
 
-    @JsonProperty("authorities")
-    private Collection<? extends GrantedAuthority> authorities;
+//    @JsonProperty("authorities")
+//    private Collection<? extends GrantedAuthority> authorities;
 }
 
 
