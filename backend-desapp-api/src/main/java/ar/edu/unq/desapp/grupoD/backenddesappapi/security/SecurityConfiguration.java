@@ -42,7 +42,11 @@ public class SecurityConfiguration {
                                         antMatcher("/actuator/**"),
                                         antMatcher("/api/auth/**")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/intentions")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/prices")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/**")).permitAll().requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "/api/crypto/intention")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "/api/crypto/operation/processTransaction")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "api/crypto/intention")).hasRole(Role.USER.name())
                                 .anyRequest().authenticated()
                 )
