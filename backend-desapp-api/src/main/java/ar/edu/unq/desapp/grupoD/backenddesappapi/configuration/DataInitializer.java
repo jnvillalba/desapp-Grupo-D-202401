@@ -7,25 +7,27 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.model.*;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 public class DataInitializer {
-
     @Bean
     public ApplicationRunner initializer(UserRepository userRepository,
                                          CryptoActiveRepository cryptoActiveRepository,
                                          IntentionRepository intentionRepository,
                                          OperationRepository operationRepository,
                                          TransactionService transactionService,
-                                         RoleRepository roleRepository) {
+                                         BCryptPasswordEncoder passwordEncoder
+                                         ) {
         return args -> {
-            clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository ,roleRepository);
-            initializeRoles(roleRepository);
-            initializeUsers(userRepository,roleRepository);
+            clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository);
+
+            initializeUsers(userRepository, passwordEncoder);
             initializeCryptoActives(cryptoActiveRepository);
             initializeOperations(operationRepository, userRepository, cryptoActiveRepository);
             prepareReport(transactionService);
@@ -40,28 +42,16 @@ public class DataInitializer {
     private void clearDatabase(UserRepository userRepository,
                                CryptoActiveRepository cryptoActiveRepository,
                                IntentionRepository intentionRepository,
-                               OperationRepository operationRepository,
-                               RoleRepository roleRepository) {
+                               OperationRepository operationRepository) {
         userRepository.deleteAll();
         cryptoActiveRepository.deleteAll();
         intentionRepository.deleteAll();
         operationRepository.deleteAll();
-        roleRepository.deleteAll();
 
     }
 
-    private void initializeRoles(RoleRepository roleRepository) {
-        Role user = new Role();
-        user.setName("USER");
-        Role admin = new Role();
-        admin.setName("ADMIN");
-        roleRepository.save(user);
-        roleRepository.save(admin);
-    }
-
-    private void initializeUsers(UserRepository userRepository,RoleRepository roleRepository) {
-        List<Role> roles = roleRepository.findAll();
-
+    private void initializeUsers(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        List<Role> roles = new ArrayList<>(Arrays.asList(Role.USER, Role.ADMIN));
         User user1 = new User(
                 1L,
                 "John",
@@ -74,7 +64,7 @@ public class DataInitializer {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 100,
-                new ArrayList<>(roles)
+                roles
         );
 
         User user2 = new User(
@@ -89,9 +79,11 @@ public class DataInitializer {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 0,
-                new ArrayList<>(roles)
+                roles
         );
 
+        user2.setPassword(passwordEncoder.encode(user2.getPassword()));
+        user1.setPassword(passwordEncoder.encode(user1.getPassword()));
         userRepository.save(user1);
         userRepository.save(user2);
     }
@@ -120,7 +112,6 @@ public class DataInitializer {
         cryptoActiveRepository.save(usdt);
         cryptoActiveRepository.save(doge);
     }
-
 
     private void initializeOperations(OperationRepository operationRepository,
                                       UserRepository userRepository,
@@ -178,7 +169,6 @@ public class DataInitializer {
         intention2.setCryptoActive(eth);
         intentionRepository.save(intention2);
     }
-
 
     private void prepareReport(TransactionService transactionService) {
         var buyBTC = new ProcessTransactionDTO();

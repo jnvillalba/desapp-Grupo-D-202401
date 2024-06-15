@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public CustomUserDetailsService(UserRepository userRepository) {
@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     public Collection<GrantedAuthority> mapToAuthorities(List<Role> roleList){
         return new ArrayList<>(roleList.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority(role.name()))
                 .toList());
     }
     @Override

@@ -2,9 +2,8 @@ package ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt;
 import java.io.IOException;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,15 +17,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
+@AllArgsConstructor
+@Slf4j
 public class JWTTokenFilter extends OncePerRequestFilter {
 
-    Logger logger = LoggerFactory.getLogger(JWTTokenFilter.class);
+    private final JWTTokenHelper jwtTokenHelper;
 
-    @Autowired
-    JWTTokenHelper jwtTokenHelper;
-
-    @Autowired
-    CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
 
     private String getTokenFromRequest(HttpServletRequest httpServletRequest){
         String bearerToken = httpServletRequest.getHeader("Authorization");
@@ -40,27 +37,26 @@ public class JWTTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        logger.info("validation of JWT token by OncePerRequestFilter");
+        logger.info(">>> Validation of JWT token by OncePerRequestFilter");
 
         String token = getTokenFromRequest(request);
 
-        logger.info("JWT token : " + token);
+        logger.info(">>> JWT token : " + token);
         String userName = null;
 
         if (token != null) {
-
-            userName = this.jwtTokenHelper.getUsernameFromToken(token);
-            logger.info("JWT token USer NAme : " + userName);
+            userName = JWTTokenHelper.getUsernameFromToken(token);
+            logger.info(">>> JWT token User : " + userName);
         } else {
-            logger.info("ToKen is Misisng. Please Come with Token");
+            logger.info(">>> ToKen is Misisng. Please Come with Token");
         }
 
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // fetch user detail from username
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(userName);
-            Boolean isValidToken = this.jwtTokenHelper.validateToken(token, userDetails.getUsername());
-            if (isValidToken) {
+            Boolean isValidToken = jwtTokenHelper.validateToken(token, userDetails.getUsername());
+            if (Boolean.TRUE.equals(isValidToken)) {
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());

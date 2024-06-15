@@ -60,7 +60,6 @@ public class User {
     private double reputation = 0.0;
 
     @Builder.Default
-    @ManyToMany
     private List<Role> roles = new ArrayList<>();
 
     public double getReputation() {

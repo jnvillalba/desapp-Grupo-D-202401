@@ -1,5 +1,6 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.security;
 
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Role;
 import ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenFilter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,21 +32,20 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers(antMatcher("/swagger-ui/**"),
-                                    antMatcher("/swagger-ui.html"),
-                                    antMatcher("/v3/**"),
-                                    antMatcher("/h2-console/**"),
-                                    antMatcher("/console/**"),
-                                    antMatcher("/actuator/prometheus"),
-                                    antMatcher("/actuator/**"),
-                                    antMatcher("/api/auth/**")).permitAll()
-                            .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/intentions")).permitAll()
-                            .requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
-                            .requestMatchers(antMatcher(HttpMethod.POST, "api/crypto/intention")).hasRole("USER")
-                            //TODO: considera pasar role a enum
-                            .anyRequest().authenticated();
-                })
+                .authorizeHttpRequests(authorize ->
+                        authorize.requestMatchers(antMatcher("/swagger-ui/**"),
+                                        antMatcher("/swagger-ui.html"),
+                                        antMatcher("/v3/**"),
+                                        antMatcher("/h2-console/**"),
+                                        antMatcher("/console/**"),
+                                        antMatcher("/actuator/prometheus"),
+                                        antMatcher("/actuator/**"),
+                                        antMatcher("/api/auth/**")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/intentions")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "api/crypto/intention")).hasRole(Role.USER.name())
+                                .anyRequest().authenticated()
+                )
                 .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)) // This so embedded frames in h2-console are working
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -53,15 +53,16 @@ public class SecurityConfiguration {
 
         return httpSecurity.build();
     }
+
     @Bean
     AuthenticationManager getAuthenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        log.info("Initilizing Bean AuthenticationManager");
+        log.info(">>> Initilizing Bean AuthenticationManager");
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
     BCryptPasswordEncoder getBCryptPasswordEncoder() {
-        log.info("Initilizing Bean BCryptPasswordEncoder");
+        log.info(">>> Initilizing Bean BCryptPasswordEncoder");
         return new BCryptPasswordEncoder();
     }
 
