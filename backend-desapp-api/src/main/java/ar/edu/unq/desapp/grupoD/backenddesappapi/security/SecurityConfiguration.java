@@ -8,9 +8,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
@@ -23,9 +24,12 @@ public class SecurityConfiguration {
                                     antMatcher("/swagger-ui.html"),
                                     antMatcher("/v3/**"),
                                     antMatcher("/h2-console/**"),
-                                    antMatcher("/console/**")).permitAll()
-                            .requestMatchers(antMatcher(HttpMethod.GET, "/users")).permitAll()
-                            .requestMatchers(antMatcher(HttpMethod.GET, "/intentions")).permitAll()
+                                    antMatcher("/console/**"),
+                                    antMatcher("/actuator/prometheus"),
+                                    antMatcher("/actuator/**"),
+                                    antMatcher("/api/auth/**")).permitAll()
+                            .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/intentions")).permitAll()
+                            .requestMatchers(antMatcher(HttpMethod.POST, "api/crypto/intention")).hasRole("USER")
                             //TODO: considera pasar role a enum
                             .anyRequest().authenticated();
                 })
