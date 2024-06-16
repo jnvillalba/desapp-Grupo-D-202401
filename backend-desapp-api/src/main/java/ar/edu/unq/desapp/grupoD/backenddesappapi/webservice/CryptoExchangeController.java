@@ -34,6 +34,12 @@ public class CryptoExchangeController {
         return ResponseEntity.ok().body(entity);
     }
 
+    @GetMapping(path = "/crypto/evict-cache")
+    public ResponseEntity<String> evictCache() {
+        binanceAPIService.clearCache();
+        return ResponseEntity.ok("Cache successfully clean");
+    }
+
     @io.swagger.v3.oas.annotations.Operation(summary = "Get all cryptocurrency prices")
     @GetMapping("/crypto/prices")
     public ResponseEntity<List<BinancePriceDTO>> getPricesOfCoins() {

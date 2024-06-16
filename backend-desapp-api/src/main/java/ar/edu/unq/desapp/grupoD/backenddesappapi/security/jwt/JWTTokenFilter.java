@@ -34,9 +34,7 @@ public class JWTTokenFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         logger.info(">>> Validation of JWT token by OncePerRequestFilter");
 
         String token = getTokenFromRequest(request);
@@ -68,5 +66,6 @@ public class JWTTokenFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
 
 }
