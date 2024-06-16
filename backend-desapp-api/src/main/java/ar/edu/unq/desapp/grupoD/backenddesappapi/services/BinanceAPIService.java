@@ -2,6 +2,7 @@ package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO;
+import org.springframework.cache.annotation.Cacheable;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class BinanceAPIService {
     private static final String BINANCE_API_URL = "https://api1.binance.com/api/v3/";
     private RestTemplate restTemplate = new RestTemplate();
 
+    @Cacheable(value = "cryptoCache", key = "#symbol")
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
         String url = BINANCE_API_URL + "ticker/price?symbol=" + symbol;
         ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
