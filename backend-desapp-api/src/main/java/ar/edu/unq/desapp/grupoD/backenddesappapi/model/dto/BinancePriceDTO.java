@@ -18,4 +18,9 @@ public class BinancePriceDTO implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime lastUpdateDateAndTime;
+
+    @Override
+    public String toString() {
+        return (symbol + " price " + price);
+    }
 }
