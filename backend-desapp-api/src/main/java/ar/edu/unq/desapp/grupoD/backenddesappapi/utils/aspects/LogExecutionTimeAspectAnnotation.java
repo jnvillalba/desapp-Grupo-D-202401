@@ -9,8 +9,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Aspect
 @Slf4j
+@Component
 public class LogExecutionTimeAspectAnnotation {
 
     @Around("@annotation(LogExecutionTime)")
@@ -32,7 +45,7 @@ public class LogExecutionTimeAspectAnnotation {
         String parameters = getMethodParameters(joinPoint.getArgs());
 
         String logMessage = String.format(
-                "[%s] [%s] [%s] [%s] - Executed in %dms",
+                "\u001B[33m[%s] [%s] [%s] [%s] - Executed in %dms\u001B[0m",
                 timestamp, user, operation, parameters, executionTime);
         log.info(logMessage);
 

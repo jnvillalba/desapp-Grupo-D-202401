@@ -11,6 +11,19 @@ public class CacheEventLogger implements CacheEventListener<Object, Object> {
     public void onEvent( CacheEvent<?, ?> cacheEvent) {
         String oldValueString = cacheEvent.getOldValue() != null ? cacheEvent.getOldValue().toString() : null;
         String newValueString = cacheEvent.getNewValue() != null ? cacheEvent.getNewValue().toString() : null;
-        log.info(">>> UpdateCache | KEY: " + cacheEvent.getKey() + " | OLDVALUE: " + oldValueString + " | NEWVALUE: " +newValueString);
+        var cacheEventKey = cacheEvent.getKey();
+        String magenta = "\033[0;35m";
+        String blue = "\033[0;34m";
+        String resetColor = "\033[0m";
+        String red = "\033[0;31m";
+        String green = "\033[0;32m";
+
+        String logMessage = magenta + ">>> UpdateCache"+ resetColor + "\n" +
+                "KEY: " + blue + cacheEventKey + resetColor + "\n" +
+                "OLDVALUE: " + red + oldValueString + resetColor + "\n" +
+                "NEWVALUE: " + green + newValueString + resetColor;
+
+        // Imprimir el mensaje de log
+        log.info(logMessage);
     }
 }

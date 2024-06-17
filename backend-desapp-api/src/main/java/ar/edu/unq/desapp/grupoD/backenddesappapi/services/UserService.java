@@ -49,7 +49,7 @@ public class UserService {
 
     private void doAuthenticate(String emailId, String password) {
 
-        log.info(">>> Authentication of User Credentials");
+        log.info("\u001B[33m>>> Authentication of User Credentials\u001B[0m");
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(emailId, password);
         try {

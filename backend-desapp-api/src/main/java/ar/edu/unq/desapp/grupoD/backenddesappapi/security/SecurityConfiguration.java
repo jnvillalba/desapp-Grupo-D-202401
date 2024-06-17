@@ -60,13 +60,11 @@ public class SecurityConfiguration {
 
     @Bean
     AuthenticationManager getAuthenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        log.info(">>> Initilizing Bean AuthenticationManager");
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
     BCryptPasswordEncoder getBCryptPasswordEncoder() {
-        log.info(">>> Initilizing Bean BCryptPasswordEncoder");
         return new BCryptPasswordEncoder();
     }
 

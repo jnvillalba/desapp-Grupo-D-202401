@@ -35,23 +35,20 @@ public class JWTTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        logger.info(">>> Validation of JWT token by OncePerRequestFilter");
-
         String token = getTokenFromRequest(request);
-
-        logger.info(">>> JWT token : " + token);
         String userName = null;
 
         if (token != null) {
             userName = JWTTokenHelper.getUsernameFromToken(token);
-            logger.info(">>> JWT token User : " + userName);
+            String formattedMessage = "\u001B[32m>>> JWT token User : " + userName + "\u001B[0m";
+            logger.info(formattedMessage);
         } else {
-            logger.info(">>> ToKen is Misisng. Please Come with Token");
+            String formattedMessage = "\u001B[31m>>> Token is Missing.\u001B[0m";
+            logger.info(formattedMessage);
         }
 
         if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            // fetch user detail from username
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(userName);
             Boolean isValidToken = jwtTokenHelper.validateToken(token, userDetails.getUsername());
             if (Boolean.TRUE.equals(isValidToken)) {
