@@ -35,7 +35,6 @@ public class BinanceAPIService {
     @Cacheable(value = "cryptoCache", key = "#symbol")
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
         String url = BINANCE_API_URL + "ticker/price?symbol=" + symbol;
-        log.info(symbol);
         ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             return responseEntity.getBody();
@@ -61,7 +60,6 @@ public class BinanceAPIService {
                 "TRXUSDT",
                 "AUDIOUSDT"
         };
-        log.info(Arrays.toString(symbols));
         List<BinancePriceDTO> pricesList = new ArrayList<>();
         for (String symbol : symbols) {
             pricesList.add(getPriceOfCoinSymbol(symbol));
