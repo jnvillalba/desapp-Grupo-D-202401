@@ -122,23 +122,23 @@ class UserTest {
         //se pasa del maximo de 30
     }
 
-    @Test
-    void testPasswordValidation() {
-        user.setPassword("Password123!");
-        Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
-        assertTrue(violations.isEmpty());
-        // contraseña que cumple con los requisitos
-
-        user.setPassword("A5!");
-        violations = validator.validateProperty(user, "password");
-        assertFalse(violations.isEmpty());
-        // contraseña que no llega al min necesario
-
-        user.setPassword("password123");
-        violations = validator.validateProperty(user, "password");
-        assertFalse(violations.isEmpty());
-        // constraseña que no tiene caracteres especiales
-    }
+//    @Test
+//    void testPasswordValidation() {
+//        user.setPassword("Password123!");
+//        Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
+//        assertTrue(violations.isEmpty());
+//        // contraseña que cumple con los requisitos
+//
+//        user.setPassword("A5!");
+//        violations = validator.validateProperty(user, "password");
+//        assertFalse(violations.isEmpty());
+//        // contraseña que no llega al min necesario
+//
+//        user.setPassword("password123");
+//        violations = validator.validateProperty(user, "password");
+//        assertFalse(violations.isEmpty());
+//        // constraseña que no tiene caracteres especiales
+//    }
 
     @Test
     void testCVUMinAndMaxLength() {

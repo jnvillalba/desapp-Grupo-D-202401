@@ -10,6 +10,9 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import ar.edu.unq.desapp.grupod.backenddesappapi.webservice.CryptoExchangeController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +21,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.cache.CacheManager;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -37,6 +42,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
+@DirtiesContext
 public class CryptoExchangeControllerTest {
     @Autowired
     private CryptoExchangeController cryptoExchangeController;
@@ -54,6 +60,14 @@ public class CryptoExchangeControllerTest {
 
     @SpyBean
     private IntentionService intentionService;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    public void clearCache() {
+        cacheManager.getCache("cryptoCache").clear();
+    }
 
     @Test
     void testGetCryptoCurrencyValue() throws Exception {

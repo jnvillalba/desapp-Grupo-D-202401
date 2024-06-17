@@ -9,10 +9,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import javax.cache.CacheManager;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,6 +28,17 @@ class BinanceAPIServiceTest {
 
     @InjectMocks
     private BinanceAPIService binanceAPIService;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    public void clearCache() {
+        if (cacheManager != null) {
+            var cache = cacheManager.getCache("cryptoCache");
+            if (cache != null) cache.clear();
+        }
+    }
 
     @BeforeEach
     public void setUp() {

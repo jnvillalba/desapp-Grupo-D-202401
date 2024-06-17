@@ -12,8 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.cache.CacheManager;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -27,6 +29,14 @@ class TransactionServiceTest {
     private TransactionService transactionService;
     private User user;
     private Operation operation;
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    public void clearCache() {
+        cacheManager.getCache("cryptoCache").clear();
+    }
+
     @BeforeEach
     void setUp() {
         user = new User();

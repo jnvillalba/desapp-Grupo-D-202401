@@ -10,9 +10,12 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveReposi
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.IntentionService;
 import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.cache.CacheManager;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,6 +30,14 @@ class IntentionServiceTest {
     private IntentionService intentionService;
     @Autowired
     private CryptoActiveRepository cryptoActiveRepository;
+
+    @Autowired
+    private CacheManager cacheManager;
+
+    @BeforeEach
+    public void clearCache() {
+        cacheManager.getCache("cryptoCache").clear();
+    }
 
     @Test
     void expressIntention() {

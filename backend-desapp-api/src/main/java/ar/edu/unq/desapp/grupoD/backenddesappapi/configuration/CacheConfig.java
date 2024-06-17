@@ -36,10 +36,10 @@ public class CacheConfig {
         CacheEventListenerConfigurationBuilder asynchronousListener = CacheEventListenerConfigurationBuilder
                 .newEventListenerConfiguration(new CacheEventLogger()
                         , EventType.CREATED, EventType.EXPIRED).unordered().asynchronous();
-
-        cacheManager.createCache("cryptoCache",
-                Eh107Configuration.fromEhcacheCacheConfiguration(configurationBuilder.withService(asynchronousListener)));
-
+        if(cacheManager.getCache("cryptoCache") == null) {
+            cacheManager.createCache("cryptoCache",
+                    Eh107Configuration.fromEhcacheCacheConfiguration(configurationBuilder.withService(asynchronousListener)));
+        }
         return cacheManager;
     }
 
