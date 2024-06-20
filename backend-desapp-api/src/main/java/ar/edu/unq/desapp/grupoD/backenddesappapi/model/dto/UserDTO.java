@@ -1,12 +1,10 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto;
 
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 public class UserDTO {
@@ -39,6 +37,11 @@ public class UserDTO {
     @Size(min = 8, max = 8, message = "Wallet must have 8 digits.")
     private String walletCrypto;
 
+    @DecimalMin(value = "0.00", message = "Reputation must be at least 0")
+    @DecimalMax(value = "100.00", message = "Reputation must not exceed 100")
+    private Double reputation;
+
+    private Integer operationsAmount;
 
     public User toModel() {
         User user = new User();
@@ -51,5 +54,12 @@ public class UserDTO {
         user.setWalletCrypto(walletCrypto);
         return user;
     }
-
+    public static UserDTO toDto(User user) {
+        UserDTO dto = new UserDTO();
+        dto.setName(user.getName());
+        dto.setLastName(user.getLastName());
+        dto.setOperationsAmount(user.getOperationsList().size());
+        dto.setReputation(user.findReputation());
+        return dto;
+    }
 }

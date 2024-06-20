@@ -78,4 +78,10 @@ public class CryptoExchangeController {
         OperationReportDTO report = userService.generateReport(request);
         return ResponseEntity.ok().body(report);
     }
+
+    @io.swagger.v3.oas.annotations.Operation(summary = "Get all users")
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        return ResponseEntity.ok().body(userService.getAllUsers());
+    }
 }

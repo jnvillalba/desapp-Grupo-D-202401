@@ -1,13 +1,10 @@
 package ar.edu.unq.desapp.grupoD.backenddesappapi.services;
 
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.UserDTO;
+import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions.UserNotFoundException;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupoD.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.ActiveDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.OperationReportDTO;
-import ar.edu.unq.desapp.grupoD.backenddesappapi.model.dto.RequestReportDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -65,5 +62,9 @@ public class UserService {
                 .mapToDouble(ActiveDTO::getCurrentCryptoPrice)
                 .sum();
     }
-
+    public List<UserDTO> getAllUsers(){
+        List<User> userList = userRepository.findAll();
+        return userList.stream()
+                .map(UserDTO::toDto).toList();
+    }
 }
