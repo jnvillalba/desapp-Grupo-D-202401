@@ -12,6 +12,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
+@SuppressWarnings("all")
 public class JWTTokenHelper {
 
     public static final long JWT_TOKEN_VALIDITY_MILLIS = 60L * 60000; // 5 mins

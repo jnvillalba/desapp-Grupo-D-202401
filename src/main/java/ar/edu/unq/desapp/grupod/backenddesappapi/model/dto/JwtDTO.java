@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-
+@SuppressWarnings("all")
 @AllArgsConstructor
 public class JwtDTO {
     @JsonProperty("token")
