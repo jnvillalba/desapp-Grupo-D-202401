@@ -72,7 +72,7 @@ jacocoTestReport {
 	dependsOn test
 	reports {
 		xml.required.set(true)
-		html.required.set(false)
+		html.required.set(true)
 		//html.outputLocation = layout.projectDirectory.dir("src/main/resources/static")
 	}
 
