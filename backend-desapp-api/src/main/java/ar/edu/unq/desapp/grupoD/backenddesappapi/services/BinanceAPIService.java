@@ -31,7 +31,8 @@ public class BinanceAPIService {
         log.info("Clear Cache cryptoCache");
     }
 
-    @Cacheable(value = "cryptoCache", key = "#symbol")
+
+    @Cacheable(value = "cryptoCache", key = "#root.args[0]")
     public BinancePriceDTO getPriceOfCoinSymbol(String symbol) {
         String url = BINANCE_API_URL + "ticker/price?symbol=" + symbol;
         ResponseEntity<BinancePriceDTO> responseEntity = restTemplate.getForEntity(url, BinancePriceDTO.class);
@@ -42,6 +43,7 @@ public class BinanceAPIService {
         }
     }
 
+    @Cacheable(value = "cryptoCache", key = "#root.methodName")
     public List<BinancePriceDTO> getPricesOfCoins() {
         String[] symbols = {
                 "ALICEUSDT",

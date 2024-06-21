@@ -18,6 +18,7 @@ import javax.cache.CacheManager;
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
 import java.time.Duration;
+import java.util.List;
 
 @Configuration
 @EnableCaching
@@ -27,20 +28,18 @@ public class CacheConfig {
 
         CachingProvider provider = Caching.getCachingProvider();
         CacheManager cacheManager = provider.getCacheManager();
-
-        CacheConfigurationBuilder<String, BinancePriceDTO> configurationBuilder =
+        CacheConfigurationBuilder<String, List<BinancePriceDTO>> listConfigBuilder =
                 CacheConfigurationBuilder.newCacheConfigurationBuilder(
-                                String.class, BinancePriceDTO.class,
-                                ResourcePoolsBuilder.heap(2)
-                                        .offheap(10, MemoryUnit.MB))
+                                String.class, (Class<List<BinancePriceDTO>>) (Class<?>) List.class,
+                                ResourcePoolsBuilder.heap(2).offheap(10, MemoryUnit.MB))
                         .withExpiry(ExpiryPolicyBuilder.timeToLiveExpiration(Duration.ofSeconds(60)));
-
+        
         CacheEventListenerConfigurationBuilder asynchronousListener = CacheEventListenerConfigurationBuilder
                 .newEventListenerConfiguration(new CacheEventLogger()
                         , EventType.CREATED, EventType.EXPIRED).unordered().asynchronous();
         if (cacheManager.getCache("cryptoCache") == null) {
             cacheManager.createCache("cryptoCache",
-                    Eh107Configuration.fromEhcacheCacheConfiguration(configurationBuilder.withService(asynchronousListener)));
+                    Eh107Configuration.fromEhcacheCacheConfiguration(listConfigBuilder.withService(asynchronousListener)));
         }
         return cacheManager;
     }
