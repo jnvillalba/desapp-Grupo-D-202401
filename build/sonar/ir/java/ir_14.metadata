@@ -1,0 +1,4 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.webservice.AuthController#loginUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/LoginDTO;)Lorg/springframework/http/ResponseEntity;
+org.springframework.http.ResponseEntity#ok(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;
+==
+loginUser ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#loginUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/LoginDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/JwtDTO;

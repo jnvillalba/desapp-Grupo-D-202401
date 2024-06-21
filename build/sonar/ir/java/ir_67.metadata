@@ -1,0 +1,12 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.configuration.DataInitializer#initializeUsers(Lar/edu/unq/desapp/grupod/backenddesappapi/repositories/UserRepository;Lorg/springframework/security/crypto/bcrypt/BCryptPasswordEncoder;)V
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#instance-init#
+java.util.ArrayList#<init>()V
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#<init>(Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;DLjava/util/List;)V
+java.util.ArrayList#instance-init#
+java.util.ArrayList#<init>(Ljava/util/Collection;)V
+java.util.Arrays#asList([Ljava/lang/Object;)Ljava/util/List;
+==
+save org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;
+getPassword ar.edu.unq.desapp.grupod.backenddesappapi.model.User#getPassword()Ljava/lang/String;
+setPassword ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setPassword(Ljava/lang/String;)V
+encode org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder#encode(Ljava/lang/CharSequence;)Ljava/lang/String;

@@ -1,0 +1,7 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService#mapToAuthorities(Ljava/util/List;)Ljava/util/Collection;
+java.util.ArrayList#instance-init#
+java.util.ArrayList#<init>(Ljava/util/Collection;)V
+==
+stream java.util.Collection#stream()Ljava/util/stream/Stream;
+map java.util.stream.Stream#map(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+toList java.util.stream.Stream#toList()Ljava/util/List;

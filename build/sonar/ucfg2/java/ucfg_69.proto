@@ -1,0 +1,129 @@
+
+Öar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration#filterChain(Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;)Lorg/springframework/security/web/SecurityFilterChain;¹
+®C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/SecurityConfiguration.java! !(*"startingBlock*£
+startingBlock!* !(Eå
+â
+   (	
+%61"
+__annotate*K
+
+__unknown_file (/-
++org.springframework.context.annotation.Bean*v
+
+__unknown_file (Z
+X
+httpSecurityHorg.springframework.security.config.annotation.web.builders.HttpSecurityš
+—
+!8 !(DX
+httpSecurityHorg.springframework.security.config.annotation.web.builders.HttpSecurity"__annotation*#
+
+__unknown_file (
+
+%61*
+1*Ö&
+1" "(ýú
+" "(:N
+%0Horg.springframework.security.config.annotation.web.builders.HttpSecurity"Éorg.springframework.security.config.annotation.web.builders.HttpSecurity#csrf(Lorg/springframework/security/config/Customizer;)Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;*v
+
+__unknown_file (Z
+X
+httpSecurityHorg.springframework.security.config.annotation.web.builders.HttpSecurity*"
+
+__unknown_file (
+""26csrf(Lorg/springframework/security/config/Customizer;)Ñ
+Î
+#' 3(=4
+%1.org.springframework.security.config.Customizer"__declareFunction*y
+
+__unknown_file (][
+Y__sonar_lambda_2$ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfigurationÆÃ
+" 4(O
+%48Horg.springframework.security.config.annotation.web.builders.HttpSecurity"Úorg.springframework.security.config.annotation.web.builders.HttpSecurity#authorizeHttpRequests(Lorg/springframework/security/config/Customizer;)Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;*l
+
+__unknown_file (P
+N
+%0Horg.springframework.security.config.annotation.web.builders.HttpSecurity*R
+
+__unknown_file (6
+4
+%1.org.springframework.security.config.Customizer2GauthorizeHttpRequests(Lorg/springframework/security/config/Customizer;)Ò
+Ï
+5 5(^5
+%49.org.springframework.security.config.Customizer"__declareFunction*y
+
+__unknown_file (][
+Y__sonar_lambda_3$ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration¬©
+" 5(_O
+%51Horg.springframework.security.config.annotation.web.builders.HttpSecurity"Ìorg.springframework.security.config.annotation.web.builders.HttpSecurity#headers(Lorg/springframework/security/config/Customizer;)Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;*m
+
+__unknown_file (Q
+O
+%48Horg.springframework.security.config.annotation.web.builders.HttpSecurity*S
+
+__unknown_file (7
+5
+%49.org.springframework.security.config.Customizer29headers(Lorg/springframework/security/config/Customizer;)ƒ
+€
+6 6(45
+%52.org.springframework.security.config.Customizer"morg.springframework.security.config.Customizer#withDefaults()Lorg/springframework/security/config/Customizer;*N
+
+__unknown_file (2"0
+.org.springframework.security.config.Customizer°­
+" 6(5O
+%53Horg.springframework.security.config.annotation.web.builders.HttpSecurity"Îorg.springframework.security.config.annotation.web.builders.HttpSecurity#httpBasic(Lorg/springframework/security/config/Customizer;)Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;*m
+
+__unknown_file (Q
+O
+%51Horg.springframework.security.config.annotation.web.builders.HttpSecurity*S
+
+__unknown_file (7
+5
+%52.org.springframework.security.config.Customizer2;httpBasic(Lorg/springframework/security/config/Customizer;)Ò
+Ï
+7# 7(l5
+%54.org.springframework.security.config.Customizer"__declareFunction*y
+
+__unknown_file (][
+Y__sonar_lambda_4$ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfigurationÀ½
+" 7(mO
+%57Horg.springframework.security.config.annotation.web.builders.HttpSecurity"Öorg.springframework.security.config.annotation.web.builders.HttpSecurity#sessionManagement(Lorg/springframework/security/config/Customizer;)Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;*m
+
+__unknown_file (Q
+O
+%53Horg.springframework.security.config.annotation.web.builders.HttpSecurity*S
+
+__unknown_file (7
+5
+%54.org.springframework.security.config.Customizer2CsessionManagement(Lorg/springframework/security/config/Customizer;)ß
+Ü
+8! 8(/L
+%58Ear.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenFilter"__id*|
+
+__unknown_file (`*^J
+Har.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration"
+jwtTokenFilteréæ
+" 8(\O
+%59Horg.springframework.security.config.annotation.web.builders.HttpSecurity"Íorg.springframework.security.config.annotation.web.builders.HttpSecurity#addFilterBefore(Ljakarta/servlet/Filter;Ljava/lang/Class;)Lorg/springframework/security/config/annotation/web/builders/HttpSecurity;*m
+
+__unknown_file (Q
+O
+%57Horg.springframework.security.config.annotation.web.builders.HttpSecurity*j
+
+__unknown_file (N
+L
+%58Ear.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenFilter*"
+
+__unknown_file (
+""2:addFilterBefore(Ljakarta/servlet/Filter;Ljava/lang/Class;)´±
+: :(#B
+%60;org.springframework.security.web.DefaultSecurityFilterChain"`org.springframework.security.config.annotation.AbstractSecurityBuilder#build()Ljava/lang/Object;*v
+
+__unknown_file (Z
+X
+httpSecurityHorg.springframework.security.config.annotation.web.builders.HttpSecurity2build()"P
+: :($D
+B
+%60;org.springframework.security.web.DefaultSecurityFilterChain:d
+!+ !(DX
+httpSecurityHorg.springframework.security.config.annotation.web.builders.HttpSecurityBLJ
+Har.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfigurationH

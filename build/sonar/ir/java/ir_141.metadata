@@ -1,0 +1,6 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger#onEvent(Lorg/ehcache/event/CacheEvent;)V
+==
+getNewValue org.ehcache.event.CacheEvent#getNewValue()Ljava/lang/Object;
+getOldValue org.ehcache.event.CacheEvent#getOldValue()Ljava/lang/Object;
+toString java.lang.Object#toString()Ljava/lang/String;
+getKey org.ehcache.event.CacheEvent#getKey()Ljava/lang/Object;

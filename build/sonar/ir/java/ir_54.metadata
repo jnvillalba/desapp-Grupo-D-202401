@@ -1,0 +1,13 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper#generateToken(Ljava/lang/String;)Ljava/lang/String;
+java.util.Date#<init>(J)V
+io.jsonwebtoken.Jwts#builder()Lio/jsonwebtoken/JwtBuilder;
+io.jsonwebtoken.security.Keys#hmacShaKeyFor([B)Ljavax/crypto/SecretKey;
+java.util.Date#instance-init#
+java.lang.System#currentTimeMillis()J
+java.lang.String#getBytes()[B
+==
+setSubject io.jsonwebtoken.JwtBuilder#setSubject(Ljava/lang/String;)Lio/jsonwebtoken/JwtBuilder;
+setIssuedAt io.jsonwebtoken.JwtBuilder#setIssuedAt(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;
+compact io.jsonwebtoken.JwtBuilder#compact()Ljava/lang/String;
+signWith io.jsonwebtoken.JwtBuilder#signWith(Ljava/security/Key;Lio/jsonwebtoken/SignatureAlgorithm;)Lio/jsonwebtoken/JwtBuilder;
+setExpiration io.jsonwebtoken.JwtBuilder#setExpiration(Ljava/util/Date;)Lio/jsonwebtoken/JwtBuilder;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2024-06-17T20:44:37" hostname="DESKTOP-SKCGK58" time="0.271">
+  <properties/>
+  <testcase name="testOperation()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testIsSuccess()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.003"/>
+  <testcase name="testIsCancelledBySystem()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.0"/>
+  <testcase name="testUser()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.003"/>
+  <testcase name="testIsPending()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testNotNullAnnotations()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.02"/>
+  <testcase name="testIsCancelledByUser()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.002"/>
+  <testcase name="testWasWithin30Minutes()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.012"/>
+  <testcase name="testNegativeOperationAmount()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.017"/>
+  <testcase name="testCriptoActive()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.002"/>
+  <testcase name="testOperationTypeNotNull()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testOperationIdNotNull()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.0"/>
+  <testcase name="testIsCancelled()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.001"/>
+  <testcase name="testInvalidAddress()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationTest" time="0.067"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

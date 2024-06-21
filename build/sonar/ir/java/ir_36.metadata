@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#reduceReputation(D)V
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#calculateReputation()V
+java.lang.Math#max(DD)D

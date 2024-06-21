@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.configuration.CacheConfig#cacheEventLogger()Lorg/ehcache/event/CacheEventListener;
+ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger#instance-init#
+ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger#<init>()V

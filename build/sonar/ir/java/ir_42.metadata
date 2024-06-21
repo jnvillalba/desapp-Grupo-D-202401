@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.configuration.RestTemplateConfig#restTemplate()Lorg/springframework/web/client/RestTemplate;
+org.springframework.web.client.RestTemplate#<init>()V
+org.springframework.web.client.RestTemplate#instance-init#

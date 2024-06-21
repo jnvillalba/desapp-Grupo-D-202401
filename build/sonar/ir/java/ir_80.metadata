@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.OperationNotFoundException#<init>(Ljava/lang/Long;)V
+==
+<init> java.lang.RuntimeException#<init>(Ljava/lang/String;)V

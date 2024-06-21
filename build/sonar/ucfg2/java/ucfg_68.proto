@@ -1,0 +1,26 @@
+
+Y__sonar_lambda_4$ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration¹
+®C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/SecurityConfiguration.java7# 7(l"1*Å
+17. 7(5}
+{
+7L 7(kE
+%55>org.springframework.security.config.http.SessionCreationPolicy"__id*"
+
+__unknown_file (
+""ÅÂ
+7. 7(la
+%56Zorg.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer"Žorg.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer#sessionCreationPolicy(Lorg/springframework/security/config/http/SessionCreationPolicy;)Lorg/springframework/security/config/annotation/web/configurers/SessionManagementConfigurer;*ƒ
+
+__unknown_file (g
+e
+sessionZorg.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer*c
+
+__unknown_file (G
+E
+%55>org.springframework.security.config.http.SessionCreationPolicy2WsessionCreationPolicy(Lorg/springframework/security/config/http/SessionCreationPolicy;)"o
+7. 7(lc
+a
+%56Zorg.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer:q
+7# 7(*e
+sessionZorg.springframework.security.config.annotation.web.configurers.SessionManagementConfigurerB20
+.org.springframework.security.config.Customizer

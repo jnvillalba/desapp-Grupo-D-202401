@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#countSuccessfulTransactions()D
+==
+isSuccess ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isSuccess()Z

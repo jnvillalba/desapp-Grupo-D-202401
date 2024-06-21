@@ -1,0 +1,231 @@
+
+oar.edu.unq.desapp.grupod.backenddesappapi.configuration.CacheConfig#getCacheManager()Ljavax/cache/CacheManager;¥
+©C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/configuration/CacheConfig.java ('"3*¢
+
+2( ((Ì
+)E )({<
+%185org.ehcache.config.builders.CacheConfigurationBuilder"êorg.ehcache.config.FluentCacheConfigurationBuilder#withService(Lorg/ehcache/config/Builder;)Lorg/ehcache/config/FluentCacheConfigurationBuilder;*k
+
+__unknown_file (O
+M
+configurationBuilder5org.ehcache.config.builders.CacheConfigurationBuilder*x
+
+__unknown_file (\
+Z
+asynchronousListenerBorg.ehcache.config.builders.CacheEventListenerConfigurationBuilder2)withService(Lorg/ehcache/config/Builder;)Ì
+Í
+) )(|.
+%19'javax.cache.configuration.Configuration"äorg.ehcache.jsr107.Eh107Configuration#fromEhcacheCacheConfiguration(Lorg/ehcache/config/Builder;)Ljavax/cache/configuration/Configuration;*E
+
+__unknown_file ()"'
+%org.ehcache.jsr107.Eh107Configuration*Z
+
+__unknown_file (>
+<
+%185org.ehcache.config.builders.CacheConfigurationBuilder™ß
+( )(}
+%20javax.cache.Cache"tjavax.cache.CacheManager#createCache(Ljava/lang/String;Ljavax/cache/configuration/Configuration;)Ljavax/cache/Cache;*F
+
+__unknown_file (*
+(
+cacheManagerjavax.cache.CacheManager*+
+
+__unknown_file (
+cryptoCache*L
+
+__unknown_file (0
+.
+%19'javax.cache.configuration.Configuration2HcreateCache(Ljava/lang/String;Ljavax/cache/configuration/Configuration;)*
+1*´-
+3# (*¥
+±
+# (?%
+%0javax.cache.spi.CachingProvider"Ijavax.cache.Caching#getCachingProvider()Ljavax/cache/spi/CachingProvider;*3
+
+__unknown_file ("
+javax.cache.CachingÖ
+Ç
+ (@+
+providerjavax.cache.spi.CachingProvider"__id*C
+
+__unknown_file ('
+%
+%0javax.cache.spi.CachingProviderÿ’
+$ (>
+%1javax.cache.CacheManager"Kjavax.cache.spi.CachingProvider#getCacheManager()Ljavax/cache/CacheManager;*I
+
+__unknown_file (-
++
+providerjavax.cache.spi.CachingProvider2getCacheManager()z
+x
+ (?(
+cacheManagerjavax.cache.CacheManager"__id*<
+
+__unknown_file ( 
+
+%1javax.cache.CacheManager•
+¢
+    (<6
+%20org.ehcache.config.builders.ResourcePoolsBuilder"jorg.ehcache.config.builders.ResourcePoolsBuilder#heap(J)Lorg/ehcache/config/builders/ResourcePoolsBuilder;*P
+
+__unknown_file (4"2
+0org.ehcache.config.builders.ResourcePoolsBuilder* 
+
+__unknown_file (2a
+_
+!5 !(B)
+%3#org.ehcache.config.units.MemoryUnit"__id*"
+
+__unknown_file (
+""Ã…
+   !(C6
+%40org.ehcache.config.builders.ResourcePoolsBuilder"íorg.ehcache.config.builders.ResourcePoolsBuilder#offheap(JLorg/ehcache/config/units/MemoryUnit;)Lorg/ehcache/config/builders/ResourcePoolsBuilder;*T
+
+__unknown_file (8
+6
+%20org.ehcache.config.builders.ResourcePoolsBuilder* 
+
+__unknown_file (2
+*G
+
+__unknown_file (+
+)
+%3#org.ehcache.config.units.MemoryUnit2/offheap(JLorg/ehcache/config/units/MemoryUnit;)ã
+à
+ !(D;
+%55org.ehcache.config.builders.CacheConfigurationBuilder"…org.ehcache.config.builders.CacheConfigurationBuilder#newCacheConfigurationBuilder(Ljava/lang/Class;Ljava/lang/Class;Lorg/ehcache/config/Builder;)Lorg/ehcache/config/builders/CacheConfigurationBuilder;*U
+
+__unknown_file (9"7
+5org.ehcache.config.builders.CacheConfigurationBuilder*"
+
+__unknown_file (
+""*"
+
+__unknown_file (
+""*T
+
+__unknown_file (8
+6
+%40org.ehcache.config.builders.ResourcePoolsBuilder≤
+Ø
+"M "(c
+%6java.time.Duration"3java.time.Duration#ofSeconds(J)Ljava/time/Duration;*2
+
+__unknown_file ("
+java.time.Duration* 
+
+__unknown_file (2<∫
+∑
+"$ "(d%
+%7org.ehcache.expiry.ExpiryPolicy"{org.ehcache.config.builders.ExpiryPolicyBuilder#timeToLiveExpiration(Ljava/time/Duration;)Lorg/ehcache/expiry/ExpiryPolicy;*O
+
+__unknown_file (3"1
+/org.ehcache.config.builders.ExpiryPolicyBuilder*6
+
+__unknown_file (
+
+%6java.time.Duration∂≥
+ "(e;
+%85org.ehcache.config.builders.CacheConfigurationBuilder"öorg.ehcache.config.builders.CacheConfigurationBuilder#withExpiry(Lorg/ehcache/expiry/ExpiryPolicy;)Lorg/ehcache/config/builders/CacheConfigurationBuilder;*Y
+
+__unknown_file (=
+;
+%55org.ehcache.config.builders.CacheConfigurationBuilder*C
+
+__unknown_file ('
+%
+%7org.ehcache.expiry.ExpiryPolicy2-withExpiry(Lorg/ehcache/expiry/ExpiryPolicy;)Ω
+∫
+ "(fM
+configurationBuilder5org.ehcache.config.builders.CacheConfigurationBuilder"__id*Y
+
+__unknown_file (=
+;
+%85org.ehcache.config.builders.CacheConfigurationBuilderóî
+%3 %(CF
+%9@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger"@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger∆
+√
+%/ %(E
+%10"Jar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger#<init>()V*d
+
+__unknown_file (H
+F
+%9@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLoggerZ
+X
+& &(+"
+%11org.ehcache.event.EventType"__id*"
+
+__unknown_file (
+""Z
+X
+&- &(>"
+%12org.ehcache.event.EventType"__id*"
+
+__unknown_file (
+""∞
+≠
+$F &(?I
+%13Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilder"áorg.ehcache.config.builders.CacheEventListenerConfigurationBuilder#newEventListenerConfiguration(Lorg/ehcache/event/CacheEventListener;Lorg/ehcache/event/EventType;[Lorg/ehcache/event/EventType;)Lorg/ehcache/config/builders/CacheEventListenerConfigurationBuilder;*b
+
+__unknown_file (F"D
+Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilder*d
+
+__unknown_file (H
+F
+%9@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger*@
+
+__unknown_file ($
+"
+%11org.ehcache.event.EventType*@
+
+__unknown_file ($
+"
+%12org.ehcache.event.EventType„‡
+$F &(KI
+%14Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilder"íorg.ehcache.config.builders.CacheEventListenerConfigurationBuilder#unordered()Lorg/ehcache/config/builders/CacheEventListenerConfigurationBuilder;*g
+
+__unknown_file (K
+I
+%13Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilder2unordered()ÈÊ
+$F &(ZI
+%15Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilder"ïorg.ehcache.config.builders.CacheEventListenerConfigurationBuilder#asynchronous()Lorg/ehcache/config/builders/CacheEventListenerConfigurationBuilder;*g
+
+__unknown_file (K
+I
+%14Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilder2asynchronous()ÿ
+’
+$ &([Z
+asynchronousListenerBorg.ehcache.config.builders.CacheEventListenerConfigurationBuilder"__id*g
+
+__unknown_file (K
+I
+%15Borg.ehcache.config.builders.CacheEventListenerConfigurationBuilderÑÅ
+' '(/
+%16javax.cache.Cache"Hjavax.cache.CacheManager#getCache(Ljava/lang/String;)Ljavax/cache/Cache;*F
+
+__unknown_file (*
+(
+cacheManagerjavax.cache.CacheManager*+
+
+__unknown_file (
+cryptoCache2getCache(Ljava/lang/String;)®
+•
+' '(7
+%17boolean"	__compare*"
+
+__unknown_file (
+==*6
+
+__unknown_file (
+
+%16javax.cache.Cache*"
+
+__unknown_file (
+""*
+2
+1*E
+1+ +("6
++ +(*
+(
+cacheManagerjavax.cache.CacheManagerBGE
+Car.edu.unq.desapp.grupod.backenddesappapi.configuration.CacheConfigH

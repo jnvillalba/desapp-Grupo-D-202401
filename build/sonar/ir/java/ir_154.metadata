@@ -1,0 +1,7 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#getOperationsForUserAndDateRange(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/RequestReportDTO;)Ljava/util/List;
+java.time.LocalDate#atStartOfDay()Ljava/time/LocalDateTime;
+==
+findOperationsByUserIdAndDateRange ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository#findOperationsByUserIdAndDateRange(Ljava/lang/Long;Ljava/time/LocalDateTime;Ljava/time/LocalDateTime;)Ljava/util/List;
+getEndDate ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getEndDate()Ljava/time/LocalDate;
+getUserId ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getUserId()Ljava/lang/Long;
+getStartDate ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getStartDate()Ljava/time/LocalDate;

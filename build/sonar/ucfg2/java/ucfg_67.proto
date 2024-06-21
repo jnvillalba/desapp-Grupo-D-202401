@@ -1,0 +1,19 @@
+
+Y__sonar_lambda_3$ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration¹
+®C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/SecurityConfiguration.java5 5(^"1*š
+15 5(£ 
+5 5(^W
+%50Porg.springframework.security.config.annotation.web.configurers.HeadersConfigurer"áorg.springframework.security.config.annotation.web.configurers.HeadersConfigurer#frameOptions(Lorg/springframework/security/config/Customizer;)Lorg/springframework/security/config/annotation/web/configurers/HeadersConfigurer;*s
+
+__unknown_file (W
+U
+hPorg.springframework.security.config.annotation.web.configurers.HeadersConfigurer*"
+
+__unknown_file (
+""2>frameOptions(Lorg/springframework/security/config/Customizer;)"e
+5 5(^Y
+W
+%50Porg.springframework.security.config.annotation.web.configurers.HeadersConfigurer:a
+5 5(U
+hPorg.springframework.security.config.annotation.web.configurers.HeadersConfigurerB20
+.org.springframework.security.config.Customizer

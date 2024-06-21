@@ -1,0 +1,4 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#wasWithin30Minutes()Z
+java.time.Duration#toMinutes()J
+java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
+java.time.Duration#between(Ljava/time/temporal/Temporal;Ljava/time/temporal/Temporal;)Ljava/time/Duration;

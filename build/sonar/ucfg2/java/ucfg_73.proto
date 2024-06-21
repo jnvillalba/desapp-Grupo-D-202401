@@ -1,0 +1,26 @@
+
+Åar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO#toDto(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Intention;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/IntentionDTO;±
+¦C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/dto/IntentionDTO.java ($"1*‹
+1 (-—”
+ (+F
+%0@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO"@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTOÅ
+Â
+ (-
+%1"Jar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO#<init>()V*d
+
+__unknown_file (H
+F
+%0@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTOÂ
+¿
+ (.G
+dto@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO"__id*d
+
+__unknown_file (H
+F
+%0@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO"U
+ (I
+G
+dto@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO:R
+% (8F
+	intention9ar.edu.unq.desapp.grupod.backenddesappapi.model.IntentionBD"B
+@ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTOH

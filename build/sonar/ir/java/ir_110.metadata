@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#instance-init#
+org.springframework.web.client.RestTemplate#<init>()V
+org.springframework.web.client.RestTemplate#instance-init#

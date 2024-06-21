@@ -1,0 +1,17 @@
+
+|ar.edu.unq.desapp.grupod.backenddesappapi.configuration.CacheConfig#cacheEventLogger()Lorg/ehcache/event/CacheEventListener;´
+©C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/configuration/CacheConfig.java/. /(>"1*Å
+10 0(%—”
+0 0(#F
+%0@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger"@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLoggerÅ
+Â
+0 0(%
+%1"Jar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger#<init>()V*d
+
+__unknown_file (H
+F
+%0@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLogger"T
+0 0(&H
+F
+%0@ar.edu.unq.desapp.grupod.backenddesappapi.utils.CacheEventLoggerBGE
+Car.edu.unq.desapp.grupod.backenddesappapi.configuration.CacheConfigH

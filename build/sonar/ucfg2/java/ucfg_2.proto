@@ -1,0 +1,22 @@
+
+Har.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelled()Zª
+ŸC:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/Operation.java8 8("3*õ
+29& 9(9àÝ
+9& 9(;
+%1boolean"Par.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelledBySystem()Z*Y
+
+__unknown_file (=;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation2isCancelledBySystem()*
+1*ô
+39 9( ÜÙ
+9 9("
+%0boolean"Nar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelledByUser()Z*Y
+
+__unknown_file (=;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation2isCancelledByUser()*
+2
+1*!
+19 9(="
+9 9(=
+""B=;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationHX

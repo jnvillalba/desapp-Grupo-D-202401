@@ -1,0 +1,6 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.webservice.AuthController#registerUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/UserDTO;)Lorg/springframework/http/ResponseEntity;
+org.springframework.http.ResponseEntity#status(Lorg/springframework/http/HttpStatusCode;)Lorg/springframework/http/ResponseEntity$BodyBuilder;
+==
+body org.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;
+registerUser ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#registerUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/UserDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/User;
+getEmail ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO#getEmail()Ljava/lang/String;

@@ -1,0 +1,10 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#generateReport(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/RequestReportDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/OperationReportDTO;
+ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.OperationReportDTO#instance-init#
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#getOperationsForUserAndDateRange(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/RequestReportDTO;)Ljava/util/List;
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#calculateTotalPriceInPesos(Ljava/util/List;)Ljava/lang/Double;
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#calculateTotalValueInDollars(Ljava/util/List;)Ljava/lang/Double;
+java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#mapOperationsToActiveDTOs(Ljava/util/List;Ljava/lang/Float;)Ljava/util/List;
+ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.OperationReportDTO#<init>(Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/util/List;)V
+==
+getDolarBlue ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getDolarBlue()Ljava/lang/Float;

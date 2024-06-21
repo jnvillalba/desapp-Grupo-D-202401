@@ -1,0 +1,39 @@
+
+`ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO#toString()Ljava/lang/String;´
+©C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/dto/BinancePriceDTO.java ("1*Ù
+1 (œ
+™
+ (
+%0java.lang.String"__id*o
+
+__unknown_file (S*QE
+Car.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO"
+symbolm
+k
+ ("
+%1java.lang.String"__concat*$
+ (
+
+%0java.lang.String*
+ ("	
+ price š
+—
+% (*
+%2java.lang.Float"__id*n
+
+__unknown_file (R*PE
+Car.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO"
+pricey
+w
+ (*
+%3java.lang.String"__concat*$
+ ("
+
+%1java.lang.String*#
+% (*
+
+%2java.lang.Float"$
+ (,
+
+%3java.lang.StringBGE
+Car.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTOH

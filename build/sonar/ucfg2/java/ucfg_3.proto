@@ -1,0 +1,36 @@
+
+Far.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isPending()Zª
+ŸC:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/Operation.java< <("1*Ô
+1= =(Í
+Ê
+= =(Q
+%0Kar.edu.unq.desapp.grupod.backenddesappapi.model.Operation$TransactionStatus"__id*e
+
+__unknown_file (I*G;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation"
+statusŠ
+‡
+= =(.Q
+%1Kar.edu.unq.desapp.grupod.backenddesappapi.model.Operation$TransactionStatus"__id*"
+
+__unknown_file (
+""Š
+‡
+= =(6Q
+%2Kar.edu.unq.desapp.grupod.backenddesappapi.model.Operation$TransactionStatus"__id*"
+
+__unknown_file (
+""ÆÃ
+= =(7
+%3boolean"*java.lang.Enum#equals(Ljava/lang/Object;)Z*o
+
+__unknown_file (S
+Q
+%0Kar.edu.unq.desapp.grupod.backenddesappapi.model.Operation$TransactionStatus*o
+
+__unknown_file (S
+Q
+%2Kar.edu.unq.desapp.grupod.backenddesappapi.model.Operation$TransactionStatus2equals(Ljava/lang/Object;)"
+= =(8
+""B=;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationHX

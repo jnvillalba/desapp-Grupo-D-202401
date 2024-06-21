@@ -1,0 +1,19 @@
+
+†ar.edu.unq.desapp.grupod.backenddesappapi.configuration.RestTemplateConfig#restTemplate()Lorg/springframework/web/client/RestTemplate;»
+°C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/configuration/RestTemplateConfig.java
+ 
+($"1*Ú
+1 (!lj
+ (1
+%0+org.springframework.web.client.RestTemplate"+org.springframework.web.client.RestTemplate›
+˜
+ (!
+%1"5org.springframework.web.client.RestTemplate#<init>()V*O
+
+__unknown_file (3
+1
+%0+org.springframework.web.client.RestTemplate"?
+ ("3
+1
+%0+org.springframework.web.client.RestTemplateBNL
+Jar.edu.unq.desapp.grupod.backenddesappapi.configuration.RestTemplateConfigH

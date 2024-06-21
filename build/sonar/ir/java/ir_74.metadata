@@ -1,0 +1,3 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.configuration.AspectConfig#logExecutionTimeAspectAnnotation()Lar/edu/unq/desapp/grupod/backenddesappapi/utils/aspects/LogExecutionTimeAspectAnnotation;
+ar.edu.unq.desapp.grupod.backenddesappapi.utils.aspects.LogExecutionTimeAspectAnnotation#instance-init#
+ar.edu.unq.desapp.grupod.backenddesappapi.utils.aspects.LogExecutionTimeAspectAnnotation#<init>()V

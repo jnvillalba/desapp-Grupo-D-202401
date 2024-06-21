@@ -1,0 +1,13 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#mapResponseToBinancePriceDTOList([[Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
+java.util.ArrayList#<init>()V
+java.time.LocalDateTime#ofInstant(Ljava/time/Instant;Ljava/time/ZoneId;)Ljava/time/LocalDateTime;
+java.lang.Long#parseLong(Ljava/lang/String;)J
+java.util.ArrayList#instance-init#
+java.time.LocalDateTime#withMinute(I)Ljava/time/LocalDateTime;
+java.time.ZoneId#systemDefault()Ljava/time/ZoneId;
+java.time.Instant#ofEpochMilli(J)Ljava/time/Instant;
+ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO#instance-init#
+java.lang.Float#parseFloat(Ljava/lang/String;)F
+ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO#<init>(Ljava/lang/String;Ljava/lang/Float;Ljava/time/LocalDateTime;)V
+==
+add java.util.List#add(Ljava/lang/Object;)Z

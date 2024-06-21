@@ -1,0 +1,9 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService#loadUserByUsername(Ljava/lang/String;)Lorg/springframework/security/core/userdetails/UserDetails;
+org.springframework.security.core.userdetails.User#instance-init#
+org.springframework.security.core.userdetails.User#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/util/Collection;)V
+==
+getPassword ar.edu.unq.desapp.grupod.backenddesappapi.model.User#getPassword()Ljava/lang/String;
+findByEmail ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository#findByEmail(Ljava/lang/String;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/User;
+getRoles ar.edu.unq.desapp.grupod.backenddesappapi.model.User#getRoles()Ljava/util/List;
+getEmail ar.edu.unq.desapp.grupod.backenddesappapi.model.User#getEmail()Ljava/lang/String;
+mapToAuthorities ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService#mapToAuthorities(Ljava/util/List;)Ljava/util/Collection;

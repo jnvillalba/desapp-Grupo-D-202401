@@ -1,0 +1,33 @@
+
+¦ar.edu.unq.desapp.grupod.backenddesappapi.services.CryptoActiveService#getCryptoActive(Ljava/lang/Long;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/CryptoActive;·
+¬C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/CryptoActiveService.java ('"1*ò
+1 (%í
+ê
+ (%S
+%0Mar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository"__id*‚
+
+__unknown_file (f*dH
+Far.edu.unq.desapp.grupod.backenddesappapi.services.CryptoActiveService"
+cryptoActiveRepositoryÑÎ
+ (2
+%1java.util.Optional"corg.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;*q
+
+__unknown_file (U
+S
+%0Mar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository*2
+
+__unknown_file (
+
+idjava.lang.Long2findById(Ljava/lang/Object;)ÌÉ
+ (@B
+%2<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive"2java.util.Optional#orElseThrow()Ljava/lang/Object;*6
+
+__unknown_file (
+
+%1java.util.Optional2orElseThrow()"P
+ (AD
+B
+%2<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive: 
+( (/
+idjava.lang.LongBJH
+Far.edu.unq.desapp.grupod.backenddesappapi.services.CryptoActiveServiceH

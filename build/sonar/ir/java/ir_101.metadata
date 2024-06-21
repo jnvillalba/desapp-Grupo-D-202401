@@ -1,0 +1,4 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.CryptoActiveService#getCryptoActive(Ljava/lang/Long;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/CryptoActive;
+java.util.Optional#orElseThrow()Ljava/lang/Object;
+==
+findById org.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;

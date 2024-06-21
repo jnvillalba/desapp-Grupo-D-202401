@@ -1,0 +1,7 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#registerUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/UserDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/User;
+==
+save org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;
+getPassword ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO#getPassword()Ljava/lang/String;
+setPassword ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO#setPassword(Ljava/lang/String;)V
+toModel ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO#toModel()Lar/edu/unq/desapp/grupod/backenddesappapi/model/User;
+encode org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder#encode(Ljava/lang/CharSequence;)Ljava/lang/String;

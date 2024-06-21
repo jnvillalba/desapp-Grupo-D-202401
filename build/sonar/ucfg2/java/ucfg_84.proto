@@ -1,0 +1,26 @@
+
+}ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#calculateTotalPriceInPesos(Ljava/util/List;)Ljava/lang/Double;¯
+¤C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/UserService.java\ \(-"1*ä
+1] ](ª§
+] ]("
+%0java.util.stream.Stream"6java.util.Collection#stream()Ljava/util/stream/Stream;*:
+
+__unknown_file (
+
+
+activeDTOsjava.util.List2stream()“
+] ^(;
+%1"ijava.util.stream.Stream#mapToDouble(Ljava/util/function/ToDoubleFunction;)Ljava/util/stream/DoubleStream;*;
+
+__unknown_file (
+
+%0java.util.stream.Stream*"
+
+__unknown_file (
+""22mapToDouble(Ljava/util/function/ToDoubleFunction;)"
+] _(
+"":(
+\. \(H
+
+activeDTOsjava.util.ListBB@
+>ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService

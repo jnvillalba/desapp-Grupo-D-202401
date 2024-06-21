@@ -103,4 +103,10 @@ public class UserService {
                 .sum();
     }
 
+    public List<UserDTO> getAllUsers(){
+        List<User> userList = userRepository.findAll();
+        return userList.stream()
+                .map(UserDTO::toDto).toList();
+    }
+
 }

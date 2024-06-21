@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" tests="10" skipped="0" failures="0" errors="0" timestamp="2024-06-17T20:44:35" hostname="DESKTOP-SKCGK58" time="0.332">
+  <properties/>
+  <testcase name="testToActiveDTO()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.019"/>
+  <testcase name="testJsonIncludeNonNull()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.0"/>
+  <testcase name="testGetterAndSetter()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.001"/>
+  <testcase name="testJsonFormat()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.001"/>
+  <testcase name="testToDtoConversion()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.002"/>
+  <testcase name="testGetFormattedCreationDateTime()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.001"/>
+  <testcase name="testAllArgsConstructor()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.001"/>
+  <testcase name="testUserIdNotNull()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.288"/>
+  <testcase name="testProcessAccionDescription()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.001"/>
+  <testcase name="testGetUserId()" classname="ar.edu.unq.desapp.grupod.backenddesappapi.dto.DTOsTests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

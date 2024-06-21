@@ -1,0 +1,6 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;)V
+==
+handleSuccesfulTransaction ar.edu.unq.desapp.grupod.backenddesappapi.model.User#handleSuccesfulTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;)V
+isCancelled ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelled()Z
+handleCancelledTransaction ar.edu.unq.desapp.grupod.backenddesappapi.model.User#handleCancelledTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;)V
+isSuccess ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isSuccess()Z

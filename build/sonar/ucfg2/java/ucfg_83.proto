@@ -1,0 +1,52 @@
+
+‹ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#mapOperationsToActiveDTOs(Ljava/util/List;Ljava/lang/Float;)Ljava/util/List;¯
+¤C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/UserService.javaU U(5"1*î
+1V V(ª§
+V V("
+%0java.util.stream.Stream"6java.util.Collection#stream()Ljava/util/stream/Stream;*:
+
+__unknown_file (
+
+
+operationsjava.util.List2stream()´
+±
+W W(_!
+%1java.util.function.Function"__declareFunction*o
+
+__unknown_file (SQ
+O__sonar_lambda_6$ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService‘
+Ž
+
+__unknown_file (0
+!
+%1java.util.function.Function"
+	dolarBlue"__id*:
+
+__unknown_file (
+
+	dolarBluejava.lang.Float£ 
+V W(`
+%4java.util.stream.Stream"Sjava.util.stream.Stream#map(Ljava/util/function/Function;)Ljava/util/stream/Stream;*;
+
+__unknown_file (
+
+%0java.util.stream.Stream*?
+
+__unknown_file (#
+!
+%1java.util.function.Function2"map(Ljava/util/function/Function;)œ™
+V X(
+%5java.util.List"0java.util.stream.Stream#toList()Ljava/util/List;*;
+
+__unknown_file (
+
+%4java.util.stream.Stream2toList()""
+V X(
+
+%5java.util.List:(
+U6 U(Q
+
+operationsjava.util.List:(
+UR U(a
+	dolarBluejava.lang.FloatBB@
+>ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService

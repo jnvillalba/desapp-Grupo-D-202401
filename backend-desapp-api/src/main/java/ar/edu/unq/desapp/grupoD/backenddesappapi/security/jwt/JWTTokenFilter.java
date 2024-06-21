@@ -21,7 +21,6 @@ import java.io.IOException;
 @AllArgsConstructor
 @Slf4j
 @SuppressWarnings("all")
-
 public class JWTTokenFilter extends OncePerRequestFilter {
 
     private final JWTTokenHelper jwtTokenHelper;

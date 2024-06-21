@@ -1,0 +1,61 @@
+
+Oar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#wasWithin30Minutes()Z™
+üC:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/Operation.javaH H(%"1*∞
+1I I()ù
+ö
+I I(/
+%0java.time.LocalDateTime"6java.time.LocalDateTime#now()Ljava/time/LocalDateTime;*7
+
+__unknown_file ("
+java.time.LocalDateTimeo
+m
+I I(0
+nowjava.time.LocalDateTime"__id*;
+
+__unknown_file (
+
+%0java.time.LocalDateTimeú
+ô
+J  J()
+%1java.time.LocalDateTime"__id*h
+
+__unknown_file (L*J;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation"
+	createdAt¬
+ø
+J J(/
+%2java.time.Duration"jjava.time.Duration#between(Ljava/time/temporal/Temporal;Ljava/time/temporal/Temporal;)Ljava/time/Duration;*2
+
+__unknown_file ("
+java.time.Duration*;
+
+__unknown_file (
+
+%1java.time.LocalDateTime*<
+
+__unknown_file ( 
+
+nowjava.time.LocalDateTime~|
+J J(;
+
+%3long"java.time.Duration#toMinutes()J*6
+
+__unknown_file (
+
+%2java.time.Duration2toMinutes()ó
+î
+J J(A
+%4boolean"	__compare*"
+
+__unknown_file (
+<=*(
+
+__unknown_file (
+
+
+%3long* 
+
+__unknown_file (2"
+J J(B
+""B=;
+9ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationHX

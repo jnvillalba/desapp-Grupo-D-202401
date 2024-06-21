@@ -1,0 +1,118 @@
+
+Äar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#loginUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/LoginDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/JwtDTO;¯
+¤C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/UserService.java* *("1*þ
+1+" +(:ä
+á
++" +(:Q
+%0Kar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService"__id*|
+
+__unknown_file (`*^@
+>ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService"
+customUserDetailsServiceøõ
++N +(e
+%1java.lang.String"Yar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO#getEmail()Ljava/lang/String;*j
+
+__unknown_file (N
+L
+loginUsuario<ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO2
+getEmail()ÍÊ
++" +(f?
+%29org.springframework.security.core.userdetails.UserDetails"­ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService#loadUserByUsername(Ljava/lang/String;)Lorg/springframework/security/core/userdetails/UserDetails;*o
+
+__unknown_file (S
+Q
+%0Kar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService*4
+
+__unknown_file (
+
+%1java.lang.String2&loadUserByUsername(Ljava/lang/String;)¼
+¹
++ +(gH
+userDetails9org.springframework.security.core.userdetails.UserDetails"__id*]
+
+__unknown_file (A
+?
+%29org.springframework.security.core.userdetails.UserDetailsøõ
+, ,(.
+%3java.lang.String"Yar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO#getEmail()Ljava/lang/String;*j
+
+__unknown_file (N
+L
+loginUsuario<ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO2
+getEmail()þû
+,0 ,(J
+%4java.lang.String"\ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO#getPassword()Ljava/lang/String;*j
+
+__unknown_file (N
+L
+loginUsuario<ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO2getPassword()Û
+Ø
+, ,(K
+
+%5void"tar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#doAuthenticate(Ljava/lang/String;Ljava/lang/String;)V*^
+
+__unknown_file (B@
+>ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService*4
+
+__unknown_file (
+
+%3java.lang.String*4
+
+__unknown_file (
+
+%4java.lang.StringÔ
+Ñ
+- -(#K
+%6Ear.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper"__id*r
+
+__unknown_file (V*T@
+>ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService"
+jwtTokenHelperøõ
+-2 -(I
+%7java.lang.String"Yar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO#getEmail()Ljava/lang/String;*j
+
+__unknown_file (N
+L
+loginUsuario<ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTO2
+getEmail()äá
+- -(J
+%8java.lang.String"yar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper#generateToken(Ljava/lang/String;)Ljava/lang/String;*i
+
+__unknown_file (M
+K
+%6Ear.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper*4
+
+__unknown_file (
+
+%7java.lang.String2!generateToken(Ljava/lang/String;)a
+_
+- -(K
+jwtjava.lang.String"__id*4
+
+__unknown_file (
+
+%8java.lang.String…‚
+.= .(Y
+%9java.util.Collection"`org.springframework.security.core.userdetails.UserDetails#getAuthorities()Ljava/util/Collection;*f
+
+__unknown_file (J
+H
+userDetails9org.springframework.security.core.userdetails.UserDetails2getAuthorities()q
+o
+. .(Z#
+authoritiesjava.util.Collection"__id*8
+
+__unknown_file (
+
+%9java.util.Collectionøõ
+/ /(8
+%10java.lang.String"Yorg.springframework.security.core.userdetails.UserDetails#getUsername()Ljava/lang/String;*f
+
+__unknown_file (J
+H
+userDetails9org.springframework.security.core.userdetails.UserDetails2getUsername()"
+/ /(G
+"":X
+* *(1L
+loginUsuario<ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.LoginDTOBB@
+>ar.edu.unq.desapp.grupod.backenddesappapi.services.UserServiceH

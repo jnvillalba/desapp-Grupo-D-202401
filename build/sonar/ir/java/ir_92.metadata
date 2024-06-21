@@ -1,0 +1,11 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO#toModel()Lar/edu/unq/desapp/grupod/backenddesappapi/model/User;
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#instance-init#
+ar.edu.unq.desapp.grupod.backenddesappapi.model.User#<init>()V
+==
+setWalletCrypto ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setWalletCrypto(Ljava/lang/String;)V
+setEmail ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setEmail(Ljava/lang/String;)V
+setName ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setName(Ljava/lang/String;)V
+setLastName ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setLastName(Ljava/lang/String;)V
+setPassword ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setPassword(Ljava/lang/String;)V
+setCvuMercadoPago ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setCvuMercadoPago(Ljava/lang/String;)V
+setDirection ar.edu.unq.desapp.grupod.backenddesappapi.model.User#setDirection(Ljava/lang/String;)V

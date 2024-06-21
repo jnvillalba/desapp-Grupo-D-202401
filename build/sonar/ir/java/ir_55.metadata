@@ -1,0 +1,4 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper#validateToken(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Boolean;
+java.lang.String#equals(Ljava/lang/Object;)Z
+ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper#getUsernameFromToken(Ljava/lang/String;)Ljava/lang/String;
+ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper#isTokenExpired(Ljava/lang/String;)Ljava/lang/Boolean;

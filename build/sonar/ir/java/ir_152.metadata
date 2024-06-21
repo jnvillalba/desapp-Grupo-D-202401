@@ -1,0 +1,4 @@
+ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#getUser(Ljava/lang/Long;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/User;
+java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
+==
+findById org.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;

@@ -1,0 +1,49 @@
+
+Öar.edu.unq.desapp.grupod.backenddesappapi.webservice.CryptoExchangeController#processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ProcessTransactionDTO;)Lorg/springframework/http/ResponseEntity;¾
+³C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/webservice/CryptoExchangeController.java>" >(4"1*Ô
+1? ?(0è
+å
+? ?(0K
+%0Ear.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService"__id*…
+
+__unknown_file (i*gO
+Mar.edu.unq.desapp.grupod.backenddesappapi.webservice.CryptoExchangeController"
+transactionServiceíê
+? ?(H?
+%19ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation"àar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService#processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ProcessTransactionDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;*i
+
+__unknown_file (M
+K
+%0Ear.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService*n
+
+__unknown_file (R
+P
+trxIar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO2_processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ProcessTransactionDTO;)º
+·
+? ?(IF
+	operation9ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation"__id*]
+
+__unknown_file (A
+?
+%19ar.edu.unq.desapp.grupod.backenddesappapi.model.Operationô
+ñ
+@ @("9
+%23org.springframework.http.ResponseEntity$BodyBuilder"aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
+
+__unknown_file (+")
+'org.springframework.http.ResponseEntity¡ž
+@ @(I
+%3"uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*W
+
+__unknown_file (;
+9
+%23org.springframework.http.ResponseEntity$BodyBuilder*"
+
+__unknown_file (
+""2body(Ljava/lang/Object;)"
+@ @(J
+
+%3:\
+>5 >([P
+trxIar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTOBQO
+Mar.edu.unq.desapp.grupod.backenddesappapi.webservice.CryptoExchangeControllerH
