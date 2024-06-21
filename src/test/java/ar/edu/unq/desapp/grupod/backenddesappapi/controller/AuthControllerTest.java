@@ -1,6 +1,5 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.controller;
 
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,8 +51,6 @@ public class AuthControllerTest {
         userDTO.setPassword("Password@123");
         userDTO.setCvuMercadoPago("1234567890123456789012");
         userDTO.setWalletCrypto("12345678");
-
-        User user = userDTO.toModel();
 
         mvc.perform(
                         post("/api/auth/register")

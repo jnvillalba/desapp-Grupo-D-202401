@@ -234,3 +234,11 @@ sbackend-desapp-api/src/main/java/ar/edu/unq/desapp/grupoD/backenddesappapi/webs
 ~backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupoD/backenddesappapi/utils/aspects/LogExecutionTimeAspectAnnotation.java,6\1\612aabe3990ed227208d1c14a0e79878264af5df
 O
 backend-desapp-api/build.gradle,6\4\64bf9f03e7eec902665aaf5a8bd874d04fd59008
+ˆ
+Xsrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/architecture/AnnotationTest.java,1\4\1441e51102466779166d4ad91dc84e2f4ec41367
+7
+HELP.md,1\a\1a273f73b7a477b0745593641bd708a6182c7ad5
+A
+RELEASE-NOTES.txt,f\3\f3a4611c5b27808109eecbffe706f70a983e7b07
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
