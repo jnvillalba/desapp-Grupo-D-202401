@@ -1,22 +1,20 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt;
 
-import java.security.Key;
-import java.util.Date;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
 import javax.crypto.SecretKey;
+import java.security.Key;
+import java.util.Date;
 
 @Component
 public class JWTTokenHelper {
 
-    public static final long JWT_TOKEN_VALIDITY_MILLIS =  60L * 60000; // 5 mins
+    public static final long JWT_TOKEN_VALIDITY_MILLIS = 60L * 60000; // 5 mins
     private static final String SECRET = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
 
     public static String getUsernameFromToken(String token) {

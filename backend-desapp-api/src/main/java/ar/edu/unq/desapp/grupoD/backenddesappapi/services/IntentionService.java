@@ -30,7 +30,7 @@ public class IntentionService {
         return intentionRepository.save(intention);
     }
 
-    public List<IntentionDTO> getAllIntentions(){
+    public List<IntentionDTO> getAllIntentions() {
         List<Intention> intentionList = intentionRepository.findAll();
         return intentionList.stream()
                 .map(IntentionDTO::toDto).toList();

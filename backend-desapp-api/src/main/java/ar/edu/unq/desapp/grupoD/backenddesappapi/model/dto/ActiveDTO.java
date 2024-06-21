@@ -18,7 +18,7 @@ public class ActiveDTO {
         active.setNominalCryptoAmount(cryptoActive.getAmount());
         Float price = cryptoActive.getPrice();
         active.setCurrentCryptoPrice(price);
-        active.setPriceInPesosARG(price*dolarBlue);
+        active.setPriceInPesosARG(price * dolarBlue);
         return active;
     }
 }

@@ -3,9 +3,9 @@ package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.UserNotFoundException;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
 import ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -33,6 +34,7 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
 
     private final BCryptPasswordEncoder passwordEncoder;
+
     public User registerUser(UserDTO userDTO) {
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         User user = userDTO.toModel();

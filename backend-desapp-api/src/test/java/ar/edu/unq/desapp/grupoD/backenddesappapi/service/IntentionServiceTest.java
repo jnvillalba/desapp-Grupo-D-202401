@@ -1,9 +1,9 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.service;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive;
+import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
-import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ExpressIntentionDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.IntentionDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.CryptoActiveRepository;

@@ -1,9 +1,9 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.configuration;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO;
-import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.*;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.*;
+import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.*;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +16,9 @@ import java.util.List;
 
 @Configuration
 public class DataInitializer {
+    private static final String JOHN_EMAIL = "John@example.com";
+    private static final String BTCUSDT = "BTCUSDT";
+
     @Bean
     public ApplicationRunner initializer(UserRepository userRepository,
                                          CryptoActiveRepository cryptoActiveRepository,
@@ -23,9 +26,9 @@ public class DataInitializer {
                                          OperationRepository operationRepository,
                                          TransactionService transactionService,
                                          BCryptPasswordEncoder passwordEncoder
-                                         ) {
+    ) {
         return args -> {
-            clearDatabase(userRepository, cryptoActiveRepository,intentionRepository,operationRepository);
+            clearDatabase(userRepository, cryptoActiveRepository, intentionRepository, operationRepository);
 
             initializeUsers(userRepository, passwordEncoder);
             initializeCryptoActives(cryptoActiveRepository);
@@ -34,10 +37,6 @@ public class DataInitializer {
             initializeIntentions(intentionRepository, userRepository, cryptoActiveRepository);
         };
     }
-
-    private static final String JOHN_EMAIL = "John@example.com";
-
-    private static final String BTCUSDT = "BTCUSDT";
 
     private void clearDatabase(UserRepository userRepository,
                                CryptoActiveRepository cryptoActiveRepository,

@@ -8,6 +8,7 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.OperationRepositor
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 @Service
 @AllArgsConstructor
 public class TransactionService {
@@ -17,10 +18,10 @@ public class TransactionService {
     @Transactional
     public Operation processTransaction(ProcessTransactionDTO trx) {
         Operation operation = operationRepository.findById(trx.getOperationId())
-                .orElseThrow(() -> new OperationNotFoundException( trx.getOperationId()));
+                .orElseThrow(() -> new OperationNotFoundException(trx.getOperationId()));
 
         User user = operation.getUser();
-        if (trx.getProcessType().equals(ProcessTransactionDTO.ProcessAccion.CANCEL)){
+        if (trx.getProcessType().equals(ProcessTransactionDTO.ProcessAccion.CANCEL)) {
             operation.setStatus(Operation.TransactionStatus.CANCELED_BY_USER);
         } else {
             operation.setStatus(Operation.TransactionStatus.CONFIRMED);

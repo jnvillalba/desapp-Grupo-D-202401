@@ -7,6 +7,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -34,7 +35,7 @@ public class User {
     @NotBlank
     @Size(min = 10, max = 30)
     private String direction;
-    
+
     @NotBlank
     //Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$")
     private String password;
@@ -67,7 +68,7 @@ public class User {
         return reputation;
     }
 
-    public double findReputation(){
+    public double findReputation() {
         return reputation;
     }
 

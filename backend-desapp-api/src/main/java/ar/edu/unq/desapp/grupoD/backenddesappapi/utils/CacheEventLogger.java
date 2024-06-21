@@ -8,7 +8,7 @@ import org.ehcache.event.CacheEventListener;
 public class CacheEventLogger implements CacheEventListener<Object, Object> {
 
     @Override
-    public void onEvent( CacheEvent<?, ?> cacheEvent) {
+    public void onEvent(CacheEvent<?, ?> cacheEvent) {
         String oldValueString = cacheEvent.getOldValue() != null ? cacheEvent.getOldValue().toString() : null;
         String newValueString = cacheEvent.getNewValue() != null ? cacheEvent.getNewValue().toString() : null;
         var cacheEventKey = cacheEvent.getKey();
@@ -18,7 +18,7 @@ public class CacheEventLogger implements CacheEventListener<Object, Object> {
         String red = "\033[0;31m";
         String green = "\033[0;32m";
 
-        String logMessage = magenta + ">>> UpdateCache"+ resetColor + "\n" +
+        String logMessage = magenta + ">>> UpdateCache" + resetColor + "\n" +
                 "KEY: " + blue + cacheEventKey + resetColor + "\n" +
                 "OLDVALUE: " + red + oldValueString + resetColor + "\n" +
                 "NEWVALUE: " + green + newValueString + resetColor;

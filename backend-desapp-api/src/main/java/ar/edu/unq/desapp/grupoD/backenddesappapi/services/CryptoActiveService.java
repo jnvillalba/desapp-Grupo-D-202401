@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class CryptoActiveService {
     private final CryptoActiveRepository cryptoActiveRepository;
 
-    public CryptoActive getCryptoActive(Long id){
+    public CryptoActive getCryptoActive(Long id) {
         return cryptoActiveRepository.findById(id).orElseThrow();
     }
 }

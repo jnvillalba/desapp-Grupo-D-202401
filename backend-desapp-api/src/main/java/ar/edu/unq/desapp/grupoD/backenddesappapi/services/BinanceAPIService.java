@@ -2,10 +2,10 @@ package ar.edu.unq.desapp.grupod.backenddesappapi.services;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.BinancePriceDTO;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +14,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -27,7 +26,7 @@ public class BinanceAPIService {
     private RestTemplate restTemplate = new RestTemplate();
 
 
-    @CacheEvict(cacheNames = { "cryptoCache" }, allEntries = true)
+    @CacheEvict(cacheNames = {"cryptoCache"}, allEntries = true)
     public void clearCache() {
         log.info("Clear Cache cryptoCache");
     }

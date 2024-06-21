@@ -1,7 +1,5 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.services;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.Role;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.User;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
@@ -13,6 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 @Service
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,11 +27,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public Collection<GrantedAuthority> mapToAuthorities(List<Role> roleList){
+    public Collection<GrantedAuthority> mapToAuthorities(List<Role> roleList) {
         return new ArrayList<>(roleList.stream()
                 .map(role -> new SimpleGrantedAuthority(role.name()))
                 .toList());
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -41,36 +42,35 @@ public class Operation {
 
     private LocalDateTime createdAt;
 
-
-    public enum TransactionStatus {
-        PENDING,
-        CONFIRMED,
-        CANCELED_BY_USER,
-        CANCELED_BY_SYSTEM
-    }
-
-    boolean isSuccess(){
+    boolean isSuccess() {
         return status.equals(TransactionStatus.CONFIRMED);
     }
 
     public boolean isCancelled() {
-        return isCancelledByUser() || isCancelledBySystem() ;
+        return isCancelledByUser() || isCancelledBySystem();
     }
 
     public boolean isPending() {
         return status.equals(TransactionStatus.PENDING);
     }
 
-    public boolean isCancelledByUser(){
+    public boolean isCancelledByUser() {
         return status == TransactionStatus.CANCELED_BY_USER;
-}
+    }
 
-    public boolean isCancelledBySystem(){
+    public boolean isCancelledBySystem() {
         return status == TransactionStatus.CANCELED_BY_SYSTEM;
     }
 
     public boolean wasWithin30Minutes() {
         LocalDateTime now = LocalDateTime.now();
         return Duration.between(createdAt, now).toMinutes() <= 30;
+    }
+
+    public enum TransactionStatus {
+        PENDING,
+        CONFIRMED,
+        CANCELED_BY_USER,
+        CANCELED_BY_SYSTEM
     }
 }

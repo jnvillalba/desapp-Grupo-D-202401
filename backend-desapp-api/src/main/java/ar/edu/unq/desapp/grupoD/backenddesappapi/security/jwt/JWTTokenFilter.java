@@ -1,7 +1,10 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt;
-import java.io.IOException;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -11,23 +14,23 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 @Component
 @AllArgsConstructor
 @Slf4j
+@SuppressWarnings("all")
+
 public class JWTTokenFilter extends OncePerRequestFilter {
 
     private final JWTTokenHelper jwtTokenHelper;
 
     private final CustomUserDetailsService customUserDetailsService;
 
-    private String getTokenFromRequest(HttpServletRequest httpServletRequest){
+    private String getTokenFromRequest(HttpServletRequest httpServletRequest) {
         String bearerToken = httpServletRequest.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")){
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
         return null;
