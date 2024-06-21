@@ -43,17 +43,17 @@ public class SecurityConfiguration {
                                         antMatcher("/api/auth/**")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/intentions")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/prices")).permitAll()
-                                .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/**")).permitAll().requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/**")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/crypto/intention")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/crypto/operation/processTransaction")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "api/crypto/intention")).hasRole(Role.USER.name())
                                 .anyRequest().authenticated()
                 )
-                .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)) // This so embedded frames in h2-console are working
+                .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class); // Add your custom filter here
+                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }
