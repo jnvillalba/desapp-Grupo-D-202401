@@ -3,7 +3,7 @@ package ar.edu.unq.desapp.grupoD.backenddesappapi.exceptions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ExceptionsTests {
+class ExceptionsTest {
     @Test
     void testConstructor() {
         Long id = 123L;
