@@ -1,6 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.utils.aspects.LogExecutionTimeAspectAnnotation#getCurrentUser()Ljava/lang/String;
-org.springframework.security.core.context.SecurityContextHolder#getContext()Lorg/springframework/security/core/context/SecurityContext;
-==
-isAuthenticated org.springframework.security.core.Authentication#isAuthenticated()Z
-getAuthentication org.springframework.security.core.context.SecurityContext#getAuthentication()Lorg/springframework/security/core/Authentication;
-getName java.security.Principal#getName()Ljava/lang/String;

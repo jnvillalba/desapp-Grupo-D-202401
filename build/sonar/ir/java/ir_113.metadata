@@ -1,9 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#getPriceOfCoinSymbol(Ljava/lang/String;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/BinancePriceDTO;
-ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException#instance-init#
-ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException#<init>(Ljava/lang/String;I)V
-==
-getStatusCode org.springframework.http.ResponseEntity#getStatusCode()Lorg/springframework/http/HttpStatusCode;
-getForEntity org.springframework.web.client.RestTemplate#getForEntity(Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;
-value org.springframework.http.HttpStatusCode#value()I
-is2xxSuccessful org.springframework.http.HttpStatusCode#is2xxSuccessful()Z
-getBody org.springframework.http.HttpEntity#getBody()Ljava/lang/Object;

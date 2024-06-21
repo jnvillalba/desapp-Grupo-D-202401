@@ -1,54 +1,0 @@
-
-Ùar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO#toActiveDTO(Lar/edu/unq/desapp/grupod/backenddesappapi/model/CryptoActive;Ljava/lang/Float;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ActiveDTO;®
-£C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ActiveDTO.java ('"1*·
-1 (*‘Ž
- ((C
-%0=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO"=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO¿
-¼
- (*
-%1"Gar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO#<init>()V*a
-
-__unknown_file (E
-C
-%0=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO¿
-¼
- (+G
-active=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO"__id*a
-
-__unknown_file (E
-C
-%0=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTOú÷
- (1
-%2java.lang.String"Zar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive#getSymbol()Ljava/lang/String;*j
-
-__unknown_file (N
-L
-cryptoActive<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive2getSymbol()ßÜ
-& (>
-%3double"Iar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive#getAmount()D*j
-
-__unknown_file (N
-L
-cryptoActive<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive2getAmount()öó
- (-
-%4java.lang.Float"Xar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive#getPrice()Ljava/lang/Float;*j
-
-__unknown_file (N
-L
-cryptoActive<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive2
-getPrice()a
-_
- (.
-pricejava.lang.Float"__id*3
-
-__unknown_file (
-
-%4java.lang.Float"U
- (I
-G
-active=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO:X
-( (BL
-cryptoActive<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive:(
-C (R
-	dolarBluejava.lang.FloatBA"?
-=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTOH

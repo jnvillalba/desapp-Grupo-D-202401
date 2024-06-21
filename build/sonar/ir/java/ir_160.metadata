@@ -1,7 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO#toActiveDTO(Lar/edu/unq/desapp/grupod/backenddesappapi/model/CryptoActive;Ljava/lang/Float;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ActiveDTO;
-ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO#<init>()V
-ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO#instance-init#
-==
-getAmount ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive#getAmount()D
-getSymbol ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive#getSymbol()Ljava/lang/String;
-getPrice ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive#getPrice()Ljava/lang/Float;

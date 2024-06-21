@@ -1,4 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelled()Z
-==
-isCancelledBySystem ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelledBySystem()Z
-isCancelledByUser ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#isCancelledByUser()Z

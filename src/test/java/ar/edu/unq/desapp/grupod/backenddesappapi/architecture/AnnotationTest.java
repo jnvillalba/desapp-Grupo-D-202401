@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.architecture;
+package ar.edu.unq.desapp.grupod.backenddesappapi.architecture;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.junit.AnalyzeClasses;

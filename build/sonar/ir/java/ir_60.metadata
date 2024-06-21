@@ -1,9 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService#processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ProcessTransactionDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;
-java.lang.Enum#equals(Ljava/lang/Object;)Z
-java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
-==
-getOperationId ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO#getOperationId()Ljava/lang/Long;
-save org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;
-findById org.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;
-processTransaction ar.edu.unq.desapp.grupod.backenddesappapi.model.User#processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;)V
-getProcessType ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO#getProcessType()Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ProcessTransactionDTO$ProcessAccion;

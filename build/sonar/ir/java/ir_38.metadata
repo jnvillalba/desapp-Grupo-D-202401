@@ -1,5 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.model.User#handleSuccesfulTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;)V
-ar.edu.unq.desapp.grupod.backenddesappapi.model.User#addReputation(D)V
-==
-add java.util.List#add(Ljava/lang/Object;)Z
-wasWithin30Minutes ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#wasWithin30Minutes()Z

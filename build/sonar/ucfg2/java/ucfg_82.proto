@@ -1,40 +1,0 @@
-
-O__sonar_lambda_6$ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService¯
-¤C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/UserService.javaW W(_"startingBlock*Ñ
-startingBlockW W(_°
-­
-
-__unknown_file (
-	dolarBluejava.lang.Float"__id*m
-
-__unknown_file (Q*O@
->ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService"
-	dolarBlue*
-1*ç
-1W" W(+ÖÓ
-W8 W(SB
-%2<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive"‰ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation#getCryptoActive()Lar/edu/unq/desapp/grupod/backenddesappapi/model/CryptoActive;*d
-
-__unknown_file (H
-F
-	operation9ar.edu.unq.desapp.grupod.backenddesappapi.model.Operation2getCryptoActive()«
-¨
-W" W(_C
-%3=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO"Ùar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO#toActiveDTO(Lar/edu/unq/desapp/grupod/backenddesappapi/model/CryptoActive;Ljava/lang/Float;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ActiveDTO;*]
-
-__unknown_file (A"?
-=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO*`
-
-__unknown_file (D
-B
-%2<ar.edu.unq.desapp.grupod.backenddesappapi.model.CryptoActive*:
-
-__unknown_file (
-
-	dolarBluejava.lang.Float"Q
-W" W(_E
-C
-%3=ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ActiveDTO:R
-W W(F
-	operation9ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationB
-java.util.function.Function

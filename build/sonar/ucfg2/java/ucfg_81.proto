@@ -1,65 +1,0 @@
-
-·ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#getOperationsForUserAndDateRange(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/RequestReportDTO;)Ljava/util/List;¯
-¤C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/UserService.javaN N(<"1*€
-1O O(Ô
-Ñ
-O O(K
-%0Ear.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository"__id*r
-
-__unknown_file (V*T@
->ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService"
-userRepositoryþ
-P P(#
-%1java.lang.Long"`ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getUserId()Ljava/lang/Long;*m
-
-__unknown_file (Q
-O
-requestDar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO2getUserId()‘Ž
-Q Q(&
-%2java.time.LocalDate"har.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getStartDate()Ljava/time/LocalDate;*m
-
-__unknown_file (Q
-O
-requestDar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO2getStartDate()²¯
-Q Q(5
-%3java.time.LocalDateTime";java.time.LocalDate#atStartOfDay()Ljava/time/LocalDateTime;*7
-
-__unknown_file (
-
-%2java.time.LocalDate2atStartOfDay()Š
-R R($
-%4java.time.LocalDate"far.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO#getEndDate()Ljava/time/LocalDate;*m
-
-__unknown_file (Q
-O
-requestDar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO2getEndDate()²¯
-R R(3
-%5java.time.LocalDateTime";java.time.LocalDate#atStartOfDay()Ljava/time/LocalDateTime;*7
-
-__unknown_file (
-
-%4java.time.LocalDate2atStartOfDay()ãà
-O R(4
-%6java.util.List"¼ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository#findOperationsByUserIdAndDateRange(Ljava/lang/Long;Ljava/time/LocalDateTime;Ljava/time/LocalDateTime;)Ljava/util/List;*i
-
-__unknown_file (M
-K
-%0Ear.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository*2
-
-__unknown_file (
-
-%1java.lang.Long*;
-
-__unknown_file (
-
-%3java.time.LocalDateTime*;
-
-__unknown_file (
-
-%5java.time.LocalDateTime2ffindOperationsByUserIdAndDateRange(Ljava/lang/Long;Ljava/time/LocalDateTime;Ljava/time/LocalDateTime;)""
-O R(5
-
-%6java.util.List:[
-N= N(UO
-requestDar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTOBB@
->ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService

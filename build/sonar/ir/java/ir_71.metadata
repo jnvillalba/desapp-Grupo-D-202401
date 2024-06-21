@@ -1,5 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.configuration.DataInitializer#prepareReport(Lar/edu/unq/desapp/grupod/backenddesappapi/services/TransactionService;)V
-ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO#instance-init#
-ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.ProcessTransactionDTO#<init>()V
-==
-processTransaction ar.edu.unq.desapp.grupod.backenddesappapi.services.TransactionService#processTransaction(Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/ProcessTransactionDTO;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;

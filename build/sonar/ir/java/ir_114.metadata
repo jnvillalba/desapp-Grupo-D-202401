@@ -1,6 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#getPricesOfCoins()Ljava/util/List;
-java.util.ArrayList#<init>()V
-java.util.ArrayList#instance-init#
-==
-add java.util.List#add(Ljava/lang/Object;)Z
-getPriceOfCoinSymbol ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#getPriceOfCoinSymbol(Ljava/lang/String;)Lar/edu/unq/desapp/grupod/backenddesappapi/model/dto/BinancePriceDTO;

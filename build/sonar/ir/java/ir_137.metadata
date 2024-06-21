@@ -1,3 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration#getAuthenticationManager(Lorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration;)Lorg/springframework/security/authentication/AuthenticationManager;
-==
-getAuthenticationManager org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration#getAuthenticationManager()Lorg/springframework/security/authentication/AuthenticationManager;

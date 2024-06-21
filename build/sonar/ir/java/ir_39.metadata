@@ -1,6 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.model.User#addIntention(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Intention;)V
-java.util.ArrayList#<init>()V
-java.util.ArrayList#instance-init#
-==
-add java.util.List#add(Ljava/lang/Object;)Z
-getUsers ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention#getUsers()Ljava/util/List;

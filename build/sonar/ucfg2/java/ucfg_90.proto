@@ -1,51 +1,0 @@
-
-„ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService#mapToAuthorities(Ljava/util/List;)Ljava/util/Collection;¼
-±C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/CustomUserDetailsService.java( (8"1*à
-1 ('¨¥
- (0
-%0java.util.stream.Stream"6java.util.Collection#stream()Ljava/util/stream/Stream;*8
-
-__unknown_file (
-
-roleListjava.util.List2stream()Á
-¾
- (D!
-%1java.util.function.Function"__declareFunction*|
-
-__unknown_file (`^
-\__sonar_lambda_7$ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService£ 
- (E
-%5java.util.stream.Stream"Sjava.util.stream.Stream#map(Ljava/util/function/Function;)Ljava/util/stream/Stream;*;
-
-__unknown_file (
-
-%0java.util.stream.Stream*?
-
-__unknown_file (#
-!
-%1java.util.function.Function2"map(Ljava/util/function/Function;)œ™
- (
-%6java.util.List"0java.util.stream.Stream#toList()Ljava/util/List;*;
-
-__unknown_file (
-
-%5java.util.stream.Stream2toList()<:
- (
-%7java.util.ArrayList"java.util.ArrayListµ
-²
- (
-%8"3java.util.ArrayList#<init>(Ljava/util/Collection;)V*7
-
-__unknown_file (
-
-%7java.util.ArrayList*2
-
-__unknown_file (
-
-%6java.util.List"'
- (
-
-%7java.util.ArrayList:&
-9 (L
-roleListjava.util.ListBOM
-Kar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsServiceH

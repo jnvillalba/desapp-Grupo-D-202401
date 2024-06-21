@@ -1,4 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.configuration.DataInitializer#initializeCryptoActives(Lar/edu/unq/desapp/grupod/backenddesappapi/repositories/CryptoActiveRepository;)V
-java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
-==
-save org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;

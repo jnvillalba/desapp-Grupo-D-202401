@@ -1,29 +1,0 @@
-
-\__sonar_lambda_7$ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService¼
-±C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/services/CustomUserDetailsService.java (D"1*Ì
-18 (<²¯
-8 (C
-%2java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*Z
-
-__unknown_file (>
-<
-role4ar.edu.unq.desapp.grupod.backenddesappapi.model.Role2name()›˜
-! (7H
-%3Borg.springframework.security.core.authority.SimpleGrantedAuthority"Borg.springframework.security.core.authority.SimpleGrantedAuthority‘
-Ž
- (D
-%4"^org.springframework.security.core.authority.SimpleGrantedAuthority#<init>(Ljava/lang/String;)V*f
-
-__unknown_file (J
-H
-%3Borg.springframework.security.core.authority.SimpleGrantedAuthority*4
-
-__unknown_file (
-
-%2java.lang.String"V
- (DJ
-H
-%3Borg.springframework.security.core.authority.SimpleGrantedAuthority:H
- (<
-role4ar.edu.unq.desapp.grupod.backenddesappapi.model.RoleB
-java.util.function.Function

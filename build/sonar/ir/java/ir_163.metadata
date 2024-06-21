@@ -1,3 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.configuration.ValidationConfig#validator()Lorg/springframework/validation/beanvalidation/LocalValidatorFactoryBean;
-org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#<init>()V
-org.springframework.validation.beanvalidation.LocalValidatorFactoryBean#instance-init#

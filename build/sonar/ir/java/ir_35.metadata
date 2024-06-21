@@ -1,2 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.model.User#isOperationBelongsToCurrentUser(Lar/edu/unq/desapp/grupod/backenddesappapi/model/Operation;)Z
-java.util.Objects#equals(Ljava/lang/Object;Ljava/lang/Object;)Z

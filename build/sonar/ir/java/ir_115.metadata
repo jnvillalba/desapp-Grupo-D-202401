@@ -1,8 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#last24HrsPrices(Ljava/lang/String;)Ljava/util/List;
-ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException#<init>(Ljava/lang/String;)V
-java.time.Instant#toEpochMilli()J
-ar.edu.unq.desapp.grupod.backenddesappapi.services.BinanceAPIService#mapResponseToBinancePriceDTOList([[Ljava/lang/String;Ljava/lang/String;)Ljava/util/List;
-ar.edu.unq.desapp.grupod.backenddesappapi.exceptions.BinancePriceFetchException#instance-init#
-java.time.Instant#now()Ljava/time/Instant;
-==
-getForObject org.springframework.web.client.RestTemplate#getForObject(Ljava/lang/String;Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;

@@ -1,4 +1,0 @@
-ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService#calculateTotalValueInDollars(Ljava/util/List;)Ljava/lang/Double;
-==
-mapToDouble java.util.stream.Stream#mapToDouble(Ljava/util/function/ToDoubleFunction;)Ljava/util/stream/DoubleStream;
-stream java.util.Collection#stream()Ljava/util/stream/Stream;

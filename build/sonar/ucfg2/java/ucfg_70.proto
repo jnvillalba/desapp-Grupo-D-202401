@@ -1,36 +1,0 @@
-
-ar.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration#getAuthenticationManager(Lorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration;)Lorg/springframework/security/authentication/AuthenticationManager;¹
-®C:/Users/Joaquin/Documents/UNQ/Dapp - UNQ/desapp-Grupo-D-202401/backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/SecurityConfiguration.java> >(2"startingBlock*
-startingBlock>2 >(k•
-’
-= =(	
-%1"
-__annotate*K
-
-__unknown_file (/-
-+org.springframework.context.annotation.Bean*¦
-
-__unknown_file (‰
-†
-authenticationConfigurationgorg.springframework.security.config.annotation.authentication.configuration.AuthenticationConfigurationÈ
-Å
->O >(j†
-authenticationConfigurationgorg.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration"__annotation*"
-
-__unknown_file (
-
-%1*
-1*Ê
-1? ?(*ãà
-? ?(EG
-%0Aorg.springframework.security.authentication.AuthenticationManager"Åorg.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration#getAuthenticationManager()Lorg/springframework/security/authentication/AuthenticationManager;*¦
-
-__unknown_file (‰
-†
-authenticationConfigurationgorg.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration2getAuthenticationManager()"U
-? ?(FI
-G
-%0Aorg.springframework.security.authentication.AuthenticationManager:“
->3 >(j†
-authenticationConfigurationgorg.springframework.security.config.annotation.authentication.configuration.AuthenticationConfigurationBLJ
-Har.edu.unq.desapp.grupod.backenddesappapi.security.SecurityConfiguration
