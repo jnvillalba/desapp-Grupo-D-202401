@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - dev
+      - services22
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -33,15 +34,13 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle
 
       - name: Grant execute permission to Gradle wrapper
-        run: chmod +x backend-desapp-api/gradlew
+        run: chmod +x ./gradlew
 
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          SONAR_TOKEN: f8edfec48c96271e124cb72d82c4283d878b7091
-        working-directory: ./backend-desapp-api
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: ./gradlew build sonar --info
 
       - name: Generate JaCoCo Report
-        working-directory: ./backend-desapp-api
         run: ./gradlew jacocoTestReport
