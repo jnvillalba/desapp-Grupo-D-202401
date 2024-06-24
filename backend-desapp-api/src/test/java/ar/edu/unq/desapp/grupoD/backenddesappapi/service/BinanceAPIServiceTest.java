@@ -74,7 +74,31 @@ class BinanceAPIServiceTest {
         assertEquals(symbol, result.get(0).getSymbol());
         assertEquals(45000.0f, result.get(0).getPrice());
     }
+    @Test
+    void testLast10MinPrices_Success() {
+        String symbol = "BTCUSDT";
+        String[][] mockResponse = new String[][]{
+                {"", "", "", "", "45000.0", "", String.valueOf(System.currentTimeMillis())}
+        };
+        when(restTemplate.getForObject(anyString(), eq(String[][].class)))
+                .thenReturn(mockResponse);
 
+        List<BinancePriceDTO> result = binanceAPIService.last10MinPrices(symbol);
+
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(symbol, result.get(0).getSymbol());
+        assertEquals(45000.0f, result.get(0).getPrice());
+    }
+
+    @Test
+    void testLast10MinPrices_Failure() {
+        String symbol = "BTCUSDT";
+        when(restTemplate.getForObject(anyString(), eq(String[][].class)))
+                .thenReturn(null);
+
+        assertThrows(BinancePriceFetchException.class, () -> binanceAPIService.last10MinPrices(symbol));
+    }
     @Test
     void testLast24HrsPrices_Failure() {
         String symbol = "BTCUSDT";

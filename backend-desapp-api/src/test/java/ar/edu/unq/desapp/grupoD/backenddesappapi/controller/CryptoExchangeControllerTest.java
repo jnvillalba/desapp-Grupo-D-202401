@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,13 +21,16 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.BUY;
 import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.SELL;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -166,5 +170,32 @@ public class CryptoExchangeControllerTest {
                 .andExpect(jsonPath("$[1].operationType").value("SELL"))
                 .andExpect(jsonPath("$[1].cryptoActiveId").value(1L))
                 .andExpect(jsonPath("$[1].pesosAmount").value(1000D));
+    }
+    @Test
+    void testLast24HrsPrices() throws Exception {
+        String symbol = "BTCUSDT";
+        BinancePriceDTO priceDTO = new BinancePriceDTO(symbol, 50000.0F, LocalDateTime.now());
+        List<BinancePriceDTO> prices = Collections.singletonList(priceDTO);
+        Mockito.when(binanceAPIService.last24HrsPrices(symbol)).thenReturn(prices);
+
+        mvc.perform(get("/api/crypto/crypto/last24HrsPrices/" + symbol))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].symbol").value(symbol))
+                .andExpect(jsonPath("$[0].price").value(50000.0));
+    }
+
+    @Test
+    void testLast10MinPrices() throws Exception {
+        String symbol = "BTCUSDT";
+        BinancePriceDTO priceDTO = new BinancePriceDTO(symbol, 50000.0F, LocalDateTime.now());
+        List<BinancePriceDTO> prices = Collections.singletonList(priceDTO);
+        Mockito.when(binanceAPIService.last10MinPrices(symbol)).thenReturn(prices);
+
+        mvc.perform(get("/api/crypto/crypto/last10MinPrices/" + symbol))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].symbol").value(symbol))
+                .andExpect(jsonPath("$[0].price").value(50000.0));
     }
 }
