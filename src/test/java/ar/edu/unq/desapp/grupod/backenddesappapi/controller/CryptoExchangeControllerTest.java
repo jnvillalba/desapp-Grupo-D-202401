@@ -23,7 +23,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
 import javax.cache.CacheManager;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,9 +30,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.BUY;
-import static ar.edu.unq.desapp.grupoD.backenddesappapi.model.OperationType.SELL;
-import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
