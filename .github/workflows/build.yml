@@ -4,7 +4,7 @@ on:
     branches:
       - main
       - dev
-      - services22
+      - feature/services22
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
