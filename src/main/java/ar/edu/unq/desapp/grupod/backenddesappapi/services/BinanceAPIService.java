@@ -21,7 +21,6 @@ import java.util.List;
 @Slf4j
 public class BinanceAPIService {
 
-    //@Value("${integration.binance.api.url:NONE}")
     private static final String BINANCE_API_URL = "https://api1.binance.com/api/v3/";
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -86,7 +85,7 @@ public class BinanceAPIService {
         long endTime = Instant.now().toEpochMilli();
         long startTime = endTime - (10 * 60 * 1000);
 
-        String apiUrl = binanceApiUrl + "klines?symbol=" + symbol + "&interval=1m&startTime=" + startTime + "&endTime=" + endTime;
+        String apiUrl = BINANCE_API_URL + "klines?symbol=" + symbol + "&interval=1m&startTime=" + startTime + "&endTime=" + endTime;
 
         String[][] response = restTemplate.getForObject(apiUrl, String[][].class);
 
