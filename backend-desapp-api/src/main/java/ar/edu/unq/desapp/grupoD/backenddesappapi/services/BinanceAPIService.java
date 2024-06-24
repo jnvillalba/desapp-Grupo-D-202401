@@ -69,6 +69,20 @@ public class BinanceAPIService {
         return mapResponseToBinancePriceDTOList(response, symbol);
     }
 
+    public List<BinancePriceDTO> last10MinPrices(String symbol) {
+        long endTime = Instant.now().toEpochMilli();
+        long startTime = endTime - (10 * 60 * 1000);
+
+        String apiUrl = binanceApiUrl + "klines?symbol=" + symbol + "&interval=1m&startTime=" + startTime + "&endTime=" + endTime;
+
+        String[][] response = restTemplate.getForObject(apiUrl, String[][].class);
+
+        if (response == null) {
+            throw new BinancePriceFetchException(symbol);
+        }
+        return mapResponseToBinancePriceDTOList(response, symbol);
+    }
+
     private List<BinancePriceDTO> mapResponseToBinancePriceDTOList(String[][] response, String symbol) {
         List<BinancePriceDTO> resultList = new ArrayList<>();
 
