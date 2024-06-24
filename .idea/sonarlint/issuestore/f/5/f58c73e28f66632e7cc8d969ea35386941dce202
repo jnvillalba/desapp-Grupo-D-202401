@@ -1,8 +1,0 @@
-
-c
-java:S1192>"HDefine a constant instead of duplicating this literal "BTCUSDT" 3 times.(Ç‚ñÒûÿÿÿÿ
-®
-java:S1598"—This file "BinanceAPIServiceTest.java" should be located in "ar\edu\unq\desapp\grupod\backenddesappapi\service" directory, not in "C:\Users\Joaquin\Documents\UNQ\Dapp - UNQ\desapp-Grupo-D-202401\backend-desapp-api\src\test\java\ar\edu\unq\desapp\grupoD\backenddesappapi\service".(Í÷èå
-h	java:S100="NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²áà«üÿÿÿÿ
-c	java:S100K"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œƒî
-b	java:S100\"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¯âƒ

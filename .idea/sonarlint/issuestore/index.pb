@@ -198,8 +198,6 @@ Msrc/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/dto/JwtDTO.java,
 Osrc/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/model/dto/LoginDTO.java,3\2\3288b9a6f194750e5a79edfd535bd057f6832791
 ã
 [src/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/SecurityConfiguration.java,b\4\b4e478702a6237eab7d221657aac683c70b475f9
-
-Osrc/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/BasicAuth.java,f\3\f3f323259c49ff724614d55cf8687c4fef210fcc
 à
 Xsrc/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/jwt/JWTTokenHelper.java,5\d\5d186d56481a78551a826e2bdbc7806a1bf94025
 à
@@ -216,24 +214,10 @@ ksrc/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/utils/aspects/LogExecut
 Wsrc/main/java/ar/edu/unq/desapp/grupod/backenddesappapi/configuration/AspectConfig.java,6\7\67b5a6d319cedcad581c50e2b3a983f3b3150501
 K
 logs/spring-boot-logger.log,2\e\2e759c24a2ba0f4d66a8106f3619e02d91eff778
-H
-sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
 Y
 )src/main/resources/application.properties,0\6\06f65155ec73600b9fc5c4dc2883d4bb84d8e284
 K
 .github/workflows/build.yml,f\e\fe77d5d1439f26e353a42bbd38dece2467ff6558
-ù
-mbackend-desapp-api/src/test/java/ar/edu/unq/desapp/grupoD/backenddesappapi/service/BinanceAPIServiceTest.java,f\5\f58c73e28f66632e7cc8d969ea35386941dce202
-ô
-ibackend-desapp-api/src/main/java/ar/edu/unq/desapp/grupoD/backenddesappapi/configuration/CacheConfig.java,6\f\6f0d6b0edfa81bf3cd83482c6b6dbd931b7c03fd
-ö
-jbackend-desapp-api/src/main/java/ar/edu/unq/desapp/grupoD/backenddesappapi/services/BinanceAPIService.java,3\a\3a30d0d107666c2ebf41861966dfa66c019125a5
-£
-sbackend-desapp-api/src/main/java/ar/edu/unq/desapp/grupoD/backenddesappapi/webservice/CryptoExchangeController.java,b\e\be813fe3290d3c3a05048e82a45eeb33ad0f4a54
-Æ
-~backend-desapp-api/src/main/java/ar/edu/unq/desapp/grupoD/backenddesappapi/utils/aspects/LogExecutionTimeAspectAnnotation.java,6\1\612aabe3990ed227208d1c14a0e79878264af5df
-O
-backend-desapp-api/build.gradle,6\4\64bf9f03e7eec902665aaf5a8bd874d04fd59008
 à
 Xsrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/architecture/AnnotationTest.java,1\4\1441e51102466779166d4ad91dc84e2f4ec41367
 7
