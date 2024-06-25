@@ -257,7 +257,7 @@ class DTOsTests {
     }
 
     @Test
-    public void testJwtDTOGettersAndSetters() {
+    void testJwtDTOGettersAndSetters() {
         String token = "testToken";
         String email = "test@example.com";
         Collection<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
@@ -274,7 +274,7 @@ class DTOsTests {
     }
 
     @Test
-    public void testFormattedCreationDateTime() {
+    void testFormattedCreationDateTime() {
         LocalDateTime creationDateTime = LocalDateTime.of(2024, 6, 24, 10, 30, 0);
         IntentionDTO dto = new IntentionDTO();
         dto.setCreationDateTime(creationDateTime);
