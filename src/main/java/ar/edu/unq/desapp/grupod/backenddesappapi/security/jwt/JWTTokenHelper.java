@@ -29,7 +29,6 @@ public class JWTTokenHelper {
         return claimsJws.getBody().getSubject();
     }
 
-    //check if the token has expired
     public static Boolean isTokenExpired(String token) {
         SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
@@ -42,8 +41,6 @@ public class JWTTokenHelper {
         return expiration != null && expiration.before(new Date());
     }
 
-    //generate token for user
-    //Sign the JWT using the HS512 algorithm and secret key.
     public String generateToken(String userName) {
         Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
@@ -56,7 +53,6 @@ public class JWTTokenHelper {
 
     }
 
-    //validate token
     public Boolean validateToken(String token, String userName) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userName) && !isTokenExpired(token));
