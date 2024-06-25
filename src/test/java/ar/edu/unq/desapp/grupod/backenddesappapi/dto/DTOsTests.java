@@ -10,20 +10,103 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class DTOsTests {
 
     @Mock
     private Validator validator;
 
+    @InjectMocks
+    private LoginDTO loginDTO;
+
+    @BeforeEach
+    void setUp() {
+        loginDTO = new LoginDTO();
+    }
+
+    @Test
+    void whenEmailIsNull_thenValidationFails() {
+        loginDTO.setEmail(null);
+        loginDTO.setPassword("Password1!");
+
+        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        when(violation.getMessage()).thenReturn("must not be blank");
+        when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
+
+        Set<ConstraintViolation<LoginDTO>> violations = validator.validate(loginDTO);
+        assertEquals(1, violations.size());
+        assertEquals("must not be blank", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    void whenEmailIsInvalid_thenValidationFails() {
+        loginDTO.setEmail("invalid-email");
+        loginDTO.setPassword("Password1!");
+
+        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        when(violation.getMessage()).thenReturn("must be a well-formed email address");
+        when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
+
+        Set<ConstraintViolation<LoginDTO>> violations = validator.validate(loginDTO);
+        assertEquals(1, violations.size());
+        assertEquals("must be a well-formed email address", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    void whenPasswordIsNull_thenValidationFails() {
+        loginDTO.setEmail("test@example.com");
+        loginDTO.setPassword(null);
+
+        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        when(violation.getMessage()).thenReturn("must not be blank");
+        when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
+
+        Set<ConstraintViolation<LoginDTO>> violations = validator.validate(loginDTO);
+        assertEquals(1, violations.size());
+        assertEquals("must not be blank", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    void whenPasswordIsInvalid_thenValidationFails() {
+        loginDTO.setEmail("test@example.com");
+        loginDTO.setPassword("invalid");
+
+        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        when(violation.getMessage()).thenReturn("must match \"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$\"");
+        when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
+
+        Set<ConstraintViolation<LoginDTO>> violations = validator.validate(loginDTO);
+        assertEquals(1, violations.size());
+        assertEquals("must match \"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$\"", violations.iterator().next().getMessage());
+    }
+
+    @Test
+    void whenEmailAndPasswordAreValid_thenValidationSucceeds() {
+        loginDTO.setEmail("test@example.com");
+        loginDTO.setPassword("Password1!");
+
+        when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.emptySet());
+
+        Set<ConstraintViolation<LoginDTO>> violations = validator.validate(loginDTO);
+        assertTrue(violations.isEmpty());
+    }
 
     @Test
     void testToActiveDTO() {
@@ -157,4 +240,6 @@ class DTOsTests {
 
         assertEquals("2022-10-15T12:30:00", formattedDateTime);
     }
+
+
 }
