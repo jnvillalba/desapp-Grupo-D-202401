@@ -18,7 +18,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -32,9 +31,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .ignoringRequestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login")))
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize ->
                         authorize.requestMatchers(antMatcher("/swagger-ui/**"),
                                         antMatcher("/swagger-ui.html"),
@@ -48,7 +45,9 @@ public class SecurityConfiguration {
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/prices")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.GET, "/api/crypto/crypto/**")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/crypto/intention")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "/api/auth/login/")).permitAll()
                                 .requestMatchers(antMatcher(HttpMethod.POST, "/api/crypto/operation/processTransaction")).permitAll()
+                                .requestMatchers(antMatcher(HttpMethod.POST, "api/crypto/intention")).hasRole(Role.USER.name())
                                 .anyRequest().authenticated()
                 )
                 .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
@@ -58,8 +57,6 @@ public class SecurityConfiguration {
 
         return httpSecurity.build();
     }
-
-
 
     @Bean
     AuthenticationManager getAuthenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
