@@ -21,7 +21,6 @@ import java.util.List;
 @Slf4j
 public class BinanceAPIService {
 
-    //@Value("${integration.binance.api.url:NONE}")
     private static final String BINANCE_API_URL = "https://api1.binance.com/api/v3/";
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -73,6 +72,20 @@ public class BinanceAPIService {
         long startTime = endTime - (24 * 60 * 60 * 1000);
 
         String apiUrl = BINANCE_API_URL + "klines?symbol=" + symbol + "&interval=1h&startTime=" + startTime + "&endTime=" + endTime;
+
+        String[][] response = restTemplate.getForObject(apiUrl, String[][].class);
+
+        if (response == null) {
+            throw new BinancePriceFetchException(symbol);
+        }
+        return mapResponseToBinancePriceDTOList(response, symbol);
+    }
+
+    public List<BinancePriceDTO> last10MinPrices(String symbol) {
+        long endTime = Instant.now().toEpochMilli();
+        long startTime = endTime - (10 * 60 * 1000);
+
+        String apiUrl = BINANCE_API_URL + "klines?symbol=" + symbol + "&interval=1m&startTime=" + startTime + "&endTime=" + endTime;
 
         String[][] response = restTemplate.getForObject(apiUrl, String[][].class);
 

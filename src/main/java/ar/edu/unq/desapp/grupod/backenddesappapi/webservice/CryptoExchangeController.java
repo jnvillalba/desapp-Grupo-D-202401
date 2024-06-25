@@ -60,6 +60,13 @@ public class CryptoExchangeController {
     }
 
     @LogExecutionTime
+    @io.swagger.v3.oas.annotations.Operation(summary = "Get a cryptocurrency last 10 minutes Prices")
+    @GetMapping("/crypto/last10MinPrices/{symbol}")
+    public ResponseEntity<List<BinancePriceDTO>> last10MinPrices(@PathVariable String symbol) {
+        return ResponseEntity.ok().body(binanceAPIService.last10MinPrices(symbol));
+    }
+
+    @LogExecutionTime
     @io.swagger.v3.oas.annotations.Operation(summary = "Process the transaction reported by a user")
     @PostMapping("/operation/processTransaction")
     public ResponseEntity<String> processTransaction(@RequestBody ProcessTransactionDTO trx) {
