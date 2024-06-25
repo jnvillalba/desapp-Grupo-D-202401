@@ -228,13 +228,9 @@ A
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ë
 asrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsServiceTest.java,b\4\b4fed36a75f896316e880fcd9f6e3ca28c7abf88
-ç
-]src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserServiceDetails.java,4\6\468e352cb7db33ff591de07a9b63570696c003e7
-ç
-]src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsService.java,2\6\26b42d4c8702a3669b13210e5687ba1004c30a5a
-å
-\src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsServiceTest,8\5\85af268e10e275c9a9d875a206f4b6650e8a6579
-O
-src/test/security/src/Main.java,8\2\82a81b83ca5c192df1a8fedc58bae543e5d25d48
 à
 Xsrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/JWTTokenHelperTest.java,8\e\8edef5dcb0c4296a78fca100f61ebf9024094abf
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0

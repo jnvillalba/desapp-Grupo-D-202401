@@ -44,9 +44,4 @@ public class CacheConfig {
         return cacheManager;
     }
 
-    @Bean
-    public CacheEventListener<Object, Object> cacheEventLogger() {
-        return new CacheEventLogger();
-    }
-
 }

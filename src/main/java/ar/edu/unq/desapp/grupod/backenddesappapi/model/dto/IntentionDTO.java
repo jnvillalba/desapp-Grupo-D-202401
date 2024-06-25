@@ -2,14 +2,13 @@ package ar.edu.unq.desapp.grupod.backenddesappapi.model.dto;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.Intention;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.OperationType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class IntentionDTO {

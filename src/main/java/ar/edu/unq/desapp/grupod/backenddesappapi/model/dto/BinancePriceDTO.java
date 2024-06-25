@@ -21,6 +21,6 @@ public class BinancePriceDTO implements Serializable {
 
     @Override
     public String toString() {
-        return (symbol + " price " + price);
+        return (symbol + " $ " + price);
     }
 }
