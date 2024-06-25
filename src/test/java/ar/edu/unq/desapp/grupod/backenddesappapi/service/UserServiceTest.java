@@ -13,6 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -76,6 +77,22 @@ class UserServiceTest {
       assertEquals("12345678", registeredUser.getWalletCrypto());
       assertEquals("0123456789012345678901", registeredUser.getCvuMercadoPago());
       assertEquals("Password123!", registeredUser.getPassword());
+   }
+
+   @Test
+   void testLoginUser() {
+      String userEmail = "joe@example.com";
+      User mockUser = new User();
+      mockUser.setEmail(userEmail);
+      mockUser.setPassword("Password123!");
+
+      when(userRepository.findByEmail(userEmail)).thenReturn(mockUser);
+
+      UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
+
+      assertEquals(userEmail, userDetails.getUsername());
+
+      verify(userRepository, times(1)).findByEmail(userEmail);
    }
 
    @Test
