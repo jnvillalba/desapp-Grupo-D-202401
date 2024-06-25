@@ -18,11 +18,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -256,6 +255,63 @@ class DTOsTests {
         assertEquals(email, jwtDTO.getEmail());
         assertEquals(authorities, jwtDTO.getAuthorities());
     }
+
+    @Test
+    public void testJwtDTOGettersAndSetters() {
+        String token = "testToken";
+        String email = "test@example.com";
+        Collection<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+
+        JwtDTO jwtDTO = new JwtDTO(token, email, authorities);
+
+        jwtDTO.setToken(token);
+        jwtDTO.setEmail(email);
+        jwtDTO.setAuthorities(authorities);
+
+        assertEquals(token, jwtDTO.getToken());
+        assertEquals(email, jwtDTO.getEmail());
+        assertEquals(authorities, jwtDTO.getAuthorities());
+    }
+
+    @Test
+    public void testFormattedCreationDateTime() {
+        LocalDateTime creationDateTime = LocalDateTime.of(2024, 6, 24, 10, 30, 0);
+        IntentionDTO dto = new IntentionDTO();
+        dto.setCreationDateTime(creationDateTime);
+
+        String expectedFormattedDateTime = "2024-06-24T10:30:00";
+        assertEquals(expectedFormattedDateTime, dto.getFormattedCreationDateTime());
+    }
+
+    @Test
+    void testEmailGetter() {
+        String email = "test@example.com";
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setEmail(email);
+
+        assertEquals(email, loginDTO.getEmail());
+    }
+
+    @Test
+    void testPasswordGetter() {
+        String password = "Password1!";
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setPassword(password);
+
+        assertEquals(password, loginDTO.getPassword());
+    }
+
+    @Test
+    void testValidLoginDTO() {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setEmail("test@example.com");
+        loginDTO.setPassword("Password1!");
+
+        var violations = validator.validate(loginDTO);
+
+        assertTrue(violations.isEmpty());
+    }
 }
+
 
 
