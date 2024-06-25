@@ -18,7 +18,7 @@ import java.util.Collections;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CustomUserDetailsServiceTest {
+class CustomUserDetailsServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -67,7 +67,7 @@ public class CustomUserDetailsServiceTest {
         when(userRepository.findByEmail(email)).thenReturn(null);
 
         try {
-            UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+            customUserDetailsService.loadUserByUsername(email);
         } catch (UsernameNotFoundException e) {
             assertEquals("User not found with email: " + email, e.getMessage());
         }
