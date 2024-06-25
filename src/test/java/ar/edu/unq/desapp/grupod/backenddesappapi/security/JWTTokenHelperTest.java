@@ -1,8 +1,6 @@
 package ar.edu.unq.desapp.grupod.backenddesappapi.security;
 
 import ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -12,13 +10,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class JWTTokenHelperTest {
+class JWTTokenHelperTest {
 
     private static final String SECRET = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
 
@@ -57,13 +54,5 @@ public class JWTTokenHelperTest {
                 .setExpiration(new Date(System.currentTimeMillis() + JWTTokenHelper.JWT_TOKEN_VALIDITY_MILLIS))
                 .signWith(key, SignatureAlgorithm.HS512)
                 .compact();
-    }
-
-    private Jws<Claims> parseClaimsJws(String token) {
-        SecretKey key = Keys.hmacShaKeyFor(SECRET.getBytes());
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token);
     }
 }
