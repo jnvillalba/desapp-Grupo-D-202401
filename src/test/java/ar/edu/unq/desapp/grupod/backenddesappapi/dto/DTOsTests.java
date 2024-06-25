@@ -15,16 +15,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -46,7 +47,7 @@ class DTOsTests {
         loginDTO.setEmail(null);
         loginDTO.setPassword("Password1!");
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must not be blank");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -60,7 +61,7 @@ class DTOsTests {
         loginDTO.setEmail("invalid-email");
         loginDTO.setPassword("Password1!");
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must be a well-formed email address");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -74,7 +75,7 @@ class DTOsTests {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword(null);
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must not be blank");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -88,7 +89,7 @@ class DTOsTests {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword("invalid");
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must match \"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$\"");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -242,4 +243,118 @@ class DTOsTests {
     }
 
 
+    @Test
+    void testJwtDTOAllArgsConstructor() {
+        String token = "testToken";
+        String email = "test@example.com";
+        List<GrantedAuthority> authorities = Collections.singletonList(mock(GrantedAuthority.class));
+
+        JwtDTO jwtDTO = new JwtDTO(token, email, authorities);
+
+        assertEquals(token, jwtDTO.getToken());
+        assertEquals(email, jwtDTO.getEmail());
+        assertEquals(authorities, jwtDTO.getAuthorities());
+    }
+
+    @Test
+    void testJwtDTOGettersAndSetters() {
+        String token = "testToken";
+        String email = "test@example.com";
+        Collection<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+
+        JwtDTO jwtDTO = new JwtDTO(token, email, authorities);
+
+        jwtDTO.setToken(token);
+        jwtDTO.setEmail(email);
+        jwtDTO.setAuthorities(authorities);
+
+        assertEquals(token, jwtDTO.getToken());
+        assertEquals(email, jwtDTO.getEmail());
+        assertEquals(authorities, jwtDTO.getAuthorities());
+    }
+
+    @Test
+    void testFormattedCreationDateTime() {
+        LocalDateTime creationDateTime = LocalDateTime.of(2024, 6, 24, 10, 30, 0);
+        IntentionDTO dto = new IntentionDTO();
+        dto.setCreationDateTime(creationDateTime);
+
+        String expectedFormattedDateTime = "2024-06-24T10:30:00";
+        assertEquals(expectedFormattedDateTime, dto.getFormattedCreationDateTime());
+    }
+
+    @Test
+    void testEmailGetter() {
+        String email = "test@example.com";
+        LoginDTO logDTO = new LoginDTO();
+        logDTO.setEmail(email);
+
+        assertEquals(email, logDTO.getEmail());
+    }
+
+    @Test
+    void testPasswordGetter() {
+        String password = "Password1!";
+        LoginDTO logDTO = new LoginDTO();
+        logDTO.setPassword(password);
+
+        assertEquals(password, logDTO.getPassword());
+    }
+
+    @Test
+    void testValidLoginDTO() {
+        LoginDTO logDTO = new LoginDTO();
+        logDTO.setEmail("test@example.com");
+        logDTO.setPassword("Password1!");
+
+        var violations = validator.validate(logDTO);
+
+        assertTrue(violations.isEmpty());
+    }
+
+    @Test
+    void testToDto() {
+        User user = new User();
+        user.setName("John");
+        user.setLastName("Doe");
+        user.setEmail("john.doe@example.com");
+        user.setDirection("123 Main St");
+        user.setPassword("Password$123");
+        user.setCvuMercadoPago("0123456789012345678901");
+        user.setWalletCrypto("0x12345678");
+        user.setReputation(75.0);
+        user.setOperationsList(new ArrayList<>());
+
+        UserDTO dto = UserDTO.toDto(user);
+
+        assertEquals("John", dto.getName());
+        assertEquals("Doe", dto.getLastName());
+        assertEquals("john.doe@example.com", dto.getEmail());
+        assertEquals("123 Main St", dto.getDirection());
+        assertEquals(0, dto.getOperationsAmount());
+    }
+
+    @Test
+    void testToDto_NullValues() {
+        User user = new User();
+        user.setName(null);
+        user.setLastName("Smith");
+        user.setEmail("smith@example.com");
+        user.setDirection(null);
+        user.setPassword("Password$123");
+        user.setCvuMercadoPago("0123456789012345678901");
+        user.setWalletCrypto(null);
+
+        UserDTO dto = UserDTO.toDto(user);
+
+        assertEquals(null, dto.getName());
+        assertEquals("Smith", dto.getLastName());
+        assertEquals("smith@example.com", dto.getEmail());
+        assertEquals(null, dto.getDirection());
+        assertEquals(0, dto.getOperationsAmount());
+    }
 }
+
+
+
+
