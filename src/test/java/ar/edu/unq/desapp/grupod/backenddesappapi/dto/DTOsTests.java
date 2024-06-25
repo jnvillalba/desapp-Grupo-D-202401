@@ -311,7 +311,50 @@ class DTOsTests {
 
         assertTrue(violations.isEmpty());
     }
+
+    @Test
+    void testToDto() {
+        User user = new User();
+        user.setName("John");
+        user.setLastName("Doe");
+        user.setEmail("john.doe@example.com");
+        user.setDirection("123 Main St");
+        user.setPassword("Password$123");
+        user.setCvuMercadoPago("0123456789012345678901");
+        user.setWalletCrypto("0x12345678");
+        user.setReputation(75.0);
+        user.setOperationsList(new ArrayList<>());
+
+        UserDTO dto = UserDTO.toDto(user);
+
+        assertEquals("John", dto.getName());
+        assertEquals("Doe", dto.getLastName());
+        assertEquals("john.doe@example.com", dto.getEmail());
+        assertEquals("123 Main St", dto.getDirection());
+        assertEquals(0, dto.getOperationsAmount());
+    }
+
+    @Test
+    void testToDto_NullValues() {
+        User user = new User();
+        user.setName(null);
+        user.setLastName("Smith");
+        user.setEmail("smith@example.com");
+        user.setDirection(null);
+        user.setPassword("Password$123");
+        user.setCvuMercadoPago("0123456789012345678901");
+        user.setWalletCrypto(null);
+
+        UserDTO dto = UserDTO.toDto(user);
+
+        assertEquals(null, dto.getName());
+        assertEquals("Smith", dto.getLastName());
+        assertEquals("smith@example.com", dto.getEmail());
+        assertEquals(null, dto.getDirection());
+        assertEquals(0, dto.getOperationsAmount());
+    }
 }
+
 
 
 

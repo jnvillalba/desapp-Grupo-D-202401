@@ -226,3 +226,11 @@ A
 RELEASE-NOTES.txt,f\3\f3a4611c5b27808109eecbffe706f70a983e7b07
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+ë
+asrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsServiceTest.java,b\4\b4fed36a75f896316e880fcd9f6e3ca28c7abf88
+ç
+]src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserServiceDetails.java,4\6\468e352cb7db33ff591de07a9b63570696c003e7
+ç
+]src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsService.java,2\6\26b42d4c8702a3669b13210e5687ba1004c30a5a
+å
+\src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsServiceTest,8\5\85af268e10e275c9a9d875a206f4b6650e8a6579

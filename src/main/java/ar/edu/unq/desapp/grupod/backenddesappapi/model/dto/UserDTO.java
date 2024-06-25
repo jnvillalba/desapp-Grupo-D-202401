@@ -58,7 +58,9 @@ public class UserDTO {
     public static UserDTO toDto(User user) {
         UserDTO dto = new UserDTO();
         dto.setName(user.getName());
+        dto.setEmail(user.getEmail());
         dto.setLastName(user.getLastName());
+        dto.setDirection(user.getDirection());
         dto.setOperationsAmount(user.getOperationsList().size());
         dto.setReputation(user.findReputation());
         return dto;

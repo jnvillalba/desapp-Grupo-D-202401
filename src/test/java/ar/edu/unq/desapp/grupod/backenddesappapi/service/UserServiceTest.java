@@ -5,6 +5,7 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.OperationReportDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +30,9 @@ class UserServiceTest {
 
    @InjectMocks
    private UserService userService;
+
+   @InjectMocks
+   private CustomUserDetailsService customUserDetailsService;
 
    @Mock
    private BCryptPasswordEncoder passwordEncoder;
@@ -88,5 +92,4 @@ class UserServiceTest {
       assertEquals(0.0, operationReportDTO.getTotalValueInPesosARG());
       assertEquals(0, operationReportDTO.getActives().size());
    }
-
 }
