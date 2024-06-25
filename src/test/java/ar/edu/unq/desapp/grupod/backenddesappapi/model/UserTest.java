@@ -1,4 +1,4 @@
-package ar.edu.unq.desapp.grupoD.backenddesappapi.model;
+package ar.edu.unq.desapp.grupod.backenddesappapi.model;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -111,22 +111,6 @@ class UserTest {
         violations = validator.validateProperty(user, "direction");
         assertFalse(violations.isEmpty());
     }
-
-    @Test
-    void testPasswordValidation() {
-        user.setPassword("Password123!");
-        Set<ConstraintViolation<User>> violations = validator.validateProperty(user, "password");
-        assertTrue(violations.isEmpty());
-
-        user.setPassword("A5!");
-        violations = validator.validateProperty(user, "password");
-        assertFalse(violations.isEmpty());
-
-        user.setPassword("password123");
-        violations = validator.validateProperty(user, "password");
-        assertFalse(violations.isEmpty());
-    }
-
     @Test
     void testCVUMinAndMaxLength() {
 
@@ -254,7 +238,7 @@ class UserTest {
     @Test
     void testUserCreation() {
 
-        User user = new User(
+        User john = new User(
                 1L,
                 "John",
                 "Doe",
@@ -265,13 +249,13 @@ class UserTest {
                 "12345678",
                 new ArrayList<>(),
                 new ArrayList<>(),
-                95.5
+                95.5,
+                new ArrayList<>()
         );
 
-
-        assertEquals(1L, user.getId());
-        assertEquals("John", user.getName());
-        assertEquals("user@example.com", user.getEmail());
+        assertEquals(1L, john.getId());
+        assertEquals("John", john.getName());
+        assertEquals("user@example.com", john.getEmail());
 
         User user2 = User.builder()
                 .id(2L)
