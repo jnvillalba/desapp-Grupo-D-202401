@@ -286,28 +286,28 @@ class DTOsTests {
     @Test
     void testEmailGetter() {
         String email = "test@example.com";
-        LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setEmail(email);
+        LoginDTO logDTO = new LoginDTO();
+        logDTO.setEmail(email);
 
-        assertEquals(email, loginDTO.getEmail());
+        assertEquals(email, logDTO.getEmail());
     }
 
     @Test
     void testPasswordGetter() {
         String password = "Password1!";
-        LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setPassword(password);
+        LoginDTO logDTO = new LoginDTO();
+        logDTO.setPassword(password);
 
-        assertEquals(password, loginDTO.getPassword());
+        assertEquals(password, logDTO.getPassword());
     }
 
     @Test
     void testValidLoginDTO() {
-        LoginDTO loginDTO = new LoginDTO();
-        loginDTO.setEmail("test@example.com");
-        loginDTO.setPassword("Password1!");
+        LoginDTO logDTO = new LoginDTO();
+        logDTO.setEmail("test@example.com");
+        logDTO.setPassword("Password1!");
 
-        var violations = validator.validate(loginDTO);
+        var violations = validator.validate(logDTO);
 
         assertTrue(violations.isEmpty());
     }
