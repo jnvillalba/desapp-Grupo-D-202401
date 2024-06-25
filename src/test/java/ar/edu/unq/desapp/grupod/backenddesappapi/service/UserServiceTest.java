@@ -5,6 +5,7 @@ import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.OperationReportDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.RequestReportDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.model.dto.UserDTO;
 import ar.edu.unq.desapp.grupod.backenddesappapi.repositories.UserRepository;
+import ar.edu.unq.desapp.grupod.backenddesappapi.security.jwt.JWTTokenHelper;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.CustomUserDetailsService;
 import ar.edu.unq.desapp.grupod.backenddesappapi.services.UserService;
 import org.junit.jupiter.api.Test;
@@ -12,15 +13,19 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -33,6 +38,9 @@ class UserServiceTest {
 
    @InjectMocks
    private CustomUserDetailsService customUserDetailsService;
+
+   @Mock
+   private JWTTokenHelper jwtTokenHelper;
 
    @Mock
    private BCryptPasswordEncoder passwordEncoder;
@@ -72,6 +80,36 @@ class UserServiceTest {
    }
 
    @Test
+   void testLoginUser() {
+      String userEmail = "joe@example.com";
+      User mockUser = new User();
+      mockUser.setEmail(userEmail);
+      mockUser.setPassword("Password123!");
+
+      when(userRepository.findByEmail(userEmail)).thenReturn(mockUser);
+
+      UserDetails userDetails = customUserDetailsService.loadUserByUsername(userEmail);
+
+      assertEquals(userEmail, userDetails.getUsername());
+
+      verify(userRepository, times(1)).findByEmail(userEmail);
+   }
+
+   @Test
+   void testGetUser() {
+      Long userId = 1L;
+      User user = new User();
+      user.setId(userId);
+      user.setName("John");
+
+      when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+      User retrievedUser = userService.getUser(userId);
+
+      assertEquals(userId, retrievedUser.getId());
+      assertEquals("John", retrievedUser.getName());
+   }
+   @Test
    void testGenerateReport() {
       RequestReportDTO requestReportDTO = new RequestReportDTO();
       requestReportDTO.setUserId(1L);
@@ -91,5 +129,28 @@ class UserServiceTest {
       assertEquals(0.0, operationReportDTO.getTotalValueInDollars());
       assertEquals(0.0, operationReportDTO.getTotalValueInPesosARG());
       assertEquals(0, operationReportDTO.getActives().size());
+   }
+
+   @Test
+   void testGetAllUsers() {
+      User user1 = new User();
+      user1.setName("Alice");
+      user1.setLastName("Smith");
+
+      User user2 = new User();
+      user2.setName("Bob");
+      user2.setLastName("Brown");
+
+      List<User> mockUsers = Arrays.asList(user1, user2);
+
+      when(userRepository.findAll()).thenReturn(mockUsers);
+
+      List<UserDTO> userDTOList = userService.getAllUsers();
+
+      assertEquals(2, userDTOList.size());
+      assertEquals("Alice", userDTOList.get(0).getName());
+      assertEquals("Smith", userDTOList.get(0).getLastName());
+      assertEquals("Bob", userDTOList.get(1).getName());
+      assertEquals("Brown", userDTOList.get(1).getLastName());
    }
 }

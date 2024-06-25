@@ -234,3 +234,7 @@ asrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetai
 ]src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsService.java,2\6\26b42d4c8702a3669b13210e5687ba1004c30a5a
 Œ
 \src/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/service/CustomUserDetailsServiceTest,8\5\85af268e10e275c9a9d875a206f4b6650e8a6579
+O
+src/test/security/src/Main.java,8\2\82a81b83ca5c192df1a8fedc58bae543e5d25d48
+ˆ
+Xsrc/test/java/ar/edu/unq/desapp/grupod/backenddesappapi/security/JWTTokenHelperTest.java,8\e\8edef5dcb0c4296a78fca100f61ebf9024094abf
