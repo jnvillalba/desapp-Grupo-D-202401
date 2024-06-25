@@ -37,12 +37,12 @@ class DTOsTests {
     private LoginDTO loginDTO;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         loginDTO = new LoginDTO();
     }
 
     @Test
-    public void whenEmailIsNull_thenValidationFails() {
+    void whenEmailIsNull_thenValidationFails() {
         loginDTO.setEmail(null);
         loginDTO.setPassword("Password1!");
 
@@ -56,7 +56,7 @@ class DTOsTests {
     }
 
     @Test
-    public void whenEmailIsInvalid_thenValidationFails() {
+    void whenEmailIsInvalid_thenValidationFails() {
         loginDTO.setEmail("invalid-email");
         loginDTO.setPassword("Password1!");
 
@@ -70,7 +70,7 @@ class DTOsTests {
     }
 
     @Test
-    public void whenPasswordIsNull_thenValidationFails() {
+    void whenPasswordIsNull_thenValidationFails() {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword(null);
 
@@ -84,7 +84,7 @@ class DTOsTests {
     }
 
     @Test
-    public void whenPasswordIsInvalid_thenValidationFails() {
+    void whenPasswordIsInvalid_thenValidationFails() {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword("invalid");
 
@@ -98,7 +98,7 @@ class DTOsTests {
     }
 
     @Test
-    public void whenEmailAndPasswordAreValid_thenValidationSucceeds() {
+    void whenEmailAndPasswordAreValid_thenValidationSucceeds() {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword("Password1!");
 
