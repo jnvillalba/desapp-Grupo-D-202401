@@ -15,16 +15,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -46,7 +48,7 @@ class DTOsTests {
         loginDTO.setEmail(null);
         loginDTO.setPassword("Password1!");
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must not be blank");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -60,7 +62,7 @@ class DTOsTests {
         loginDTO.setEmail("invalid-email");
         loginDTO.setPassword("Password1!");
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must be a well-formed email address");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -74,7 +76,7 @@ class DTOsTests {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword(null);
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must not be blank");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -88,7 +90,7 @@ class DTOsTests {
         loginDTO.setEmail("test@example.com");
         loginDTO.setPassword("invalid");
 
-        ConstraintViolation<LoginDTO> violation = Mockito.mock(ConstraintViolation.class);
+        ConstraintViolation<LoginDTO> violation = mock(ConstraintViolation.class);
         when(violation.getMessage()).thenReturn("must match \"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$\"");
         when(validator.validate(any(LoginDTO.class))).thenReturn(Collections.singleton(violation));
 
@@ -242,4 +244,18 @@ class DTOsTests {
     }
 
 
+    @Test
+    void testJwtDTOAllArgsConstructor() {
+        String token = "testToken";
+        String email = "test@example.com";
+        List<GrantedAuthority> authorities = Collections.singletonList(mock(GrantedAuthority.class));
+
+        JwtDTO jwtDTO = new JwtDTO(token, email, authorities);
+
+        assertEquals(token, jwtDTO.getToken());
+        assertEquals(email, jwtDTO.getEmail());
+        assertEquals(authorities, jwtDTO.getAuthorities());
+    }
 }
+
+
